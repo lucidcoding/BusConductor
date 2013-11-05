@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="BusConductor.Domain.Entities"
+                   assembly="BusConductor.Domain">
+  <class name="Role" table="`Role`">
+    <id name="Id" column="Id" type="guid">
+      <generator class="assigned"/>
+    </id>
+    <property name="RoleName" type="string" />
+    <property name="Description" type="string" />
+    <property name="CreatedOn" type="datetime" />
+    <property name="LastModifiedOn" type="datetime" />
+    <property name="Deleted" type="bool" />
+    <many-to-one name="CreatedBy" class="User" column="CreatedBy" cascade="save-update" />
+    <many-to-one name="LastModifiedBy" class="User" column="LastModifiedBy" cascade="save-update" />
+    <bag name="PermissionRoles" cascade="save-update">
+      <key column="RoleId"/>
+      <one-to-many class="PermissionRole" />
+    </bag>
+  </class>
+</hibernate-mapping>

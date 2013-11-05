@@ -1,0 +1,528 @@
+body
+{
+    font-size: .85em;
+    font-family: "Trebuchet MS" , Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section
+{
+    display: block;
+}
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset
+{
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend
+{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea
+{
+    min-height: 75px;
+}
+
+.editor-label
+{
+    margin-bottom: 20px;
+    width: 100px;
+    float: left;
+    clear: left;
+}
+
+.editor-field
+{
+    margin-bottom: 20px;
+    margin-left: 120px;
+}
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.field-validation-valid
+{
+    display: none;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}
+
+.validation-summary-valid
+{
+    display: none;
+}
+
+/* Generic Modifications */
+
+a
+{
+    text-decoration: none;
+}
+
+/* Layout */
+
+body
+{
+    background-image: url('Images/Background.gif');
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.main-div
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    background: white;
+    max-width: 1100px;
+    min-width: 850px;
+    border-left: solid white 5px;
+    border-right: solid white 5px;
+    /*-moz-border-radius: 35px;
+    border-radius: 35px;*/
+}
+
+.menu-bar
+{
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-color: white;
+}
+
+.menu-bar
+{
+    margin-left: 0px;
+    margin-right: 0px;
+    width: auto;
+    height: 40px;
+    text-align: center;
+    list-style: none;
+    background-color: #BB4CA3;
+    clear: left;
+}
+
+.menu-bar ul
+{
+    margin-left: 0px;
+    margin-right: 0px;
+    height: auto;
+    padding: 8px;
+    margin: 0px;
+}
+
+.menu-bar li
+{
+    display: inline;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /*border-left: 1px solid white;*/
+}
+
+.menu-bar li:last-child
+{
+    /*border-right: 1px solid white;*/
+}
+
+.menu-bar a
+{
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+.menu-bar a:visited
+{
+    padding: 8px;
+    color: white;
+    font-weight: bold; 
+}
+
+.menu-bar a img 
+{
+    border: none 0px;
+}
+
+.header
+{
+    text-align: center;
+    background-color: navajowhite;
+    height: 251px;
+}
+
+.content
+{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+}
+
+h1
+{
+    color: #5BC0D0;
+    font-size: xx-large;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+h2
+{
+    color: #5BC0D0;
+}
+
+hr 
+{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BB4CA3;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+}
+
+.title
+{
+    padding-top: 20px;
+    padding-bottom: 10px; 
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Bus.Index */
+
+.bus-index .record
+{
+   /* min-height: 200px;*/
+}
+
+.bus-index .record-text h2
+{
+    margin-top: 0px;
+    clear: none;
+}
+
+p .bus-index .record-description
+{
+    font-style: italic;
+}
+
+.bus-index .record-image
+{
+    float: left;
+    clear: left;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.bus-index .record-text
+{
+    margin-left: 170px;
+}
+
+.bus-index .record-icon
+{
+    margin-top: 0px;
+    float: right;
+}
+
+.bus-index hr {
+    clear: left;
+    margin-bottom: 10px;
+}
+
+/* Calendar */
+
+.bc-calendar .previous-month
+{
+    float: left;
+}
+
+.bc-calendar .next-month
+{
+    float: right;
+}
+
+.bc-calendar table
+{
+    padding: 0px;
+    margin: 0px;
+    border-collapse: separate;
+    border-spacing: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bc-calendar th
+{
+    border: solid 1px #438887;
+    background-color: #438887;
+    color: white;
+    width: 60px;
+    /*min-width: 60px;*/
+    height: 10px;
+}
+
+.bc-calendar td
+{
+    border: solid 1px black;
+    padding: 7px;
+    height: 30px;
+}
+
+.bc-calendar td.pending
+{
+    background-color: orange;
+}
+
+.bc-calendar td.confirmed
+{
+    background-color: red;
+}
+
+/* Availability */
+
+.availability-index
+{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.availability-index .main-element {
+    position: relative;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    /*min-width: 700px;*/
+}
+
+.availability-index .booking {
+    position: absolute;
+    background-color: red;
+}
+
+.availability-index .main-table
+{
+    padding: 0px;
+    margin: 0px;
+    border-collapse: separate;
+    border-spacing: 0px;
+    width: 700px;
+    table-layout: fixed;
+}
+
+.availability-index .main-table th
+{
+    border-right: solid 1px black;
+    padding: 0px;
+    background-color: #438887;
+    color: white;
+    width: 22px;
+    height: 10px;
+    font-weight: normal;
+    font-size: x-small;
+}
+
+.availability-index .main-table th:first-child 
+{
+    border-left: solid 1px black;
+    width: 123px;
+}
+
+.availability-index .main-table td
+{
+    border-right: solid 1px black;
+    padding: 0px;
+    height: 24px;
+    width: 22px;
+    
+}
+
+.availability-index .main-table td:first-child 
+{
+    border-left: solid 1px black;
+    width: 123px;
+    padding-left: 10px;
+}
+
+/*Rates */
+
+/*.bus-index .record
+{
+    min-height: 200px;
+}*/
+
+.rates-index {
+    text-align: center;
+}
+
+.rates-index .record 
+{
+    text-align: left;
+    display: inline-block;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.rates-index a img {
+    border-style: none;
+}
+
+.rates-index .record-image 
+{
+    float: left;
+    clear: left;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.rates-index .record-text {
+   
+    margin-left: 170px;
+}
+
+.rates-index .record h2
+{
+    margin-top: 0px;
+    clear: none;
+}
+
+.rates-index table 
+{
+    border-collapse: separate;
+    border-spacing: 1px;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.rates-index th
+{
+    background-color: #438887;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.rates-index th .sub-heading 
+{
+    font-weight: normal;
+    font-style:italic
+}
+.rates-index td
+{
+    background-color: lightgray;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.rates-index tr:first-child td:first-child 
+{
+    background-color: white;
+}
+
+
+/*.rates-index td:first-child 
+{
+    border-left: solid 1px black;
+}*/
+
+
+.rates-index hr 
+{
+    clear: left;
+    margin-bottom: 10px;
+}
+
+/* Booking.Index */
+
+.booking-index {
+    text-align: center;
+}
+
+.booking-index .record 
+{
+    width: 150px;
+    max-width: 150px;
+    border: solid 1px black;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+}
+
+.booking-index a img {
+    border-style: none;
+}
+/* Contact Us */
+
+.contact-index  {
+    text-align: center;
+}
+
+.contact-index .main-inner {
+    display: inline-block;
+}
+.contact-index .map
+{
+    width: 250px;
+    height: 250px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.contact-index .details 
+{
+    text-align: left;
+    display: inline-block;  
+    vertical-align: top;  
+}
+
+.contact-index .details-headings
+{
+    float: left;
+    width: 100px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.contact-index .details-content {
+    margin-left: 120px;
+    margin-bottom: 20px;
+}

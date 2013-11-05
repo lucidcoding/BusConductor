@@ -1,0 +1,97 @@
+﻿@model BusConductor.UI.ViewModels.Rates.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<h1>
+    Camper Rates</h1>
+<p>
+    These are sample rates for suggested booking periods. Please click on the name of
+    the camper to see details and daily rates for the specific camper.
+</p>
+<div class="rates-index">
+    @foreach (var bus in Model.Busses)
+    {
+        <div class="record">
+            <a href="@Url.Action("Details", "Bus", new { bus.BusId })" >
+                <img src="@bus.MainImageUrl" alt="@bus.Name" class="record-image"/>
+            </a>
+            <div class="record-text">
+                <h2>@bus.Name</h2>
+                <table>
+                    <tr>
+                        <td>
+                        </td>
+                        <th>
+                            Winter<br />
+                            <span class="sub-heading">Dec-Feb</span>
+                        </th>
+                        <th>
+                            Spring<br />
+                            <span class="sub-heading">Mar-May</span>
+                        </th>
+                        <th>
+                            Summer<br />
+                            <span class="sub-heading">Jun-Aug</span>
+                        </th>
+                        <th>
+                            Autumn<br />
+                            <span class="sub-heading">Sep-Nov</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Mon-Fri
+                        </th>
+                        <td>
+                            £@bus.WinterMondayToFriday.ToString("{#.00}")
+                        </td>
+                        <td>
+                            £@bus.SpringMondayToFriday
+                        </td>
+                        <td>
+                            £@bus.SummerMondayToFriday
+                        </td>
+                        <td>
+                            £@bus.AutumnMondayToFriday
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Fri-Mon
+                        </th>
+                        <td>
+                            £@bus.WinterFridayToMonday
+                        </td>
+                        <td>
+                            £@bus.SpringFridayToMonday
+                        </td>
+                        <td>
+                            £@bus.SummerFridayToMonday
+                        </td>
+                        <td>
+                            £@bus.AutumnFridayToMonday
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Mon-Mon
+                        </th>
+                        <td>
+                            £@bus.WinterFridayToFriday
+                        </td>
+                        <td>
+                            £@bus.SpringFridayToFriday
+                        </td>
+                        <td>
+                            £@bus.SummerFridayToFriday
+                        </td>
+                        <td>
+                            £@bus.AutumnFridayToFriday
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr />
+        </div>
+    }
+</div>

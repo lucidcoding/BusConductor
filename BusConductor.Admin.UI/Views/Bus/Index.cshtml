@@ -1,0 +1,17 @@
+﻿@model BusConductor.Admin.UI.ViewModels.Bus.IndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<table>
+    @foreach(var bus in Model.Busses)
+    {
+        <tr>
+            <td>@bus.Id</td>
+            <td>@bus.Name</td>
+            <td>@bus.Description</td>
+        </tr>
+    }
+</table>

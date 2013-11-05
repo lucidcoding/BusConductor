@@ -1,0 +1,40 @@
+﻿@model BusConductor.UI.ViewModels.Availability.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<h1>
+    Availability of Our Campers</h1>
+<div class="availability-index">
+    <div class="main-element">
+        <table class="main-table">
+            <tr>
+                <th>
+                </th>
+                @foreach (var day in Model.Days)
+                {
+                    <th>
+                        @day.DayName
+                        <br />
+                        @day.DayNumber
+                    </th>
+                }
+            </tr>
+            
+            @foreach(var bus in Model.Busses)
+            {
+                <tr>
+                    <td>
+                        @bus.Name
+                    </td>
+                    @foreach(var day in bus.Days)
+                    {
+                        <td></td>
+                    }
+                </tr>
+            }
+        </table>
+        <div class="booking" style="top:0px;left:0px;width:125px;height:25px;"></div>
+        <div class="booking" style="top:25px;left:125px;width:46px;height:25px;"></div>
+        <div class="booking" style="top:50px;left:171px;width:69px;height:25px;"></div>
+    </div>
+</div>
