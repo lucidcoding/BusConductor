@@ -160,7 +160,7 @@ namespace BusConductor.Domain.Entities
 
         public virtual BookingStatus GetBookingStatusFor(DateTime date)
         {
-            foreach (var booking in _bookings)
+            foreach (var booking in Bookings) //todo: find out how to lazy load on _booking
             {
                 if (date >= booking.PickUp && date < booking.DropOff)
                 {

@@ -1,78 +1,52 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using NHibernate;
-using NHibernate.ByteCode.Castle;
-using NHibernate.Criterion;
 using BusConductor.Domain.Common;
 
 namespace BusConductor.Data.Common
 {
+    //http://www.codeproject.com/Articles/640294/Learning-MVC-Part-6-Generic-Repository-Pattern-in
+
+    //tracing: http://social.msdn.microsoft.com/Forums/en-US/558cdb69-251a-48fa-b38b-eddc3f47cc7c/log4net-sql-logging-in-entity-framework-5-for-select-update-delete-insert
     public abstract class Repository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : Entity<TId>
         where TId : struct
     {
-        protected readonly ISessionFactory _sessionFactory;
+        protected readonly Context Context;
+        protected readonly DbSet<TEntity> DbSet;
 
-        protected Repository(ISessionFactory sessionFactory)
+        protected Repository(IContextProvider contextProvider)
         {
-            _sessionFactory = sessionFactory;
+            Context = contextProvider.GetContext();
+            DbSet = Context.Set<TEntity>();
         }
 
-        private static ProxyFactoryFactory _pff;
-
-        protected ISession Session
+        public virtual void Save(TEntity entity)
         {
-            get { return _sessionFactory.GetCurrentSession(); }
+            DbSet.Add(entity);
         }
 
-        //public virtual void SaveOrUpdate(TEntity obj)
-        //{
-        //    Session.SaveOrUpdate(obj);
-        //}
-
-        public virtual void Save(TEntity obj)
+        public virtual void Update(TEntity entityToUpdate)
         {
-            Session.Save(obj);
-        }
-
-        public virtual void Update(TEntity obj)
-        {
-            Session.Update(obj);
+            DbSet.Attach(entityToUpdate);
+            Context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
         public virtual TEntity GetById(TId id)
         {
-            return Session.Get<TEntity>(id);
+            return DbSet.Find(id);
         }
 
-        public virtual TEntity LoadById(TId id)
+        public virtual IList<TEntity> GetAll()
         {
-            return Session.Load<TEntity>(id);
+            IQueryable<TEntity> query = DbSet;
+            return query.ToList();
         }
 
-        public virtual List<TEntity> GetAll()
-        {
-            var criteriaQuery = Session.CreateCriteria(typeof(TEntity));
-            return (List<TEntity>)criteriaQuery.List<TEntity>();
-        }
-
-        public List<TEntity> GetByIds(List<TId> ids)
-        {
-            return Session.CreateCriteria<TEntity>()
-                .Add(Restrictions.In("Id", ids))
-                .List<TEntity>()
-                .ToList();
-        }
-
-        public void Flush()
-        {
-            Session.Flush();
-        }
-
-        public void Clear()
-        {
-            Session.Clear();
-        }
+        //public virtual TEntity GetById(TId id)
+        //{
+        //    return _dbSet.Find(id);
+        //}
     }
 }
 

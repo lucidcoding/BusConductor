@@ -32,7 +32,7 @@ namespace BusConductor.Application.UnitTests.Implementations
             var request = new MakePendingRequest();
             var booking = bookingService.SummarizePendingBooking(request);
             bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
-            bookingServiceFactory.BookingRepository.Verify(x => x.Clear(), Times.Once());
+            //bookingServiceFactory.BookingRepository.Verify(x => x.Clear(), Times.Once());
         }
 
         [Test]

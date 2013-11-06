@@ -40,7 +40,7 @@ namespace BusConductor.Admin.UI
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            SessionFactory = SessionFactoryFactory.GetSessionFactory();
+            //SessionFactory = SessionFactoryFactory.GetSessionFactory();
             ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());
             RegisterGlobalFilters(GlobalFilters.Filters);

@@ -1,4 +1,4 @@
-﻿using NHibernate;
+﻿//using NHibernate;
 
 namespace BusConductor.Data.Common
 {
@@ -32,16 +32,16 @@ namespace BusConductor.Data.Common
     //todo: Migrate to EF http://blogs.msdn.com/b/wriju/archive/2013/08/23/using-repository-pattern-in-entity-framework.aspx
     //don't forget: Database.SetInitializer<Context>(null);
 
-    public static class SessionFactoryFactory
-    {
-        public static ISessionFactory GetSessionFactory()
-        {
-            var configuration = new NHibernate.Cfg.Configuration();
-            configuration.Configure();
-            configuration.AddAssembly(typeof(SessionFactoryFactory).Assembly.GetName().Name);
-            log4net.Config.XmlConfigurator.Configure();
-            var sessionFactory = configuration.BuildSessionFactory();
-            return sessionFactory;
-        }
-    }
+    //public static class SessionFactoryFactory
+    //{
+    //    public static ISessionFactory GetSessionFactory()
+    //    {
+    //        var configuration = new NHibernate.Cfg.Configuration();
+    //        configuration.Configure();
+    //        configuration.AddAssembly(typeof(SessionFactoryFactory).Assembly.GetName().Name);
+    //        log4net.Config.XmlConfigurator.Configure();
+    //        var sessionFactory = configuration.BuildSessionFactory();
+    //        return sessionFactory;
+    //    }
+    //}
 }

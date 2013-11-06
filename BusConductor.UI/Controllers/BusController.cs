@@ -23,7 +23,7 @@ namespace BusConductor.UI.Controllers
             _busRepository = busRepository;
         }
 
-        [NHibernateSession]
+        //[NHibernateSession]
         public ActionResult Index()
         {
             var busses = _busRepository.GetAll();
@@ -43,7 +43,7 @@ namespace BusConductor.UI.Controllers
             return View(viewModel);
         }
 
-        [NHibernateSession]
+        //[NHibernateSession]
         public ActionResult Details(Guid id)
         {
             //todo: get with only the required bookings.

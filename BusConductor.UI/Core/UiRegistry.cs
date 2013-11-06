@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using BusConductor.Data.Common;
 using NHibernate;
 using BusConductor.Application.Core;
 using BusConductor.UI.ActionFilters;
@@ -16,7 +17,8 @@ namespace BusConductor.UI.Core
             Configure(x =>
                       {
                           x.ImportRegistry(typeof(ApplicationRegistry));
-                          For<ISessionFactory>().Use(MvcApplication.SessionFactory);
+                          For<IContextProvider>().Use<HttpContextProvider>();
+                          //For<ISessionFactory>().Use(MvcApplication.SessionFactory);
 
                           //For<IUserLoginProvider>().Use<HttpContextUserLoginProvider>();
 

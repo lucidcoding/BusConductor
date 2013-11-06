@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
@@ -67,7 +68,12 @@ namespace BusConductor.UI
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            SessionFactory = SessionFactoryFactory.GetSessionFactory();
+            //SessionFactory = SessionFactoryFactory.GetSessionFactory();
+
+            //todo: is this the correct place for this?
+            Database.SetInitializer<Context>(null);
+
+
             AreaRegistration.RegisterAllAreas();
             ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
             ControllerBuilder.Current.SetControllerFactory(new StructureMapControllerActivator());
@@ -75,14 +81,28 @@ namespace BusConductor.UI
             RegisterRoutes(RouteTable.Routes);
         }
 
-        protected void Application_EndRequest(object sender, EventArgs e)
+        protected void Application_BeginRequest(object sender, EventArgs e)
         {
 
+            //todo: move this to attribute
+            var context = new Context();
+            HttpContext.Current.Items["Context"] = context;
+        }
+
+        protected void Application_EndRequest(object sender, EventArgs e)
+        {
+            //todo: move this
+            var context = HttpContext.Current.Items["Context"] as Context;
+            context.Dispose();
+            HttpContext.Current.Items["Context"] = null;
         }
 
         void Application_Error(object sender, EventArgs e)
         {
-
+            //todo: move this
+            var context = HttpContext.Current.Items["Context"] as Context;
+            context.Dispose();
+            HttpContext.Current.Items["Context"] = null;
         }
     }
 }

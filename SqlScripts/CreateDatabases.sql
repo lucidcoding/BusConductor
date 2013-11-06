@@ -39,9 +39,9 @@ BEGIN
 		[Id] [uniqueidentifier] NOT NULL,
 		[RoleName] [nvarchar](20) NULL,
 		[Description] [nvarchar](50) NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Role] PRIMARY KEY CLUSTERED 
@@ -55,8 +55,8 @@ BEGIN
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 
-	INSERT INTO [Role] ([Id], [RoleName], [Description], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('80fc2a10-d07e-4e06-9b91-4ba936e335ba', 'Guest', 'Guest', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [Role] ([Id], [RoleName], [Description], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('8dc59a62-a077-41cc-bac7-f8be505ae4a8', 'Admin', 'Admin User', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [Role] ([Id], [RoleName], [Description], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('80fc2a10-d07e-4e06-9b91-4ba936e335ba', 'Guest', 'Guest', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [Role] ([Id], [RoleName], [Description], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('8dc59a62-a077-41cc-bac7-f8be505ae4a8', 'Admin', 'Admin User', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END
 GO
 
@@ -66,9 +66,9 @@ BEGIN
 	CREATE TABLE [dbo].[Permission](
 		[Id] [uniqueidentifier] NOT NULL,
 		[Description] [nvarchar](50) NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Permission] PRIMARY KEY CLUSTERED 
@@ -82,7 +82,7 @@ BEGIN
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 	
-	INSERT INTO [Permission] ([Id], [Description], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('f76e6b28-993f-410b-82b1-d1ce2baf34a6', 'Complete another user''s task', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [Permission] ([Id], [Description], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('f76e6b28-993f-410b-82b1-d1ce2baf34a6', 'Complete another user''s task', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END
 GO
 
@@ -93,9 +93,9 @@ BEGIN
 		[Id] [uniqueidentifier] NOT NULL,
 		[PermissionId] [uniqueidentifier] NULL,
 		[RoleId] [uniqueidentifier] NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_PermissionRole] PRIMARY KEY CLUSTERED 
@@ -109,7 +109,7 @@ BEGIN
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 
-	INSERT INTO [PermissionRole] ([Id], [PermissionId], [RoleId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('8dc59a62-a077-41cc-bac7-f8be505ae4a8', 'f76e6b28-993f-410b-82b1-d1ce2baf34a6', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [PermissionRole] ([Id], [PermissionId], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('8dc59a62-a077-41cc-bac7-f8be505ae4a8', 'f76e6b28-993f-410b-82b1-d1ce2baf34a6', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END 
 GO
 
@@ -130,9 +130,9 @@ BEGIN
 		[PostCode] [nvarchar](10) NULL,
 		[Email] [nvarchar](50) NULL,
 		[TelephoneNumber] [nvarchar](50) NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
@@ -146,9 +146,9 @@ BEGIN
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('188403fb-3c5e-45a3-aa39-5908e86ea372', 'Sql Initialise', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('c8238876-47fc-42af-8a32-926061097f1c', 'Application', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('3b50e7c8-c6ce-4446-9d51-6cc7a7877343', 'A. User', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('188403fb-3c5e-45a3-aa39-5908e86ea372', 'Sql Initialise', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('c8238876-47fc-42af-8a32-926061097f1c', 'Application', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('3b50e7c8-c6ce-4446-9d51-6cc7a7877343', 'A. User', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END 
 GO
 
@@ -160,9 +160,9 @@ CREATE TABLE [dbo].[TaskType](
 		[Description] [nvarchar](1000) NULL,
 		[ServiceLevelAgreementMinutes] [int] NOT NULL,
 		[WarningWindowMinutes] [int] NOT NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_TaskType] PRIMARY KEY CLUSTERED 
@@ -176,8 +176,8 @@ CREATE TABLE [dbo].[TaskType](
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 
-	INSERT INTO [TaskType] ([Id], [Description], [ServiceLevelAgreementMinutes], [WarningWindowMinutes], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('911762e0-31ba-4c6c-83f8-3f2288904975', 'Standard Task', 120, 20, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [TaskType] ([Id], [Description], [ServiceLevelAgreementMinutes], [WarningWindowMinutes], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('a50c62cd-b24a-4d0a-aada-9744fce7022c', 'Urgent Task', 60, 10, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [TaskType] ([Id], [Description], [ServiceLevelAgreementMinutes], [WarningWindowMinutes], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('911762e0-31ba-4c6c-83f8-3f2288904975', 'Standard Task', 120, 20, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [TaskType] ([Id], [Description], [ServiceLevelAgreementMinutes], [WarningWindowMinutes], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('a50c62cd-b24a-4d0a-aada-9744fce7022c', 'Urgent Task', 60, 10, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END 
 GO
 
@@ -193,9 +193,9 @@ CREATE TABLE [dbo].[Task](
 		[Status] [int] NULL,
 		[CompletedOn] [datetime] NULL,
 		[CompletedMessage] [datetime] NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Task] PRIMARY KEY CLUSTERED 
@@ -220,9 +220,9 @@ CREATE TABLE [dbo].[Bus](
 		[DriveSide] [int] NULL,
 		[Berth] [int] NULL,
 		[Year] [int] NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Bus] PRIMARY KEY CLUSTERED 
@@ -235,8 +235,8 @@ CREATE TABLE [dbo].[Bus](
 	
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
-	INSERT INTO [Bus] ([Id], [Name], [Description], [Overview], [Details], [DriveSide], [Berth], [Year], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('6a9857a6-d0b0-4e1a-84cb-ee9ade159560', 'Thurston', '1969 Volkswagen T2 Late Bay', 'Thurston is a two berth early bay tintop with a Westfalia interior. He''s alittle rough around the edges, but generally in good, original condition.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 1, 2, 1969, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [Bus] ([Id], [Name], [Description], [Overview], [Details], [DriveSide], [Berth], [Year], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('ba325fad-9a65-4732-872c-da2069bb37e8', 'Franklin', '1965 Volkswagen T1 Splitscreen', 'Franklin is currently in a sorry state, but give him time and he will be awesome!', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 1, 2, 1969, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [Bus] ([Id], [Name], [Description], [Overview], [Details], [DriveSide], [Berth], [Year], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('6a9857a6-d0b0-4e1a-84cb-ee9ade159560', 'Thurston', '1969 Volkswagen T2 Late Bay', 'Thurston is a two berth early bay tintop with a Westfalia interior. He''s alittle rough around the edges, but generally in good, original condition.', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 1, 2, 1969, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [Bus] ([Id], [Name], [Description], [Overview], [Details], [DriveSide], [Berth], [Year], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('ba325fad-9a65-4732-872c-da2069bb37e8', 'Franklin', '1965 Volkswagen T1 Splitscreen', 'Franklin is currently in a sorry state, but give him time and he will be awesome!', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.', 1, 2, 1969, '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END
 GO
 
@@ -254,9 +254,9 @@ CREATE TABLE [dbo].[PricingPeriod](
 		[FridayToMondayRate] [money] NULL,
 		[MondayToFridayRate] [money] NULL,
 		[BusId] [uniqueidentifier] NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_PricingPeriod] PRIMARY KEY CLUSTERED 
@@ -269,10 +269,10 @@ CREATE TABLE [dbo].[PricingPeriod](
 	
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
-	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('5AC9F707-DC38-4DED-A9BE-40EB2BA63DED', 10, 1, 3, 31, 300, 300, 600, '6a9857a6-d0b0-4e1a-84cb-ee9ade159560', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('57D27133-5F6C-450A-8367-77009E9936F6', 4, 1, 9, 30, 400, 400, 800, '6a9857a6-d0b0-4e1a-84cb-ee9ade159560', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('d4d0b835-e076-4eee-86bb-dcd66771a58d', 10, 1, 3, 31, 350, 350, 700, 'ba325fad-9a65-4732-872c-da2069bb37e8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedBy], [CreatedOn], [LastModifiedBy], [LastModifiedOn], [Deleted]) VALUES ('41bf3d3a-bd9b-4d89-b7df-149690c0d89a', 4, 1, 9, 30, 450, 450, 900, 'ba325fad-9a65-4732-872c-da2069bb37e8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('5AC9F707-DC38-4DED-A9BE-40EB2BA63DED', 10, 1, 3, 31, 300, 300, 600, '6a9857a6-d0b0-4e1a-84cb-ee9ade159560', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('57D27133-5F6C-450A-8367-77009E9936F6', 4, 1, 9, 30, 400, 400, 800, '6a9857a6-d0b0-4e1a-84cb-ee9ade159560', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('d4d0b835-e076-4eee-86bb-dcd66771a58d', 10, 1, 3, 31, 350, 350, 700, 'ba325fad-9a65-4732-872c-da2069bb37e8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [PricingPeriod] ([Id], [StartMonth], [StartDay], [EndMonth], [EndDay], [FridayToFridayRate], [FridayToMondayRate], [MondayToFridayRate], [BusId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('41bf3d3a-bd9b-4d89-b7df-149690c0d89a', 4, 1, 9, 30, 450, 450, 900, 'ba325fad-9a65-4732-872c-da2069bb37e8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END
 GO
 
@@ -289,9 +289,9 @@ CREATE TABLE [dbo].[Booking](
 		[Status] [int] NULL,
 		[BusId] [uniqueidentifier] NULL,
 		[TotalCost] [money] NOT NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Booking] PRIMARY KEY CLUSTERED 
@@ -301,6 +301,12 @@ CREATE TABLE [dbo].[Booking](
 	) ON [PRIMARY]
 
 	GRANT SELECT, INSERT, UPDATE ON [Booking] TO [AllowSelectInsertUpdate]
+	
+	INSERT INTO [Booking] ([Id], [PickUp], [DropOff], [NumberOfAdults], [NumberOfChildren], [VoucherId],
+		[Status], [BusId], [TotalCost], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted])
+	VALUES ('eaa01eab-f3bd-4e24-8368-d3501a227a8b', '2013-11-18 00:00:00', '2013-11-22 00:00:00',
+		2, 0, NULL, 1, 'ba325fad-9a65-4732-872c-da2069bb37e8', 100, 'c8238876-47fc-42af-8a32-926061097f1c', 
+		'2013-11-17 00:00:00', NULL, NULL, 0)
 END
 GO
 
@@ -313,9 +319,9 @@ CREATE TABLE [dbo].[Voucher](
 		[Description] [nvarchar](1000) NULL,
 		[Discount] [money] NOT NULL,
 		[ExpiryDate] [datetime] NULL,
-		[CreatedBy] [uniqueidentifier] NOT NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
 		[CreatedOn] [datetime] NOT NULL,
-		[LastModifiedBy] [uniqueidentifier] NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
 		[LastModifiedOn] [datetime] NULL,
 		[Deleted] [bit]	NOT NULL,
 		CONSTRAINT [PK_Voucher] PRIMARY KEY CLUSTERED 

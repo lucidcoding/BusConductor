@@ -12,8 +12,10 @@ namespace BusConductor.Domain.Entities
         private DateTime _dropOff;
         private int _numberOfAdults;
         private int _numberOfChildren;
+        private Guid? _voucherId;
         private Voucher _voucher;
         private BookingStatus _status;
+        private Guid _busId;
         private Bus _bus;
         private decimal _totalCost;
 
@@ -33,6 +35,12 @@ namespace BusConductor.Domain.Entities
         {
             get { return _status; }
             set { _status = value; }
+        }
+
+        public virtual Guid BusId
+        {
+            get { return _busId; }
+            set { _busId = value; }
         }
 
         public virtual Bus Bus
@@ -57,6 +65,12 @@ namespace BusConductor.Domain.Entities
         {
             get { return _numberOfChildren; }
             set { _numberOfChildren = value; }
+        }
+
+        public virtual Guid? VoucherId
+        {
+            get { return _voucherId; }
+            set { _voucherId = value; }
         }
 
         public virtual Voucher Voucher

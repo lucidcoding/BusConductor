@@ -6,8 +6,10 @@ namespace BusConductor.Domain.Common
     public class Entity<T> where T : struct
     {
         protected T? _id;
+        private Guid _createdById;
         protected User _createdBy;
         protected DateTime _createdOn;
+        private Guid? _lastModifiedById;
         protected User _lastModifiedBy;
         protected DateTime? _lastModifiedOn;
         protected bool _deleted;
@@ -25,10 +27,22 @@ namespace BusConductor.Domain.Common
             set { _createdBy = value; }
         }
 
+        public virtual Guid CreatedById
+        {
+            get { return _createdById; }
+            set { _createdById = value; }
+        }
+
         public virtual DateTime CreatedOn
         {
             get { return _createdOn; }
             set { _createdOn = value; }
+        }
+
+        public virtual Guid? LastModifiedById
+        {
+            get { return _lastModifiedById; }
+            set { _lastModifiedById = value; }
         }
 
         public virtual User LastModifiedBy

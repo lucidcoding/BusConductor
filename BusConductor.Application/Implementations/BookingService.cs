@@ -31,7 +31,7 @@ namespace BusConductor.Application.Implementations
         {
             var parameterSet = _makePendingParameterSetMapper.Map(request);
             var booking = Booking.MakePending(parameterSet);
-            _bookingRepository.Clear();
+            //_bookingRepository.Clear();
             return booking;
         }
 
