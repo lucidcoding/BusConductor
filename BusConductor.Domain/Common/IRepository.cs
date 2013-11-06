@@ -6,7 +6,7 @@ namespace BusConductor.Domain.Common
         where TEntity : Entity<TId>
         where TId : struct
     {
-        void SaveOrUpdate(TEntity obj);
+        //void SaveOrUpdate(TEntity obj);
         void Save(TEntity obj);
         void Update(TEntity obj);
         TEntity GetById(TId id);

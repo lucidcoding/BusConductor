@@ -19,10 +19,10 @@ namespace BusConductor.UI.ViewModelMappers.Calendar
             viewModel.BusId = bus.Id.Value;
             var firstDayOfMonth = new DateTime(year, month, 1);
             var firstDayOfFirstWeekOfMonth = DateHelper.GetFirstDayOfFirstPartWeekOfMonth(year, month);
-            //viewModel.MonthName = firstDayOfMonth.ToString("MMMM", CultureInfo.InvariantCulture);
+            viewModel.MonthName = firstDayOfMonth.ToString("MMMM", CultureInfo.InvariantCulture);
             //var firstDayOfFirstWeekOfMonth = firstDayOfMonth.AddDays(DayOfWeek.Monday - firstDayOfMonth.DayOfWeek);
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
-            var numberOfWeeks = ((lastDayOfMonth - firstDayOfMonth).Days / 7) + 1;
+            var numberOfWeeks = ((lastDayOfMonth - firstDayOfFirstWeekOfMonth).Days / 7) + 1;
             viewModel.YearOfPreviousMonth = firstDayOfMonth.AddMonths(-1).Year;
             viewModel.MonthOfPreviousMonth = firstDayOfMonth.AddMonths(-1).Month;
             viewModel.YearOfNextMonth = firstDayOfMonth.AddMonths(1).Year;

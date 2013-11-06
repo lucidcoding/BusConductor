@@ -25,10 +25,10 @@ namespace BusConductor.Data.Common
             get { return _sessionFactory.GetCurrentSession(); }
         }
 
-        public virtual void SaveOrUpdate(TEntity obj)
-        {
-            Session.SaveOrUpdate(obj);
-        }
+        //public virtual void SaveOrUpdate(TEntity obj)
+        //{
+        //    Session.SaveOrUpdate(obj);
+        //}
 
         public virtual void Save(TEntity obj)
         {

@@ -63,6 +63,5 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
                 BookingRepository.Object,
                 MakePendingParameterSetMapper.Object);
         }
-
     }
 }

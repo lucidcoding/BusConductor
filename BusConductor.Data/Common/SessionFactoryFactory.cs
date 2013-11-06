@@ -28,6 +28,10 @@ namespace BusConductor.Data.Common
     //todo: elmah
     //todo: eliminate setters from domain.
     //todo: unit tests on data layer?
+
+    //todo: Migrate to EF http://blogs.msdn.com/b/wriju/archive/2013/08/23/using-repository-pattern-in-entity-framework.aspx
+    //don't forget: Database.SetInitializer<Context>(null);
+
     public static class SessionFactoryFactory
     {
         public static ISessionFactory GetSessionFactory()
