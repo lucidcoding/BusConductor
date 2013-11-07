@@ -26,7 +26,7 @@ namespace BusConductor.UI.Controllers
             _busRepository = busRepository;
         }
 
-        //[NHibernateSession]
+        [EntityFrameworkReadContext]
         public ActionResult Index()
         {
             var busses = _busRepository.GetAll();
@@ -46,7 +46,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        //[NHibernateSession]
+        [EntityFrameworkReadContext]
         public ActionResult Make(Guid busId)
         {
             var viewModel = new MakeViewModel();
@@ -57,7 +57,7 @@ namespace BusConductor.UI.Controllers
 
         [Log]
         [HttpPost]
-        //[NHibernateSession]
+        [EntityFrameworkReadContext]
         public ActionResult Review(MakeViewModel inViewModel)
         {
             //if (!ModelState.IsValid) return View("Make", inViewModel);
@@ -72,7 +72,8 @@ namespace BusConductor.UI.Controllers
 
         [Log]
         [HttpPost]
-        //[NHibernateSession]
+        [TransactionScope]
+        [EntityFrameworkWriteContext]
         public ActionResult Confirm(ReviewViewModel viewModel)
         {
             var request = ReviewViewModelMapper.Map(viewModel);

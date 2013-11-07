@@ -13,13 +13,21 @@ namespace BusConductor.Data.Common
         where TEntity : Entity<TId>
         where TId : struct
     {
-        protected readonly Context Context;
-        protected readonly DbSet<TEntity> DbSet;
+        protected readonly IContextProvider ContextProvider;
 
         protected Repository(IContextProvider contextProvider)
         {
-            Context = contextProvider.GetContext();
-            DbSet = Context.Set<TEntity>();
+            ContextProvider = contextProvider;
+        }
+
+        protected Context Context
+        {
+            get { return ContextProvider.GetContext(); }
+        }
+
+        protected DbSet<TEntity> DbSet
+        {
+            get { return Context.Set<TEntity>(); }
         }
 
         public virtual void Save(TEntity entity)

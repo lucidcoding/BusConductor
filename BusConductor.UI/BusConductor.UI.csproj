@@ -79,7 +79,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\EntityFrameworkWriteContextAttribute.cs" />
     <Compile Include="ActionFilters\LogAttribute.cs" />
+    <Compile Include="ActionFilters\TransactionScopeAttribute.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
     <Compile Include="Controllers\AvailabilityController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
@@ -90,7 +92,7 @@
     <Compile Include="Controllers\RatesController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Core\UiRegistry.cs" />
-    <Compile Include="ActionFilters\TOGO_NHibernateSessionAttribute.cs" />
+    <Compile Include="ActionFilters\EntityFrameworkReadContextAttribute.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\SelectListExtensions.cs" />
     <Compile Include="Global.asax.cs">

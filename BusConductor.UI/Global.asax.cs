@@ -83,22 +83,10 @@ namespace BusConductor.UI
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-
-            //todo: move this to attribute
-            var context = new Context();
-            HttpContext.Current.Items["Context"] = context;
         }
 
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            //todo: move this
-           
-            var context = HttpContext.Current.Items["Context"] as Context;
-
-            //todo: can't have this because of confirm.
-            
-            context.Dispose();
-            HttpContext.Current.Items["Context"] = null;
         }
 
         void Application_Error(object sender, EventArgs e)
