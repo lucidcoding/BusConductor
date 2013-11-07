@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BusConductor.Data.Common;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.RepositoryContracts;
@@ -14,16 +15,9 @@ namespace BusConductor.Data.Repositories
 
         public User GetByUsername(string username)
         {
-            //todo: fix
-            //var user = Session.CreateQuery(
-            //    "select user " +
-            //    "from User as user " +
-            //    "where user.Username = :username ")
-            //    .SetString("username", username)
-            //    .UniqueResult<User>();
-
-            //return user;
-            return null;
+            return Context
+                .Users
+                .SingleOrDefault(user => user.Username == username);
         }
     }
 }

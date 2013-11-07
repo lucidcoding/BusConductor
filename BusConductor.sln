@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusConductor.Application", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SqlScripts", "SqlScripts", "{FF0C19B8-A27A-414F-9847-A7E296CC776B}"
 	ProjectSection(SolutionItems) = preProject
-		SqlScripts\CreateDatabases.sql = SqlScripts\CreateDatabases.sql
+		SqlScripts\00001_CreateDatabases.sql = SqlScripts\00001_CreateDatabases.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F60AF9BA-9CA9-4820-9C46-806249D79068}"
@@ -37,6 +37,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusConductor.Application.UnitTests", "BusConductor.Application.UnitTests\BusConductor.Application.UnitTests.csproj", "{61413815-696A-4C57-AA9B-B3C36FD61136}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lucidity.Utilities.Contracts", "Lucidity.Utilities.Contracts\Lucidity.Utilities.Contracts.csproj", "{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusConductor.UI.IntegrationTests", "BusConductor.UI.IntegrationTests\BusConductor.UI.IntegrationTests.csproj", "{D3904634-FEC4-4A7F-AEA1-3F104E29173A}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -161,6 +163,16 @@ Global
 		{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D3904634-FEC4-4A7F-AEA1-3F104E29173A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

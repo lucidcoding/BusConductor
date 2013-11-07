@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Configuration;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
 using BusConductor.Domain.Entities;
 
-namespace BusConductor.Data.Common
+namespace BusConductor.Data.Core
 {
     public class Context : DbContext
     {
         //todo: change it so we don't have to have ID for every child.
 
         //todo: put in config
-        public Context()
-            : base(@"Data Source=localhost\sql2008r2;Initial Catalog=BusConductor;User Id=intranetuser;Password=intuspas;")
+        public Context() : base(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString)
         {
             this.Configuration.LazyLoadingEnabled = true;
         }
@@ -43,16 +39,10 @@ namespace BusConductor.Data.Common
             modelBuilder.Entity<TaskType>().ToTable("TaskType");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Voucher>().ToTable("Voucher");
-
-            //Configure domain classes using Fluent API here
-            //modelBuilder.Entity<Task>()
-            //    .HasMany<Activity>(task => task.Activites)
-            //    .WithRequired(activity => activity.Task)
-            //    .HasForeignKey(activity => activity.TaskId);
-
+            
             modelBuilder.Entity<Bus>()
                 .HasRequired<User>(bus => bus.CreatedBy);
-
+            
             modelBuilder.Entity<Bus>()
                 .HasMany<Booking>(bus => bus.Bookings)
                 .WithRequired(booking => booking.Bus)
@@ -62,7 +52,12 @@ namespace BusConductor.Data.Common
                 .HasRequired<User>(booking => booking.CreatedBy);
 
             modelBuilder.Entity<User>()
-                .HasRequired<User>(x => x.CreatedBy);
+                .HasRequired<User>(user => user.CreatedBy)
+                .WithMany()
+                .HasForeignKey(user => user.CreatedById);
+
+            modelBuilder.Entity<Role>()
+                .HasRequired<User>(role => role.CreatedBy);
 
             base.OnModelCreating(modelBuilder);
         }

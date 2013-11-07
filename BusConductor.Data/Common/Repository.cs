@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using BusConductor.Data.Core;
 using BusConductor.Domain.Common;
 
 namespace BusConductor.Data.Common

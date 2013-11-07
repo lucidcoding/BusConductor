@@ -146,9 +146,9 @@ BEGIN
 	DECLARE @now AS DATETIME
 	SET @now = GETDATE()
 
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('188403fb-3c5e-45a3-aa39-5908e86ea372', 'Sql Initialise', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('c8238876-47fc-42af-8a32-926061097f1c', 'Application', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
-	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('3b50e7c8-c6ce-4446-9d51-6cc7a7877343', 'A. User', '80fc2a10-d07e-4e06-9b91-4ba936e335ba', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('188403fb-3c5e-45a3-aa39-5908e86ea372', 'Sql Initialise', '8dc59a62-a077-41cc-bac7-f8be505ae4a8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('c8238876-47fc-42af-8a32-926061097f1c', 'Application', '8dc59a62-a077-41cc-bac7-f8be505ae4a8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
+	INSERT INTO [User] ([Id], [Username], [RoleId], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted]) VALUES ('3b50e7c8-c6ce-4446-9d51-6cc7a7877343', 'A. User', '8dc59a62-a077-41cc-bac7-f8be505ae4a8', '188403fb-3c5e-45a3-aa39-5908e86ea372', @now, null, null, 0)
 END 
 GO
 

@@ -1,4 +1,6 @@
-﻿namespace BusConductor.Data.Common
+﻿using BusConductor.Data.Core;
+
+namespace BusConductor.Data.Common
 {
     public interface IContextProvider
     {

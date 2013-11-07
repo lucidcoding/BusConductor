@@ -21,16 +21,16 @@ namespace BusConductor.Domain.Common
             set { _id = value; }
         }
 
-        public virtual User CreatedBy
-        {
-            get { return _createdBy; }
-            set { _createdBy = value; }
-        }
-
         public virtual Guid CreatedById
         {
             get { return _createdById; }
             set { _createdById = value; }
+        }
+
+        public virtual User CreatedBy
+        {
+            get { return _createdBy; }
+            set { _createdBy = value; }
         }
 
         public virtual DateTime CreatedOn

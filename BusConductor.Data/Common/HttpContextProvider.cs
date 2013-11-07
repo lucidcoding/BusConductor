@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using BusConductor.Data.Core;
 
 namespace BusConductor.Data.Common
 {
