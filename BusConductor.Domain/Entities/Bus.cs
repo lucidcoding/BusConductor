@@ -16,8 +16,8 @@ namespace BusConductor.Domain.Entities
         private DriveSide _driveSide;
         private int _berth;
         private int _year;
-        private IList<PricingPeriod> _pricingPeriods; 
-        private IList<Booking> _bookings;
+        private ICollection<PricingPeriod> _pricingPeriods; 
+        private ICollection<Booking> _bookings;
  
         public virtual string Name
         {
@@ -31,7 +31,7 @@ namespace BusConductor.Domain.Entities
             set { _description = value; }
         }
 
-        public virtual IList<Booking> Bookings
+        public virtual ICollection<Booking> Bookings
         {
             get { return _bookings; }
             set { _bookings = value; }
@@ -67,7 +67,7 @@ namespace BusConductor.Domain.Entities
             set { _year = value; }
         }
 
-        public virtual IList<PricingPeriod> PricingPeriods
+        public virtual ICollection<PricingPeriod> PricingPeriods
         {
             get { return _pricingPeriods; }
             set { _pricingPeriods = value; }
@@ -160,7 +160,7 @@ namespace BusConductor.Domain.Entities
 
         public virtual BookingStatus GetBookingStatusFor(DateTime date)
         {
-            foreach (var booking in Bookings) //todo: find out how to lazy load on _booking
+            foreach (var booking in _bookings) 
             {
                 if (date >= booking.PickUp && date < booking.DropOff)
                 {

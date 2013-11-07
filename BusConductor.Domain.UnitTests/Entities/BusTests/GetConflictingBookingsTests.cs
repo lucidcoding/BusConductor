@@ -16,14 +16,16 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
         {
             _bus = new Bus();
             _bus.Bookings = new List<Booking>();
-            _bus.Bookings.Add(new Booking());
-            _bus.Bookings[0].PickUp = new DateTime(2013, 10, 14);
-            _bus.Bookings[0].DropOff = new DateTime(2013, 10, 21);
-            _bus.Bookings[0].Bus = _bus;
-            _bus.Bookings.Add(new Booking());
-            _bus.Bookings[1].PickUp = new DateTime(2013, 10, 25);
-            _bus.Bookings[1].DropOff = new DateTime(2013, 10, 28);
-            _bus.Bookings[1].Bus = _bus;
+            var booking1 = new Booking();
+            booking1.PickUp = new DateTime(2013, 10, 14);
+            booking1.DropOff = new DateTime(2013, 10, 21);
+            booking1.Bus = _bus;
+            _bus.Bookings.Add(booking1);
+            var booking2 = new Booking();
+            booking2.PickUp = new DateTime(2013, 10, 25);
+            booking2.DropOff = new DateTime(2013, 10, 28);
+            booking2.Bus = _bus;
+            _bus.Bookings.Add(booking2);
         }
 
         [Test]
@@ -48,7 +50,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
         {
             var conflictingBookings = _bus.GetConflictingBookings(new DateTime(2013, 10, pickUpDay), new DateTime(2013, 10, dropOffDay));
             Assert.That(conflictingBookings.Count, Is.EqualTo(1));
-            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings[0]));
+            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings.ToList()[0]));
         }
 
         [Test]
@@ -59,8 +61,8 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
         {
             var conflictingBookings = _bus.GetConflictingBookings(new DateTime(2013, 10, pickUpDay), new DateTime(2013, 10, dropOffDay));
             Assert.That(conflictingBookings.Count, Is.EqualTo(2));
-            Assert.That(conflictingBookings.Contains(_bus.Bookings[0]));
-            Assert.That(conflictingBookings.Contains(_bus.Bookings[1]));
+            Assert.That(conflictingBookings.Contains(_bus.Bookings.ToList()[0]));
+            Assert.That(conflictingBookings.Contains(_bus.Bookings.ToList()[1]));
         }
 
         [Test]
@@ -75,7 +77,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
         {
             var conflictingBookings = _bus.GetConflictingBookings(new DateTime(2013, 10, 13), new DateTime(2013, 10, 22));
             Assert.That(conflictingBookings.Count, Is.EqualTo(1));
-            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings[0]));
+            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings.ToList()[0]));
         }
 
         [Test]
@@ -83,7 +85,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
         {
             var conflictingBookings = _bus.GetConflictingBookings(new DateTime(2013, 10, 14), new DateTime(2013, 10, 21));
             Assert.That(conflictingBookings.Count, Is.EqualTo(1));
-            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings[0]));
+            Assert.That(conflictingBookings[0], Is.EqualTo(_bus.Bookings.ToList()[0]));
         }
     }
 }

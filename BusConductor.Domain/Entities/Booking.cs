@@ -164,6 +164,7 @@ namespace BusConductor.Domain.Entities
             booking._voucher = parameterSet.Voucher;
             var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
             booking._createdBy = User.CreateGuest(createGuestUserParameterSet);
+            //booking._createdById = booking._createdBy.Id.Value;//todo: is this really right?
             booking._createdOn = DateTime.Now;
             booking._deleted = false;
             var totalCostWithoutDiscount = parameterSet.Bus.GetUndiscountedRateFor(parameterSet.PickUp.Value, parameterSet.DropOff.Value);

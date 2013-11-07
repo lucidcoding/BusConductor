@@ -34,7 +34,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         public ActionResult Index()
         {
             _userService.EnsureExists(HttpContext.User.Identity.Name);  //This is not very secure, we would not do this in real life.
@@ -45,7 +45,7 @@ namespace BusConductor.UI.Controllers
             return View(viewModel);
         }
 
-        [NHibernateSession]
+        //[NHibernateSession]
         [HttpPost]
         public PartialViewResult Index(TaskIndexViewModel viewModel)
         {
@@ -63,7 +63,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         public ActionResult Raise()
         {
             var users = _userRepository.GetAll();
@@ -73,7 +73,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         [HttpPost]
         public ActionResult Raise(TaskRaiseEditViewModel viewModel)
         {
@@ -105,7 +105,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         public ActionResult Edit(Guid taskId)
         {
             var task = _taskRepository.GetById(taskId);
@@ -116,7 +116,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         [HttpPost]
         public ActionResult Edit(TaskRaiseEditViewModel viewModel)
         {
@@ -155,7 +155,7 @@ namespace BusConductor.UI.Controllers
         }
 
         [Log]
-        [NHibernateSession]
+        //[NHibernateSession]
         [HttpPost]
         public PartialViewResult Cancel(Guid taskId, TaskIndexViewModel viewModel)
         {

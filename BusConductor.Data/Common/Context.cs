@@ -9,6 +9,8 @@ namespace BusConductor.Data.Common
 {
     public class Context : DbContext
     {
+        //todo: change it so we don't have to have ID for every child.
+
         //todo: put in config
         public Context()
             : base(@"Data Source=localhost\sql2008r2;Initial Catalog=BusConductor;User Id=intranetuser;Password=intuspas;")
@@ -55,6 +57,9 @@ namespace BusConductor.Data.Common
                 .HasMany<Booking>(bus => bus.Bookings)
                 .WithRequired(booking => booking.Bus)
                 .HasForeignKey(booking => booking.BusId);
+
+            modelBuilder.Entity<Booking>()
+                .HasRequired<User>(booking => booking.CreatedBy);
 
             modelBuilder.Entity<User>()
                 .HasRequired<User>(x => x.CreatedBy);

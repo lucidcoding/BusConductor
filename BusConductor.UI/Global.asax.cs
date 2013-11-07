@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Lucidity.Utilities.Logging;
-using NHibernate;
 using BusConductor.Data.Common;
 using BusConductor.UI.Common;
 using BusConductor.UI.Core;
@@ -22,7 +21,7 @@ namespace BusConductor.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static ISessionFactory SessionFactory { get; set; }
+        //public static ISessionFactory SessionFactory { get; set; }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -92,7 +91,11 @@ namespace BusConductor.UI
         protected void Application_EndRequest(object sender, EventArgs e)
         {
             //todo: move this
+           
             var context = HttpContext.Current.Items["Context"] as Context;
+
+            //todo: can't have this because of confirm.
+            
             context.Dispose();
             HttpContext.Current.Items["Context"] = null;
         }

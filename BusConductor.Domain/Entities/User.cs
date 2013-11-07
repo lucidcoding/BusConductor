@@ -8,6 +8,7 @@ namespace BusConductor.Domain.Entities
     public class User : Entity<Guid>
     {
         private string _username;
+        private Guid _roleId;
         private Role _role;
         private string _forename;
         private string _surname;
@@ -24,6 +25,12 @@ namespace BusConductor.Domain.Entities
         {
             get { return _username; }
             set { _username = value; }
+        }
+
+        public virtual Guid RoleId
+        {
+            get { return _roleId; }
+            set { _roleId = value; }
         }
 
         public virtual Role Role
@@ -99,6 +106,7 @@ namespace BusConductor.Domain.Entities
             user._username = username;
             user._role = role;
             user._createdOn = DateTime.Now;
+            user.CreatedById = currentUser.Id.Value; //todo: is this really right?
             user._createdBy = currentUser;
             user._deleted = false;
             return user;
@@ -205,6 +213,7 @@ namespace BusConductor.Domain.Entities
             user._email = parameterSet.Email;
             user._telephoneNumber = parameterSet.TelephoneNumber;
             user._createdOn = DateTime.Now;
+            user._createdById = parameterSet.CurrentUser.Id.Value; //todo: is this really right?
             user._createdBy = parameterSet.CurrentUser;
             user._deleted = false;
             return user;

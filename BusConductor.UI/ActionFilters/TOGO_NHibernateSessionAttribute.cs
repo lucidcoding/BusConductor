@@ -1,7 +1,7 @@
 ﻿//using System.Web.Mvc;
-////using NHibernate.Context;
+//using NHibernate.Context;
 
-//namespace BusConductor.Admin.UI.ActionFilters
+//namespace BusConductor.UI.ActionFilters
 //{
 //    /// <remarks>
 //    /// This project template uses the 'Session per controller action' pattern, rather than the usual 'session per request' pattern.

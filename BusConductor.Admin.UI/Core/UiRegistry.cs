@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using BusConductor.Admin.UI;
 using BusConductor.Data.Core;
-using NHibernate;
+//using NHibernate;
 //using BusConductor.Application.Core;
 using BusConductor.UI.Common;
 using StructureMap;
@@ -19,7 +19,7 @@ namespace BusConductor.UI.Core
                           //x.ImportRegistry(typeof(ApplicationRegistry));
                           x.ImportRegistry(typeof(DataRegistry));
 
-                          For<ISessionFactory>().Use(MvcApplication.SessionFactory);
+                          //For<ISessionFactory>().Use(MvcApplication.SessionFactory);
 
                           //For<IUserLoginProvider>().Use<HttpContextUserLoginProvider>();
 

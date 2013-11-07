@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using BusConductor.Data.Common;
-using NHibernate;
 using BusConductor.Application.Core;
 using BusConductor.UI.ActionFilters;
 using BusConductor.UI.Common;

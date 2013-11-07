@@ -19,7 +19,7 @@ namespace BusConductor.UI.Controllers
             _busRepository = busRepository;
         }
 
-        [NHibernateSession]
+        //[NHibernateSession]
         public PartialViewResult DisplayMonth(int year, int month, Guid busId)
         {
             var bus = _busRepository.GetById(busId);

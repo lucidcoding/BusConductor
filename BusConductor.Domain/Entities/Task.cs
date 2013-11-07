@@ -9,6 +9,7 @@ namespace BusConductor.Domain.Entities
     public class Task : Entity<Guid>
     {
         public virtual string Description { get; set; }
+        public virtual Guid? AssignedToId { get; set; }
         public virtual User AssignedTo { get; set; }
         public virtual TaskType Type { get; set; }
         public virtual DateTime DueDate { get; set; }

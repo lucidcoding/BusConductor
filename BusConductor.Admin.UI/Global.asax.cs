@@ -7,7 +7,7 @@ using System.Web.Routing;
 using BusConductor.Data.Common;
 using BusConductor.UI.Common;
 using BusConductor.UI.Core;
-using NHibernate;
+//using NHibernate;
 using StructureMap;
 
 namespace BusConductor.Admin.UI
@@ -17,7 +17,7 @@ namespace BusConductor.Admin.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        public static ISessionFactory SessionFactory { get; set; }
+        //public static ISessionFactory SessionFactory { get; set; }
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {

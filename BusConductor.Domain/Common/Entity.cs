@@ -6,10 +6,10 @@ namespace BusConductor.Domain.Common
     public class Entity<T> where T : struct
     {
         protected T? _id;
-        private Guid _createdById;
+        protected Guid _createdById;
         protected User _createdBy;
         protected DateTime _createdOn;
-        private Guid? _lastModifiedById;
+        protected Guid? _lastModifiedById;
         protected User _lastModifiedBy;
         protected DateTime? _lastModifiedOn;
         protected bool _deleted;

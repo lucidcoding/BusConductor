@@ -12,6 +12,7 @@ namespace BusConductor.Domain.Entities
         private decimal _fridayToFridayRate;
         private decimal _fridayToMondayRate; //Automatically set this to be same as monday to friday
         private decimal _mondayToFridayRate;
+        private Guid _busId;
         private Bus _bus;
 
         public virtual decimal FridayToFridayRate
@@ -30,6 +31,12 @@ namespace BusConductor.Domain.Entities
         {
             get { return _mondayToFridayRate; }
             set { _mondayToFridayRate = value; }
+        }
+
+        public Guid BusId
+        {
+            get { return _busId; }
+            set { _busId = value; }
         }
 
         public virtual Bus Bus

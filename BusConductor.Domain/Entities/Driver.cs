@@ -12,6 +12,7 @@ namespace BusConductor.Domain.Entities
         private string _drivingLicenceNumber;
         //todo: get minimum age for driver
         private DateTime _dateOfBirth;
+        private Guid _bookingId;
         private Booking _booking;
         private bool _isMainDriver;
 
@@ -37,6 +38,12 @@ namespace BusConductor.Domain.Entities
         {
             get { return _dateOfBirth; }
             set { _dateOfBirth = value; }
+        }
+
+        public virtual Guid BookingId
+        {
+            get { return _bookingId; }
+            set { _bookingId = value; }
         }
 
         public virtual Booking Booking

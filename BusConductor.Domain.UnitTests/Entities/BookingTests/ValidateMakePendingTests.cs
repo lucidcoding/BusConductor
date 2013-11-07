@@ -196,10 +196,11 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         [Test]
         public void ConflictingBookingReturnsError()
         {
-            _parameterSet.Bus.Bookings.Add(new Booking());
-            _parameterSet.Bus.Bookings[0].PickUp = new DateTime(2090, 6, 10);
-            _parameterSet.Bus.Bookings[0].DropOff = new DateTime(2090, 6, 14);
-            _parameterSet.Bus.Bookings[0].Bus = _parameterSet.Bus;
+            var booking = new Booking();
+            booking.PickUp = new DateTime(2090, 6, 10);
+            booking.DropOff = new DateTime(2090, 6, 14);
+            booking.Bus = _parameterSet.Bus;
+            _parameterSet.Bus.Bookings.Add(booking);
             var validationMessages = Booking.ValidateMakePending(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Text == "Booking conflicts with existing bookings."));

@@ -45,6 +45,8 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.VoucherCode = request.VoucherCode;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
+
+            //todo: yeah, sort this! returnring null.
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
             parameterSet.GuestRole = _roleRepository.GetByName("Guest");
             return parameterSet;
