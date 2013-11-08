@@ -1,5 +1,4 @@
 ﻿using System;
-using log4net;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.Requests;
 using BusConductor.Data.Common;
@@ -11,18 +10,15 @@ namespace BusConductor.Application.Implementations
 {
     public class TaskService : ITaskService
     {
-        private readonly ILog _log;
         private readonly ITaskRepository _taskRepository;
         private readonly ITaskTypeRepository _taskTypeRepository;
         private readonly IUserRepository _userRepository;
 
         public TaskService(
-            ILog log,
             ITaskRepository taskRepository,
             ITaskTypeRepository taskTypeRepository,
             IUserRepository userRepository)
         {
-            _log = log;
             _taskRepository = taskRepository;
             _taskTypeRepository = taskTypeRepository;
             _userRepository = userRepository;
@@ -30,7 +26,6 @@ namespace BusConductor.Application.Implementations
 
         public void Complete(Guid id, string userName)
         {
-            _log.Info(new object[] { id });
             var task = _taskRepository.GetById(id);
             var currentUser = _userRepository.GetByUsername(userName);
             task.Complete("test", currentUser);
@@ -38,7 +33,6 @@ namespace BusConductor.Application.Implementations
 
         public void Cancel(Guid id, string userName)
         {
-            _log.Info(new object[] { id });
             var task = _taskRepository.GetById(id);
             var currentUser = _userRepository.GetByUsername(userName);
             task.Cancel(currentUser);
@@ -46,7 +40,6 @@ namespace BusConductor.Application.Implementations
 
         public void Reassign(Guid taskId, Guid? reassignedToId, string userName)
         {
-            _log.Info(new object[] { taskId, reassignedToId });
             var task = _taskRepository.GetById(taskId);
             var userToReassignTo = reassignedToId.HasValue ? _userRepository.GetById(reassignedToId.Value) : null;
             var currentUser = _userRepository.GetByUsername(userName);
@@ -64,7 +57,6 @@ namespace BusConductor.Application.Implementations
 
         public Guid Raise(RaiseTaskRequest request)
         {
-            _log.Info(request);
             var assignedTo = request.AssignedToId.HasValue ? _userRepository.GetById(request.AssignedToId.Value) : null;
             var type = request.TypeId.HasValue ? _taskTypeRepository.GetById(request.TypeId.Value) : null;
             var currentUser = _userRepository.GetByUsername(request.UserName);

@@ -1,5 +1,4 @@
 ﻿using BusConductor.Application.ParameterSetMappers.Booking;
-using log4net;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.Implementations;
 using BusConductor.Data.Core;

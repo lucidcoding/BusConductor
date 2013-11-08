@@ -1,5 +1,4 @@
 ﻿using System;
-using log4net;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.Requests;
 using BusConductor.Data.Common;
@@ -11,16 +10,13 @@ namespace BusConductor.Application.Implementations
 {
     public class UserService : IUserService
     {
-        private readonly ILog _log;
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
 
         public UserService(
-            ILog log,
             IUserRepository userRepository,
             IRoleRepository roleRepository)
         {
-            _log = log;
             _userRepository = userRepository;
             _roleRepository = roleRepository;
         }

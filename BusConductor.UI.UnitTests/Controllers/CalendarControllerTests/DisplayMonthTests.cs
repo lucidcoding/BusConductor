@@ -58,10 +58,9 @@ namespace BusConductor.UI.UnitTests.Controllers.CalendarControllerTests
         }
 
         [Test]
-        [Ignore]
         public void ReturnsCorrectViewModelForMarch2014()
         {
-            var calendarControllerFactory = new CalendarControllerFactory(2013, 12, 13, 20);
+            var calendarControllerFactory = new CalendarControllerFactory(2014, 3, 10, 14);
             var calendarController = calendarControllerFactory.GetController();
 
             var result = calendarController.DisplayMonth(
@@ -70,16 +69,16 @@ namespace BusConductor.UI.UnitTests.Controllers.CalendarControllerTests
                 calendarControllerFactory.BusId);
 
             var viewModel = result.Model as DisplayMonthViewModel;
-            Assert.That(viewModel.MonthName, Is.EqualTo("December"));
+            Assert.That(viewModel.MonthName, Is.EqualTo("March"));
             Assert.That(viewModel.Weeks.Count(), Is.EqualTo(6));
-            Assert.That(viewModel.Weeks[0].Days[0].Date, Is.EqualTo(new DateTime(2013, 11, 25)));
-            Assert.That(viewModel.Weeks[0].Days[6].Date, Is.EqualTo(new DateTime(2013, 12, 1)));
-            Assert.That(viewModel.Weeks[5].Days[1].Date, Is.EqualTo(new DateTime(2013, 12, 31)));
-            Assert.That(viewModel.Weeks[5].Days[7].Date, Is.EqualTo(new DateTime(2014, 1, 5)));
-            Assert.That(viewModel.Weeks[2].Days[3].AdditionalClass, Is.Null);
+            Assert.That(viewModel.Weeks[0].Days[0].Date, Is.EqualTo(new DateTime(2014, 2, 24)));
+            Assert.That(viewModel.Weeks[0].Days[6].Date, Is.EqualTo(new DateTime(2014, 3, 2)));
+            Assert.That(viewModel.Weeks[5].Days[0].Date, Is.EqualTo(new DateTime(2014, 3, 31)));
+            Assert.That(viewModel.Weeks[5].Days[6].Date, Is.EqualTo(new DateTime(2014, 4, 6)));
+            Assert.That(viewModel.Weeks[1].Days[6].AdditionalClass, Is.Null);
+            Assert.That(viewModel.Weeks[2].Days[0].AdditionalClass, Is.EqualTo("pending"));
             Assert.That(viewModel.Weeks[2].Days[4].AdditionalClass, Is.EqualTo("pending"));
-            Assert.That(viewModel.Weeks[3].Days[4].AdditionalClass, Is.EqualTo("pending"));
-            Assert.That(viewModel.Weeks[3].Days[5].AdditionalClass, Is.Null);
+            Assert.That(viewModel.Weeks[2].Days[5].AdditionalClass, Is.Null);
         }
     }
 }
