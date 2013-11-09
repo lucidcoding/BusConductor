@@ -98,6 +98,7 @@
     <Compile Include="Mappers\TaskIndexViewModelMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mappers\TaskRaiseEditViewModelMapper.cs" />
+    <Compile Include="ViewModelMappers\Availability\IndexViewModelMapper.cs" />
     <Compile Include="ViewModelMappers\Booking\ReviewViewModelMapper.cs" />
     <Compile Include="ViewModelMappers\Booking\MakeViewModelMapper.cs" />
     <Compile Include="ViewModelMappers\Calendar\DisplayMonthViewModelMapper.cs" />
@@ -130,7 +131,7 @@
     <Content Include="Content\Images\MenuHome.gif" />
     <Content Include="Content\Images\MenuMeetTheFleet.gif" />
     <Content Include="Content\Images\MenuTariff.gif" />
-    <Content Include="Content\Images\TitleAvailability..gif" />
+    <Content Include="Content\Images\TitleAvailability.gif" />
     <Content Include="Content\Images\TitleBookACamper.gif" />
     <Content Include="Content\Images\TitleContactUs.gif" />
     <Content Include="Content\Images\TitleHome.gif" />

@@ -19,11 +19,11 @@ namespace BusConductor.UI.Controllers
             _busRepository = busRepository;
         }
 
-        //[NHibernateSession]
+        [EntityFrameworkReadContext]
         public PartialViewResult DisplayMonth(int year, int month, Guid busId)
         {
             var bus = _busRepository.GetById(busId);
-            var viewModel = CalendarViewModelMapper.Map(year, month, bus);
+            var viewModel = DisplayMonthViewModelModelMapper.Map(year, month, bus);
             return PartialView("_Calendar", viewModel);
         }
     }

@@ -2,11 +2,11 @@
 @{
     ViewBag.Title = "Index";
 }
-<h1>
-    Availability of Our Campers</h1>
+
+<img src="/Content/Images/TitleAvailability.gif" alt="Availability of our Campers" class="title" />
 <div class="availability-index">
     <div class="main-element">
-        <table class="main-table">
+        <table>
             <tr>
                 <th>
                 </th>
@@ -24,17 +24,26 @@
             {
                 <tr>
                     <td>
-                        @bus.Name
+                        <a href="@Url.Action("Make", "Booking", new { busId = bus.BusId })">
+                            <img src="@bus.MainImageUrl" alt="@bus.Name" class="record-image"/>
+                            <h2>@bus.Name</h2>
+                        </a>
                     </td>
                     @foreach(var day in bus.Days)
                     {
-                        <td></td>
+                        <td class="@day.AdditionalClass"></td>
                     }
                 </tr>
             }
         </table>
-        <div class="booking" style="top:0px;left:0px;width:125px;height:25px;"></div>
-        <div class="booking" style="top:25px;left:125px;width:46px;height:25px;"></div>
-        <div class="booking" style="top:50px;left:171px;width:69px;height:25px;"></div>
+        <!--<div class="booking" style="top:52px;left:208px;width:22px;height:50px;"></div>
+            <div class="booking" style="top:103px;left:231px;width:47px;height:50px;"></div>
+            <div class="booking" style="top:154px;left:279px;width:70px;height:50px;"></div>
+            <div class="booking" style="top:205px;left:350px;width:141px;height:50px;"></div>-->
+        <!--<div class="booking" style="top:52px;left:207px;width:22px;height:50px;"></div>
+        <div class="booking" style="top:103px;left:231px;width:47px;height:50px;"></div>
+        <div class="booking" style="top:154px;left:255px;width:70px;height:50px;"></div>
+        <div class="booking" style="top:205px;left:279px;width:141px;height:50px;"></div>
+        <div class="booking" style="top:256px;left:303px;width:141px;height:50px;"></div>-->
     </div>
 </div>

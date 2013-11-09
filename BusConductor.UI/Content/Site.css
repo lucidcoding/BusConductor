@@ -321,57 +321,83 @@ p .bus-index .record-description
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    width: 700px;
-    /*min-width: 700px;*/
+    width: 800px;
 }
 
-.availability-index .booking {
+/*.availability-index .booking {
     position: absolute;
-    background-color: red;
-}
+    background-color: #BB4CA3;
+}*/
 
-.availability-index .main-table
+.availability-index table
 {
     padding: 0px;
     margin: 0px;
     border-collapse: separate;
-    border-spacing: 0px;
-    width: 700px;
+    border-spacing:1px;
+    width: 800px;
     table-layout: fixed;
+    background-color: white;
 }
 
-.availability-index .main-table th
+.availability-index table th
 {
-    border-right: solid 1px black;
     padding: 0px;
-    background-color: #438887;
+    background-color: #BB4CA3;
     color: white;
     width: 22px;
-    height: 10px;
+    height: 50px;
     font-weight: normal;
     font-size: x-small;
 }
 
-.availability-index .main-table th:first-child 
+.availability-index table th:first-child 
 {
-    border-left: solid 1px black;
-    width: 123px;
+    width: 200px;
 }
 
-.availability-index .main-table td
+.availability-index table td
 {
-    border-right: solid 1px black;
+    background-color: #AEDBDC;
     padding: 0px;
-    height: 24px;
     width: 22px;
-    
+    vertical-align: baseline;
 }
 
-.availability-index .main-table td:first-child 
+.availability-index table td.change-over-day
 {
-    border-left: solid 1px black;
+    background-color: #5BC0D0;
+}
+
+.availability-index table td.booked
+{
+    background-color: #BB4CA3;
+}
+
+.availability-index table td:first-child 
+{
     width: 123px;
-    padding-left: 10px;
+    padding: 15px;
+    background-color: #AEDBDC;
+}
+
+.availability-index table h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline;
+    color: white;
+    vertical-align: middle;
+}
+
+.availability-index img.record-image {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+}
+
+
+.availability-index a img {
+    border-style: none;
 }
 
 /*Rates */

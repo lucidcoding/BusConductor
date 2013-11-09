@@ -51,7 +51,7 @@ namespace BusConductor.UI.Controllers
             var now = DateTime.Now;
             var viewModel = PropertyMapper.MapMatchingProperties<Bus, DetailsViewModel>(bus);
             viewModel.Id = bus.Id.Value;
-            viewModel.Calendar = CalendarViewModelMapper.Map(now.Year, now.Month, bus);
+            viewModel.Calendar = DisplayMonthViewModelModelMapper.Map(now.Year, now.Month, bus);
             return View(viewModel);
         }
     }

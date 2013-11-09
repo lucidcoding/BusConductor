@@ -8,7 +8,7 @@ using Lucidity.Utilities;
 
 namespace BusConductor.UI.ViewModelMappers.Calendar
 {
-    public static class CalendarViewModelMapper
+    public static class DisplayMonthViewModelModelMapper
     {
         //todo: nice load of unit testing for this.
         public static DisplayMonthViewModel Map(int year, int month, Bus bus)

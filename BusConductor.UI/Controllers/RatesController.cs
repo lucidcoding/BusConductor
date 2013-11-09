@@ -18,7 +18,7 @@ namespace BusConductor.UI.Controllers
             _busRepository = busRepository;
         }
 
-        //[NHibernateSession]
+        [EntityFrameworkReadContext]
         public ActionResult Index()
         {
             var busses = _busRepository.GetAll();

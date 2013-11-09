@@ -7,5 +7,6 @@ namespace BusConductor.UI.ViewModels.Availability
 {
     public class IndexBusDayViewModel
     {
+        public string AdditionalClass { get; set; }
     }
 }

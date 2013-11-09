@@ -91,10 +91,6 @@ namespace BusConductor.UI
 
         void Application_Error(object sender, EventArgs e)
         {
-            //todo: move this
-            var context = HttpContext.Current.Items["Context"] as Context;
-            context.Dispose();
-            HttpContext.Current.Items["Context"] = null;
         }
     }
 }
