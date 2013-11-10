@@ -467,6 +467,7 @@ p .bus-index .record-description
     font-weight: normal;
     font-style:italic
 }
+
 .rates-index td
 {
     background-color: lightgray;
@@ -515,6 +516,60 @@ p .bus-index .record-description
 .booking-index a img {
     border-style: none;
 }
+/* Booking.Make */
+
+.booking-make {
+    text-align: center;
+}
+
+.booking-make .intro {
+    text-align: left;
+    display: block;
+    width:600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+.booking-make form {
+    text-align: left;
+    display: inline-block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.booking-make .editor-label
+{
+    /*margin-bottom: 15px;*/
+    width: 180px;
+    height: 30px;
+    float: left;
+    clear: left;
+}
+
+.booking-make .required
+{
+    color: #BB4CA3;
+    font-weight: bold;
+}
+
+.booking-make .editor-field
+{
+    /*margin-bottom: 15px;*/
+    height: 30px;
+    margin-left: 200px;
+}
+
+.booking-make .editor-field input[type="text"] {
+    width: 250px;
+}
+
+.booking-make .editor-field input[type="text"].hasDatepicker {
+    width: 100px;
+}
+
 /* Contact Us */
 
 .contact-index  {

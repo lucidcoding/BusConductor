@@ -12,7 +12,11 @@ namespace BusConductor.Domain.Entities
         private DateTime _dropOff;
         private int _numberOfAdults;
         private int _numberOfChildren;
+        private bool _isMainDriver;
         private Guid? _voucherId;
+        private string _drivingLicenceNumber;
+        private string _driverForename;
+        private string _driverSurname;
         private Voucher _voucher;
         private BookingStatus _status;
         private Guid _busId;
@@ -73,6 +77,30 @@ namespace BusConductor.Domain.Entities
             set { _voucherId = value; }
         }
 
+        public virtual bool IsMainDriver
+        {
+            get { return _isMainDriver; }
+            set { _isMainDriver = value; }
+        }
+
+        public virtual string DrivingLicenceNumber
+        {
+            get { return _drivingLicenceNumber; }
+            set { _drivingLicenceNumber = value; }
+        }
+
+        public virtual string DriverForename
+        {
+            get { return _driverForename; }
+            set { _driverForename = value; }
+        }
+
+        public virtual string DriverSurname
+        {
+            get { return _driverSurname; }
+            set { _driverSurname = value; }
+        }
+
         public virtual Voucher Voucher
         {
             get { return _voucher; }
@@ -122,7 +150,24 @@ namespace BusConductor.Domain.Entities
 
             if (parameterSet.Bus == null) validationMessages.AddError("Bus", "Bus is required.");
             if (parameterSet.NumberOfAdults <= 0) validationMessages.AddError("NumberOfAdults", "Booking must be for 1 or more adults.");
-            if (!parameterSet.IsMainDriver) validationMessages.AddError("IsMainDriver", "Details entered must be the details for the main driver.");
+            
+            if (!parameterSet.IsMainDriver)
+            {
+                if(string.IsNullOrEmpty(parameterSet.DriverForename))
+                {
+                    validationMessages.AddError("DriverForename", "If you are not the main driver, the forename of the main driver is required.");
+                }
+
+                if (string.IsNullOrEmpty(parameterSet.DriverSurname))
+                {
+                    validationMessages.AddError("DriverSurname", "If you are not the main driver, the surname of the main driver is required.");
+                }
+            }
+
+            if(string.IsNullOrEmpty(parameterSet.DrivingLicenceNumber))
+            {
+                validationMessages.AddError("DrivingLicenceNumber", "Driving licence number is required.");
+            }
 
             if(!string.IsNullOrEmpty(parameterSet.VoucherCode) && parameterSet.Voucher == null)
             {
@@ -161,10 +206,13 @@ namespace BusConductor.Domain.Entities
             booking._status = BookingStatus.Pending;
             booking._numberOfAdults = parameterSet.NumberOfAdults;
             booking._numberOfChildren = parameterSet.NumberOfChildren;
+            booking._isMainDriver = parameterSet.IsMainDriver;
+            booking._drivingLicenceNumber = parameterSet.DrivingLicenceNumber;
+            booking._driverForename = parameterSet.DriverForename;
+            booking._driverSurname = parameterSet.DriverSurname;
             booking._voucher = parameterSet.Voucher;
             var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
             booking._createdBy = User.CreateGuest(createGuestUserParameterSet);
-            //booking._createdById = booking._createdBy.Id.Value;//todo: is this really right?
             booking._createdOn = DateTime.Now;
             booking._deleted = false;
             var totalCostWithoutDiscount = parameterSet.Bus.GetUndiscountedRateFor(parameterSet.PickUp.Value, parameterSet.DropOff.Value);

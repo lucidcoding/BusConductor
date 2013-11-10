@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,9 +50,7 @@ namespace BusConductor.UI.Controllers
         [EntityFrameworkReadContext]
         public ActionResult Make(Guid busId)
         {
-            var viewModel = new MakeViewModel();
-            viewModel.BusId = busId;
-            viewModel.IsMainDriver = true;
+            var viewModel = MakeViewModelMapper.Map(busId);
             return View(viewModel);
         }
 
@@ -64,7 +63,13 @@ namespace BusConductor.UI.Controllers
             var request = MakeViewModelMapper.Map(inViewModel);
             var validationMessages = _bookingService.ValidateMakePending(request);
             validationMessages.ForEach(validationMessage => ModelState.AddModelError(validationMessage.Field, validationMessage.Text));
-            if(!ModelState.IsValid) return View("Make", inViewModel);
+            
+            if(!ModelState.IsValid)
+            {
+                MakeViewModelMapper.AddSelectListsTo(inViewModel);
+                return View("Make", inViewModel);
+            }
+
             var booking = _bookingService.SummarizePendingBooking(request);
             var outViewModel = ReviewViewModelMapper.Map(booking);
             return View(outViewModel);

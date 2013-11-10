@@ -45,6 +45,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.Email = "barry.blue@isp.com";
             _parameterSet.TelephoneNumber = "0123456789";
             _parameterSet.IsMainDriver = true;
+            _parameterSet.DrivingLicenceNumber = "XXX99999";
             _parameterSet.NumberOfAdults = 2;
             _parameterSet.NumberOfChildren = 0;
             _parameterSet.CurrentUser = applicationUser;

@@ -16,7 +16,6 @@ namespace BusConductor.Data.Core
 
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Bus> Busses { get; set; }
-        public DbSet<Driver> Drivers { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<PermissionRole> PermissionRoles { get; set; }
         public DbSet<PricingPeriod> PricingPeriods { get; set; }
@@ -30,7 +29,6 @@ namespace BusConductor.Data.Core
         {
             modelBuilder.Entity<Booking>().ToTable("Booking");
             modelBuilder.Entity<Bus>().ToTable("Bus");
-            modelBuilder.Entity<Driver>().ToTable("Driver");
             modelBuilder.Entity<Permission>().ToTable("Permission");
             modelBuilder.Entity<PermissionRole>().ToTable("PermissionRole");
             modelBuilder.Entity<PricingPeriod>().ToTable("PricingPeriod");

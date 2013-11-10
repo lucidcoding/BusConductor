@@ -7,6 +7,7 @@ using NUnit.Framework;
 
 namespace BusConductor.Domain.UnitTests.Entities.BookingTests
 {
+    //todo: Check bookings can end and start on the same day.
     [TestFixture]
     public class ValidateMakePendingTests
     {
@@ -30,6 +31,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.Email = "brian.blue@isp.com";
             _parameterSet.TelephoneNumber = "07777777777";
             _parameterSet.IsMainDriver = true;
+            _parameterSet.DrivingLicenceNumber = "XXX99999";
             _parameterSet.NumberOfAdults = 2;
             _parameterSet.NumberOfChildren = 2;
             _parameterSet.VoucherCode = "ABC123";
@@ -40,6 +42,16 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         [Test]
         public void ValidBookingReturnsNoErrors()
         {
+            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            Assert.That(validationMessages.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void ValidBookingSpecifyingAnotherDriverReturnsNoErrors()
+        {
+            _parameterSet.IsMainDriver = false;
+            _parameterSet.DriverForename = "Rachel";
+            _parameterSet.DriverSurname = "Red";
             var validationMessages = Booking.ValidateMakePending(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(0));
         }
@@ -57,8 +69,9 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.PostCode = null;
             _parameterSet.Email = null;
             _parameterSet.TelephoneNumber = null;
+            _parameterSet.DrivingLicenceNumber = null;
             var validationMessages = Booking.ValidateMakePending(_parameterSet);
-            Assert.That(validationMessages.Count, Is.EqualTo(10));
+            Assert.That(validationMessages.Count, Is.EqualTo(11));
             Assert.That(validationMessages.Any(x => x.Field == "PickUp" && x.Text == "Pick up date is required."));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date is required."));
             Assert.That(validationMessages.Any(x => x.Field == "Bus" && x.Text == "Bus is required."));
@@ -69,6 +82,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             Assert.That(validationMessages.Any(x => x.Field == "PostCode" && x.Text == "Post code is required."));
             Assert.That(validationMessages.Any(x => x.Field == "Email" && x.Text == "Email is required."));
             Assert.That(validationMessages.Any(x => x.Field == "TelephoneNumber" && x.Text == "Telephone number is required."));
+            Assert.That(validationMessages.Any(x => x.Field == "DrivingLicenceNumber" && x.Text == "Driving licence number is required."));
         }
 
         [Test]
@@ -149,12 +163,13 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         }
 
         [Test]
-        public void ReturnsErrorIfIsMainDriverIsFalse()
+        public void ReturnsErrorIfIsMainDriverIsFalseAndDriverForenameAndSurnameNotSet()
         {
             _parameterSet.IsMainDriver = false;
             var validationMessages = Booking.ValidateMakePending(_parameterSet);
-            Assert.That(validationMessages.Count, Is.EqualTo(1));
-            Assert.That(validationMessages.Any(x => x.Field == "IsMainDriver" && x.Text == "Details entered must be the details for the main driver."));
+            Assert.That(validationMessages.Count, Is.EqualTo(2));
+            Assert.That(validationMessages.Any(x => x.Field == "DriverForename" && x.Text == "If you are not the main driver, the forename of the main driver is required."));
+            Assert.That(validationMessages.Any(x => x.Field == "DriverSurname" && x.Text == "If you are not the main driver, the surname of the main driver is required."));
         }
 
         [Test]

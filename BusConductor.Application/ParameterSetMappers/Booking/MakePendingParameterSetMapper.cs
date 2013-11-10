@@ -25,6 +25,7 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
 
         public MakePendingBookingParameterSet Map(MakePendingRequest request)
         {
+            //todo: replace this with tool that copies similar parameters?
             var parameterSet = new MakePendingBookingParameterSet();
             parameterSet.PickUp = request.PickUp;
             parameterSet.DropOff = request.DropOff;
@@ -40,13 +41,14 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.TelephoneNumber = request.TelephoneNumber;
             parameterSet.Town = request.Town;
             parameterSet.IsMainDriver = request.IsMainDriver;
+            parameterSet.DrivingLicenceNumber = request.DrivingLicenceNumber;
+            parameterSet.DriverForename = request.DriverForename;
+            parameterSet.DriverForename = request.DriverSurname;
             parameterSet.NumberOfAdults = request.NumberOfAdults;
             parameterSet.NumberOfChildren = request.NumberOfChildren;
             parameterSet.VoucherCode = request.VoucherCode;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
-
-            //todo: yeah, sort this! returnring null.
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
             parameterSet.GuestRole = _roleRepository.GetByName("Guest");
             return parameterSet;

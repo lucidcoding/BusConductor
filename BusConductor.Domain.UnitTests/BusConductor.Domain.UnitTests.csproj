@@ -56,7 +56,7 @@
     <Compile Include="Entities\BusTests\GetSampleRateTests.cs" />
     <Compile Include="Entities\BusTests\GetUndiscountedRateForTests.cs" />
     <Compile Include="Entities\BookingTests\MakePendingTests.cs" />
-    <Compile Include="Entities\DriverTests\ValidateCreateTests.cs" />
+    <Compile Include="Entities\DriverTests\TOGO_ValidateCreateTests.cs" />
     <Compile Include="Entities\PricingPeriodTests\ContainsDateTests.cs" />
     <Compile Include="Entities\TaskTests\CompleteTests.cs" />
     <Compile Include="Entities\TaskTests\ValidateCompleteTests.cs" />

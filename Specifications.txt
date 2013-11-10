@@ -6,7 +6,7 @@ Driving licence number
 
 Specify age of main driver
 
-Specify another driver
+X - Specify another driver
 
 If not main driver, need to specify, must have their licence number
 
@@ -17,3 +17,8 @@ Extras - on booking page
 Able to specify rates on rates page separately
 
 go with start date for pricing period.
+
+
+Message to say if leaving th eUK or having extra driver then need to contact, under 25, over 75
+Tick boxes to confirm.
+

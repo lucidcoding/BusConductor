@@ -18,6 +18,9 @@ namespace BusConductor.Application.Requests.Booking
         public string Email { get; set; }
         public string TelephoneNumber { get; set; }
         public bool IsMainDriver { get; set; }
+        public string DrivingLicenceNumber { get; set; }
+        public string DriverForename { get; set; }
+        public string DriverSurname { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfChildren { get; set; }
         public string VoucherCode { get; set; }

@@ -22,6 +22,9 @@
     @Html.HiddenFor(model => model.Email)
     @Html.HiddenFor(model => model.TelephoneNumber)
     @Html.HiddenFor(model => model.IsMainDriver)
+    @Html.HiddenFor(model => model.DrivingLicenceNumber)
+    @Html.HiddenFor(model => model.DriverForename)
+    @Html.HiddenFor(model => model.DriverSurname)
     @Html.HiddenFor(model => model.NumberOfAdults)
     @Html.HiddenFor(model => model.NumberOfChildren)
     @Html.HiddenFor(model => model.VoucherCode)
@@ -106,6 +109,24 @@
         </div>
         <div class="editor-field">
             @Model.IsMainDriver
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DrivingLicenceNumber)
+        </div>
+        <div class="editor-field">
+            @Model.DrivingLicenceNumber
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DriverForename)
+        </div>
+        <div class="editor-field">
+            @Model.DriverForename
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DriverSurname)
+        </div>
+        <div class="editor-field">
+            @Model.DriverSurname
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.NumberOfAdults)

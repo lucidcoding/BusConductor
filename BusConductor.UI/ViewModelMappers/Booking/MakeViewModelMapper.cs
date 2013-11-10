@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using BusConductor.Application.Requests.Booking;
 using BusConductor.UI.ViewModels.Booking;
 
@@ -9,6 +10,55 @@ namespace BusConductor.UI.ViewModelMappers.Booking
 {
     public static class MakeViewModelMapper
     {
+        public static MakeViewModel Map(Guid busId)
+        {
+            var viewModel = new MakeViewModel();
+            viewModel.BusId = busId;
+            viewModel.IsMainDriver = true;
+            AddSelectListsTo(viewModel);
+            return viewModel;
+        }
+
+        public static void AddSelectListsTo(MakeViewModel viewModel)
+        {
+            viewModel.NumberOfAdultsOptions = new SelectList(new List<SelectListItem>
+                                                                 {
+                                                                     new SelectListItem
+                                                                         {Selected = true, Text = "0", Value = "0"},
+                                                                     new SelectListItem
+                                                                         {Text = "1", Value = "1"},
+                                                                     new SelectListItem
+                                                                         { Text = "2", Value = "2"},
+                                                                     new SelectListItem
+                                                                         {Text = "3", Value = "3"},
+                                                                     new SelectListItem
+                                                                         {Text = "4", Value = "4"},
+                                                                     new SelectListItem
+                                                                         {Text = "5", Value = "5"},
+                                                                     new SelectListItem
+                                                                         { Text = "6", Value = "6"},
+                                                                 }, "Value", "Text");
+
+            viewModel.NumberOfChildrenOptions = new SelectList(new List<SelectListItem>
+                                                                 {
+                                                                     new SelectListItem
+                                                                         {Selected = true, Text = "0", Value = "0"},
+                                                                     new SelectListItem
+                                                                         {Text = "1", Value = "1"},
+                                                                     new SelectListItem
+                                                                         {Text = "2", Value = "2"},
+                                                                     new SelectListItem
+                                                                         {Text = "3", Value = "3"},
+                                                                     new SelectListItem
+                                                                         {Text = "4", Value = "4"},
+                                                                     new SelectListItem
+                                                                         {Text = "5", Value = "5"},
+                                                                     new SelectListItem
+                                                                         {Text = "6", Value = "6"},
+                                                                 }, "Value", "Text");
+            
+        }
+
         public static MakePendingRequest Map(MakeViewModel viewModel)
         {
             var request = new MakePendingRequest();
@@ -26,6 +76,9 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             request.Email = viewModel.Email;
             request.TelephoneNumber = viewModel.TelephoneNumber;
             request.IsMainDriver = viewModel.IsMainDriver;
+            request.DrivingLicenceNumber = viewModel.DrivingLicenceNumber;
+            request.DriverForename = viewModel.DriverForename;
+            request.DriverSurname = viewModel.DriverSurname;
             request.NumberOfAdults = viewModel.NumberOfAdults;
             request.NumberOfChildren = viewModel.NumberOfChildren;
             request.VoucherCode = viewModel.VoucherCode;

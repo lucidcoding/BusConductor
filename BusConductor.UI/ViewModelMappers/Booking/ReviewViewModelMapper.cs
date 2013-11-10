@@ -21,7 +21,10 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             viewModel.PostCode = booking.CreatedBy.PostCode;
             viewModel.Email = booking.CreatedBy.Email;
             viewModel.TelephoneNumber = booking.CreatedBy.TelephoneNumber;
-            viewModel.IsMainDriver = true;
+            viewModel.IsMainDriver = booking.IsMainDriver;
+            viewModel.DrivingLicenceNumber = booking.DrivingLicenceNumber;
+            viewModel.DriverForename = booking.DriverForename;
+            viewModel.DriverSurname = booking.DriverSurname;
             viewModel.NumberOfAdults = booking.NumberOfAdults;
             viewModel.NumberOfChildren = booking.NumberOfChildren;
             viewModel.TotalCost = booking.TotalCost;
@@ -46,6 +49,9 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             request.Email = viewModel.Email;
             request.TelephoneNumber = viewModel.TelephoneNumber;
             request.IsMainDriver = viewModel.IsMainDriver;
+            request.DrivingLicenceNumber = viewModel.DrivingLicenceNumber;
+            request.DriverForename = viewModel.DriverForename;
+            request.DriverSurname = viewModel.DriverSurname;
             request.NumberOfAdults = viewModel.NumberOfAdults;
             request.NumberOfChildren = viewModel.NumberOfChildren;
             request.VoucherCode = viewModel.VoucherCode;

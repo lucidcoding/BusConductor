@@ -18,12 +18,12 @@ namespace BusConductor.UI.ViewModels.Booking
         public string Town { get; set; }
         public string County { get; set; }
         public string PostCode { get; set; }
-        //todo: country
         public string Email { get; set; }
         public string TelephoneNumber { get; set; }
         public bool IsMainDriver { get; set; }
-        //todo: driver details if not
-        //todo: additional drivers.
+        public string DrivingLicenceNumber { get; set; }
+        public string DriverForename { get; set; }
+        public string DriverSurname { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfChildren { get; set; }
         //todo: how did you find us
