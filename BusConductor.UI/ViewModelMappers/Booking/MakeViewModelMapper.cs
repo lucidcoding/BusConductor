@@ -15,12 +15,18 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             var viewModel = new MakeViewModel();
             viewModel.BusId = busId;
             viewModel.IsMainDriver = true;
-            AddSelectListsTo(viewModel);
+            Initialize(viewModel);
             return viewModel;
         }
 
-        public static void AddSelectListsTo(MakeViewModel viewModel)
+        //todo: think of a more meaningful name for this.
+        public static void Initialize(MakeViewModel viewModel)
         {
+            if(viewModel.IsMainDriver)
+            {
+                viewModel.AlternateDriverAdditionalClasses = "hide";
+            }
+
             viewModel.NumberOfAdultsOptions = new SelectList(new List<SelectListItem>
                                                                  {
                                                                      new SelectListItem

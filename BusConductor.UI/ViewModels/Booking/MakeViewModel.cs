@@ -51,6 +51,8 @@ namespace BusConductor.UI.ViewModels.Booking
         [DisplayName("Please check this box if you are the main driver")]
         public bool IsMainDriver { get; set; }
 
+        public string AlternateDriverAdditionalClasses { get; set; }
+
         [DisplayName("Driving licence number of driver")]
         public string DrivingLicenceNumber { get; set; }
 

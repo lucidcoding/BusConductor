@@ -66,7 +66,7 @@ namespace BusConductor.UI.Controllers
             
             if(!ModelState.IsValid)
             {
-                MakeViewModelMapper.AddSelectListsTo(inViewModel);
+                MakeViewModelMapper.Initialize(inViewModel);
                 return View("Make", inViewModel);
             }
 

@@ -537,7 +537,10 @@ p .bus-index .record-description
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    
+}
+
+.booking-make .alternate-driver.hide {
+    display: none;
 }
 
 .booking-make .editor-label

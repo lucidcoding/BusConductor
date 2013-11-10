@@ -9,4 +9,13 @@
 
     $("#PickUp").datepicker(datepickerParameters);
     $("#DropOff").datepicker(datepickerParameters);
+
+    $("#IsMainDriver").change(function (event) {
+        if (this.checked == true) {
+            $(".alternate-driver").addClass("hide");
+        } else {
+            $(".alternate-driver").removeClass("hide");
+        }
+    });
+
 });
