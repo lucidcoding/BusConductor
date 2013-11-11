@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Web;
+using BusConductor.Data.Common;
 using BusConductor.Data.Core;
 
-namespace BusConductor.Data.Common
-{
+namespace BusConductor.UI.Common
+{   
+    //todo: move this to UI?
     public class HttpContextProvider : IContextProvider
     {
         public Context GetContext()

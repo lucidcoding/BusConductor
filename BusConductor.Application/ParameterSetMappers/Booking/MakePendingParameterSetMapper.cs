@@ -43,7 +43,7 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.IsMainDriver = request.IsMainDriver;
             parameterSet.DrivingLicenceNumber = request.DrivingLicenceNumber;
             parameterSet.DriverForename = request.DriverForename;
-            parameterSet.DriverForename = request.DriverSurname;
+            parameterSet.DriverSurname = request.DriverSurname;
             parameterSet.NumberOfAdults = request.NumberOfAdults;
             parameterSet.NumberOfChildren = request.NumberOfChildren;
             parameterSet.VoucherCode = request.VoucherCode;

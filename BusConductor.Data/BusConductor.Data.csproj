@@ -88,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Context.cs" />
-    <Compile Include="Common\HttpContextProvider.cs" />
     <Compile Include="Common\IContextProvider.cs" />
     <Compile Include="Common\Repository.cs" />
     <Compile Include="Common\SessionFactoryFactory.cs" />

@@ -7,6 +7,7 @@ namespace BusConductor.UI.ViewModels.Booking
 {
     public class ReviewViewModel
     {
+        //todo: Maybe have MakeViewModel as a child of this?
         public Guid BusId { get; set; }
         public DateTime PickUp { get; set; }
         public DateTime DropOff { get; set; }

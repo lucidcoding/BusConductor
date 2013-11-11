@@ -6,6 +6,7 @@ using BusConductor.UI.ActionFilters;
 using BusConductor.UI.Common;
 using StructureMap;
 using StructureMap.Configuration.DSL;
+using HttpContextProvider = BusConductor.UI.Common.HttpContextProvider;
 
 namespace BusConductor.UI.Core
 {

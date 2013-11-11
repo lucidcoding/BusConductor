@@ -78,6 +78,7 @@
     <Compile Include="ActionFilters\EntityFrameworkWriteContextAttribute.cs" />
     <Compile Include="ActionFilters\LogAttribute.cs" />
     <Compile Include="ActionFilters\TransactionScopeAttribute.cs" />
+    <Compile Include="Common\HttpContextProvider.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
     <Compile Include="Controllers\AvailabilityController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
