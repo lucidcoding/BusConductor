@@ -80,6 +80,11 @@ textarea
 a
 {
     text-decoration: none;
+    color: #BB4CA3;
+}
+
+a:visited {
+    color: #BB4CA3;
 }
 
 /* Layout */
@@ -329,6 +334,16 @@ p .bus-index .record-description
     background-color: #BB4CA3;
 }*/
 
+.availability-index .earlier {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.availability-index .later {
+    float: right;
+    margin-bottom: 10px;
+}
+
 .availability-index table
 {
     padding: 0px;
@@ -338,6 +353,7 @@ p .bus-index .record-description
     width: 800px;
     table-layout: fixed;
     background-color: white;
+    margin-bottom: 10px;
 }
 
 .availability-index table th

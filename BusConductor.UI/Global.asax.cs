@@ -64,6 +64,12 @@ namespace BusConductor.UI
                 "Calendar/Get/{year}/{month}/{busId}", 
                 new { controller = "Calendar", action = "DisplayMonth" } 
             );
+
+            routes.MapRoute(
+                "AvailabilityDisplayFrom",
+                "Availability/DisplayFrom/{startYear}/{startMonth}/{startDay}",
+                new { controller = "Availability", action = "DisplayFrom" }
+            );
         }
 
         protected void Application_Start(object sender, EventArgs e)

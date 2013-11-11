@@ -12,18 +12,20 @@ namespace BusConductor.UI.ViewModelMappers.Availability
 {
     public static class IndexViewModelMapper
     {
-        public static IndexViewModel Map(IList<Bus> busses)
+        public static IndexViewModel Map(IList<Bus> busses, DateTime startDate)
         {
             const int numberOfDays = 25;
-            var today = DateTime.Now.Date;
             var viewModel = new IndexViewModel();
             viewModel.Days = new List<IndexDayViewModel>();
             viewModel.Busses = new List<IndexBusViewModel>();
+            viewModel.EarlierStart = startDate.AddDays(0 - numberOfDays);
+            viewModel.LaterStart = startDate.AddDays(numberOfDays);
 
             for (int dayIndex = 0; dayIndex < numberOfDays; dayIndex++)
             {
-                var day = today.AddDays(dayIndex);
+                var day = startDate.AddDays(dayIndex);
                 var dayViewModel = new IndexDayViewModel();
+                dayViewModel.MonthName = day.ToString("MMM");
                 dayViewModel.DayName = day.ToString("ddd");
                 dayViewModel.DayNumber = day.Day;
                 viewModel.Days.Add(dayViewModel);
@@ -40,7 +42,7 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                 for (int dayIndex = 0; dayIndex < numberOfDays; dayIndex++)
                 {
                     var busDayViewModel = new IndexBusDayViewModel();
-                    var day = today.AddDays(dayIndex);
+                    var day = startDate.AddDays(dayIndex);
 
                     //todo: move these constants somewhere?
                     if(day.DayOfWeek == DayOfWeek.Friday || day.DayOfWeek == DayOfWeek.Monday)

@@ -62,7 +62,6 @@ namespace BusConductor.UI.ViewModelMappers.Booking
                                                                      new SelectListItem
                                                                          {Text = "6", Value = "6"},
                                                                  }, "Value", "Text");
-            
         }
 
         public static MakePendingRequest Map(MakeViewModel viewModel)
