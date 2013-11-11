@@ -87,6 +87,10 @@
       <Project>{5A3EB2F3-F49B-4F28-9936-A3A36AEB605B}</Project>
       <Name>BusConductor.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BusConductor.Domain\BusConductor.Domain.csproj">
+      <Project>{C8A18468-6E53-492A-AF31-52B51F3B4535}</Project>
+      <Name>BusConductor.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BusConductor.UI\BusConductor.UI.csproj">
       <Project>{0107F1EF-5CF7-48D1-815A-868DC7E36FBA}</Project>
       <Name>BusConductor.UI</Name>

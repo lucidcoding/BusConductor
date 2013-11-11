@@ -1,4 +1,5 @@
-﻿using BusConductor.Application.Contracts;
+﻿using System;
+using BusConductor.Application.Contracts;
 using BusConductor.Application.ParameterSetMappers.Booking;
 using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Common;
@@ -34,11 +35,12 @@ namespace BusConductor.Application.Implementations
             return booking;
         }
 
-        public void MakePending(MakePendingRequest request)
+        public Guid MakePending(MakePendingRequest request)
         {
             var parameterSet = _makePendingParameterSetMapper.Map(request);
             var booking = Booking.MakePending(parameterSet);
             _bookingRepository.Save(booking);
+            return booking.Id.Value;
         }
     }
 }

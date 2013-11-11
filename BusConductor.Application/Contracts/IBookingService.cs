@@ -1,4 +1,5 @@
-﻿using BusConductor.Application.Requests.Booking;
+﻿using System;
+using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Entities;
 
@@ -8,6 +9,6 @@ namespace BusConductor.Application.Contracts
     {
         ValidationMessageCollection ValidateMakePending(MakePendingRequest request);
         Booking SummarizePendingBooking(MakePendingRequest request);
-        void MakePending(MakePendingRequest request);
+        Guid MakePending(MakePendingRequest request);
     }
 }

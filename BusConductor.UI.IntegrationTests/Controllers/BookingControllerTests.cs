@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using BusConductor.Data.Common;
 using BusConductor.Data.Core;
+using BusConductor.Domain.RepositoryContracts;
 using BusConductor.UI.Core;
 using BusConductor.UI.IntegrationTests.Common;
 using BusConductor.UI.IntegrationTests.Core;
@@ -72,6 +73,34 @@ namespace BusConductor.UI.IntegrationTests.Controllers
             //    var contextProvider = ObjectFactory.GetInstance<IContextProvider>() as GenericContextProvider;
             //    contextProvider.SaveChangesAndClearContext();
             //}
+
+            //todo:need booking id.
+            //todo: refactor this somewhere.
+            var contextProvider = ObjectFactory.GetInstance<IContextProvider>() as GenericContextProvider;
+            contextProvider.SaveChangesAndClearContext();
+
+            //todo: find a better way to do this.
+            var bookingRepository = ObjectFactory.GetInstance<IBookingRepository>();
+
+            var booking =
+                bookingRepository.GetAll().Single(x => x.Id.Value != new Guid("eaa01eab-f3bd-4e24-8368-d3501a227a8b"));
+
+            Assert.That(booking.PickUp, Is.EqualTo(viewModel.PickUp));
+            Assert.That(booking.DropOff, Is.EqualTo(viewModel.DropOff));
+            Assert.That(booking.Bus.Id.Value, Is.EqualTo(viewModel.BusId));
+            Assert.That(booking.CreatedBy.Forename, Is.EqualTo(viewModel.Forename));
+            Assert.That(booking.CreatedBy.Surname, Is.EqualTo(viewModel.Surname));
+            Assert.That(booking.CreatedBy.AddressLine1, Is.EqualTo(viewModel.AddressLine1));
+            Assert.That(booking.CreatedBy.Town, Is.EqualTo(viewModel.Town));
+            Assert.That(booking.CreatedBy.County, Is.EqualTo(viewModel.County));
+            Assert.That(booking.CreatedBy.PostCode, Is.EqualTo(viewModel.PostCode));
+            Assert.That(booking.CreatedBy.TelephoneNumber, Is.EqualTo(viewModel.TelephoneNumber));
+            Assert.That(booking.IsMainDriver, Is.EqualTo(viewModel.IsMainDriver));
+            Assert.That(booking.DriverForename, Is.EqualTo(viewModel.DriverForename));
+            Assert.That(booking.DriverSurname, Is.EqualTo(viewModel.DriverSurname));
+            Assert.That(booking.NumberOfAdults, Is.EqualTo(viewModel.NumberOfAdults));
+            Assert.That(booking.NumberOfChildren, Is.EqualTo(viewModel.NumberOfChildren));
+            Assert.That(booking.TotalCost, Is.EqualTo(600));
         }
     }
 }
