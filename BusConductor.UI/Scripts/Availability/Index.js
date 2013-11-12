@@ -10,7 +10,6 @@
             $.ajax({
                 url: url,
                 type: "GET",
-                //data: formData + "&taskId=" + taskId,
                 success: function (result) {
                     $("#AvailabilityIndexCalendarPlaceholder").replaceWith(result);
                     initialize();
@@ -24,7 +23,6 @@
 
     return { initialize: initialize };
 } ();
-
 
 
 $(document).ready(function () {

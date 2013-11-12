@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ControllerFactories\BookingControllerFactory.cs" />
     <Compile Include="ControllerFactories\CalendarControllerFactory.cs" />
+    <Compile Include="Controllers\BookingControllerTests\ConfirmTests.cs" />
     <Compile Include="Controllers\BookingControllerTests\ReviewTests.cs" />
     <Compile Include="Controllers\CalendarControllerTests\DisplayMonthTests.cs" />
     <Compile Include="Controllers\TaskControllerTests\IndexTests.cs" />

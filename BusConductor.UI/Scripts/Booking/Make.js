@@ -1,21 +1,29 @@
-﻿$(document).ready(function () {
+﻿BusConductor.Booking.Make = function () {
 
-    var datepickerParameters = {
-        dateFormat: 'dd/mm/yy',
-        showOn: "button",
-        defaultDate: new Date()
-        //buttonImageOnly: false
+    var initialize = function () {
+
+        var datepickerParameters = {
+            dateFormat: 'dd/mm/yy',
+            showOn: "button",
+            defaultDate: new Date()
+        };
+
+        $("#PickUp").datepicker(datepickerParameters);
+        $("#DropOff").datepicker(datepickerParameters);
+
+        $("#IsMainDriver").change(function (event) {
+            if (this.checked == true) {
+                $(".alternate-driver").addClass("hide");
+            } else {
+                $(".alternate-driver").removeClass("hide");
+            }
+        });
     };
 
-    $("#PickUp").datepicker(datepickerParameters);
-    $("#DropOff").datepicker(datepickerParameters);
+    return { initialize: initialize };
+} ();
 
-    $("#IsMainDriver").change(function (event) {
-        if (this.checked == true) {
-            $(".alternate-driver").addClass("hide");
-        } else {
-            $(".alternate-driver").removeClass("hide");
-        }
-    });
 
+$(document).ready(function () {
+    BusConductor.Booking.Make.initialize();
 });

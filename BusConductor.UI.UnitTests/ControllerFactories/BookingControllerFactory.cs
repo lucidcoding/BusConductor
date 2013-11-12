@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Entities;
+using BusConductor.Domain.Enumerations;
 using BusConductor.Domain.RepositoryContracts;
 using BusConductor.UI.Controllers;
 using Moq;
