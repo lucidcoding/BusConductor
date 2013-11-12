@@ -15,6 +15,7 @@ namespace BusConductor.UI.UnitTests.ControllerFactories
         public int Year { get; set; }
         public int Month { get; set; }
 
+        //todo: maybe too much in here. Some things can go out.
         public CalendarControllerFactory(int year, int month, int bookingStartDate, int bookingEndDate)
         {
             BusRepository = new Mock<IBusRepository>();

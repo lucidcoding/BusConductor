@@ -59,7 +59,6 @@ namespace BusConductor.UI.Controllers
         [EntityFrameworkReadContext]
         public ActionResult Review(MakeViewModel inViewModel)
         {
-            //if (!ModelState.IsValid) return View("Make", inViewModel);
             var request = MakeViewModelMapper.Map(inViewModel);
             var validationMessages = _bookingService.ValidateMakePending(request);
             validationMessages.ForEach(validationMessage => ModelState.AddModelError(validationMessage.Field, validationMessage.Text));
