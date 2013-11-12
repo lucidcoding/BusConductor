@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.ParameterSetMappers.Booking;
 using BusConductor.Application.Requests.Booking;
@@ -25,14 +26,26 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
         {
             MakePendingParameterSetMapper = new Mock<IMakePendingParameterSetMapper>();
             BookingRepository = new Mock<IBookingRepository>();
-            Bus = new Bus { Id = Guid.NewGuid(), Bookings = new List<Booking>() };
+            Bus = new Bus { Id = Guid.NewGuid(), Bookings = new List<Booking>(), PricingPeriods = new Collection<PricingPeriod>() };
             User = new User { Id = Guid.NewGuid() };
             Role = new Role { Id = Guid.NewGuid() };
             Voucher = new Voucher { Id = Guid.NewGuid(), Code = "ABC123" };
 
+            Bus.PricingPeriods.Add(new PricingPeriod
+                                       {
+                                           Bus = Bus,
+                                           StartMonth = 1,
+                                           StartDay = 1,
+                                           EndMonth = 12,
+                                           EndDay = 31,
+                                           FridayToFridayRate = 1,
+                                           FridayToMondayRate = 1,
+                                           MondayToFridayRate = 1
+                                       });
+
             ParameterSet = new MakePendingBookingParameterSet();
-            ParameterSet.PickUp = new DateTime(2090, 10, 1);
-            ParameterSet.DropOff = new DateTime(2090, 10, 8);
+            ParameterSet.PickUp = new DateTime(2090, 1, 2);
+            ParameterSet.DropOff = new DateTime(2090, 1, 6);
             ParameterSet.Bus = Bus;
             ParameterSet.GuestRole = Role;
             ParameterSet.Forename = "Barry";
@@ -46,6 +59,7 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
             ParameterSet.Email = "test@test.com";
             ParameterSet.TelephoneNumber = "0123456789";
             ParameterSet.IsMainDriver = true;
+            ParameterSet.DrivingLicenceNumber = "ABC1234";
             ParameterSet.NumberOfAdults = 2;
             ParameterSet.NumberOfChildren = 2;
             ParameterSet.VoucherCode = Voucher.Code;

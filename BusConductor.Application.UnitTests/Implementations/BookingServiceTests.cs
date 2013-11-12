@@ -36,7 +36,7 @@ namespace BusConductor.Application.UnitTests.Implementations
         }
 
         [Test]
-        public void MakeePendingBookingCallsCorrectMethods()
+        public void MakePendingBookingCallsCorrectMethods()
         {
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
