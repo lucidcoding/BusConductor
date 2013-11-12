@@ -3,9 +3,19 @@
     var initialize = function () {
 
         var datepickerParameters = {
+            firstDay: 1,
             dateFormat: 'dd/mm/yy',
             showOn: "button",
-            defaultDate: new Date()
+            defaultDate: new Date(),
+            beforeShowDay: function (date) {
+                var day = date.getDay();
+
+                if (day == 1 || day == 5) {
+                    return [true];
+                } else {
+                    return [false];
+                }
+            }
         };
 
         $("#PickUp").datepicker(datepickerParameters);
