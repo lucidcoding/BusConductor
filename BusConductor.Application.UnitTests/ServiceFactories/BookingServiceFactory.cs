@@ -64,6 +64,8 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
             ParameterSet.NumberOfChildren = 2;
             ParameterSet.VoucherCode = Voucher.Code;
             ParameterSet.Voucher = Voucher;
+            ParameterSet.RestrictionsAccepted = true;
+            ParameterSet.TermsAndConditionsAccepted = true;
             ParameterSet.CurrentUser = User;
 
             MakePendingParameterSetMapper

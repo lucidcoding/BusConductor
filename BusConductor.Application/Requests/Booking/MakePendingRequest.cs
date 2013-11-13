@@ -24,5 +24,7 @@ namespace BusConductor.Application.Requests.Booking
         public int NumberOfAdults { get; set; }
         public int NumberOfChildren { get; set; }
         public string VoucherCode { get; set; }
+        public bool TermsAndConditionsAccepted { get; set; }
+        public bool RestrictionsAccepted { get; set; }
     }
 }

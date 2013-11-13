@@ -181,6 +181,16 @@ namespace BusConductor.Domain.Entities
                 validationMessages.AddError("VoucherCode", "Voucher code has expired.");
             }
 
+            if(!parameterSet.TermsAndConditionsAccepted)
+            {
+                validationMessages.AddError("TermsAndConditionsAccepted", "You must accept the Terms and Conditions.");
+            }
+
+            if (!parameterSet.RestrictionsAccepted)
+            {
+                validationMessages.AddError("RestrictionsAccepted", "Please check this box. If your trip does not meet these restrictions, please contact us directly to make a booking.");
+            }
+
             if(parameterSet.Bus != null 
                 && parameterSet.PickUp.HasValue
                 && parameterSet.DropOff.HasValue

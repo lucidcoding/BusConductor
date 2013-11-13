@@ -15,7 +15,10 @@
                 } else {
                     return [false];
                 }
-            }
+            },
+            buttonImage: "/Content/Images/CalendarIcon.png"
+            /*,
+            buttonImageOnly: true*/
         };
 
         $("#PickUp").datepicker(datepickerParameters);

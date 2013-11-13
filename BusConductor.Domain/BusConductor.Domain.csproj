@@ -84,7 +84,7 @@
     <Compile Include="Enumerations\TaskStatus.cs" />
     <Compile Include="ParameterSets\CreateDriverParameterSet.cs" />
     <Compile Include="ParameterSets\CreateGuestUserParameterSet.cs" />
-    <Compile Include="ParameterSets\MakePendingBookingDriverParameterSet.cs" />
+    <Compile Include="ParameterSets\CAN_GO_MakePendingBookingDriverParameterSet.cs" />
     <Compile Include="ParameterSets\MakePendingBookingParameterSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IVoucherRepository.cs" />

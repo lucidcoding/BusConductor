@@ -9,7 +9,7 @@ namespace BusConductor.UI.ActionFilters
 
         public LogAttribute()
         {
-            Order = 1020;
+            Order = 980;
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

@@ -56,6 +56,8 @@ namespace BusConductor.UI.IntegrationTests.Controllers
             viewModel.NumberOfAdults = 2;
             viewModel.NumberOfChildren = 1;
             viewModel.VoucherCode = null; //todo: test this?
+            viewModel.RestrictionsAccepted = true;
+            viewModel.TermsAndConditionsAccepted = true;
             _bookingController.Confirm(viewModel);
 
             //todo:need booking id.

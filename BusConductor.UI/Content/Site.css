@@ -544,7 +544,7 @@ p .bus-index .record-description
     width:600px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .booking-make form {
@@ -563,9 +563,14 @@ p .bus-index .record-description
 {
     /*margin-bottom: 15px;*/
     width: 180px;
-    height: 30px;
+    height: 35px;
     float: left;
     clear: left;
+}
+
+.booking-make .editor-label.double-height
+{
+    height: 70px;
 }
 
 .booking-make .required
@@ -577,8 +582,14 @@ p .bus-index .record-description
 .booking-make .editor-field
 {
     /*margin-bottom: 15px;*/
-    height: 30px;
+    height: 35px;
     margin-left: 200px;
+    width: 250px;
+}
+
+.booking-make .editor-field.double-height
+{
+    height: 70px;
 }
 
 .booking-make .editor-field input[type="text"] {
@@ -587,6 +598,28 @@ p .bus-index .record-description
 
 .booking-make .editor-field input[type="text"].hasDatepicker {
     width: 100px;
+}
+
+.booking-make .field-validation-error
+{
+    color: #ff0000;
+    display: block;
+}
+
+.booking-make .validation-summary-errors
+{
+    margin-bottom: 30px;
+}
+
+.booking-make button.ui-datepicker-trigger {
+    margin: 0px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    vertical-align: bottom;
+}
+
+.booking-make button.ui-datepicker-trigger img {
+    vertical-align: bottom;
 }
 
 /* Contact Us */

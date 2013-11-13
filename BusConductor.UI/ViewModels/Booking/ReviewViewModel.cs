@@ -31,5 +31,7 @@ namespace BusConductor.UI.ViewModels.Booking
         //todo: additional extras.
         public string VoucherCode { get; set; }
         public decimal TotalCost { get; set; }
+        public bool TermsAndConditionsAccepted { get; set; }
+        public bool RestrictionsAccepted { get; set; }
     }
 }

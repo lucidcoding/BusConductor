@@ -47,6 +47,8 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.NumberOfAdults = request.NumberOfAdults;
             parameterSet.NumberOfChildren = request.NumberOfChildren;
             parameterSet.VoucherCode = request.VoucherCode;
+            parameterSet.TermsAndConditionsAccepted = request.TermsAndConditionsAccepted;
+            parameterSet.RestrictionsAccepted = request.RestrictionsAccepted;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");

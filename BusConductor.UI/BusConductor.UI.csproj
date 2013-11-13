@@ -126,6 +126,7 @@
   <ItemGroup>
     <Content Include="Content\Images\Background.gif" />
     <Content Include="Content\Images\Header.gif" />
+    <Content Include="Content\Images\CalendarIcon2.png" />
     <Content Include="Content\Images\MenuAvailability.gif" />
     <Content Include="Content\Images\MenuBookACamper.gif" />
     <Content Include="Content\Images\MenuContactUs.gif" />
@@ -171,6 +172,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\bluebell_sm_121109.jpg" />
+    <Content Include="Content\Images\CalendarIcon.png" />
     <Content Include="Images\icon-edit-header.png" />
     <Content Include="Images\icon-print-header.png" />
     <Content Include="Scripts\Availability\Index.js" />

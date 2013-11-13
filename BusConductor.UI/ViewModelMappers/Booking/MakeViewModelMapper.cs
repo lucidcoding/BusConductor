@@ -87,6 +87,8 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             request.NumberOfAdults = viewModel.NumberOfAdults;
             request.NumberOfChildren = viewModel.NumberOfChildren;
             request.VoucherCode = viewModel.VoucherCode;
+            request.TermsAndConditionsAccepted = viewModel.TermsAndConditionsAccepted;
+            request.RestrictionsAccepted = viewModel.RestrictionsAccepted;
             return request;
         }
     }

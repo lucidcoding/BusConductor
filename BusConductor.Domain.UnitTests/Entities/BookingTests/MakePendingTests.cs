@@ -51,6 +51,8 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.CurrentUser = applicationUser;
             _parameterSet.VoucherCode = voucher.Code;
             _parameterSet.Voucher = voucher;
+            _parameterSet.TermsAndConditionsAccepted = true;
+            _parameterSet.RestrictionsAccepted = true;
         }
 
         [Test]

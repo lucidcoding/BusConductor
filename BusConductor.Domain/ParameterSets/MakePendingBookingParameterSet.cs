@@ -28,7 +28,8 @@ namespace BusConductor.Domain.ParameterSets
         public int NumberOfChildren { get; set; }
         public string VoucherCode { get; set; }
         public Voucher Voucher { get; set; }
+        public bool TermsAndConditionsAccepted { get; set; }
+        public bool RestrictionsAccepted { get; set; }
         public User CurrentUser { get; set; }
-        private IList<MakePendingBookingDriverParameterSet> Driver { get; set; }
     }
 }

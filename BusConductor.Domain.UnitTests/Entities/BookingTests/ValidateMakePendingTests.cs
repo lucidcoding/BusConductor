@@ -36,6 +36,8 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.NumberOfChildren = 2;
             _parameterSet.VoucherCode = "ABC123";
             _parameterSet.Voucher = new Voucher {Id = Guid.NewGuid(), Code = _parameterSet.VoucherCode, Discount = 10};
+            _parameterSet.TermsAndConditionsAccepted = true;
+            _parameterSet.RestrictionsAccepted = true;
             _parameterSet.CurrentUser = new User {Id = Guid.NewGuid()};
         }
 
@@ -85,6 +87,16 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             Assert.That(validationMessages.Any(x => x.Field == "DrivingLicenceNumber" && x.Text == "Driving licence number is required."));
         }
 
+        [Test]
+        public void ReturnsErrorIfTermsAndConditionsOrRestrictionsAreNotAccepted()
+        {
+            _parameterSet.TermsAndConditionsAccepted = false;
+            _parameterSet.RestrictionsAccepted = false;
+            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            Assert.That(validationMessages.Count, Is.EqualTo(2));
+            Assert.That(validationMessages.Any(x => x.Field == "TermsAndConditionsAccepted" && x.Text == "You must accept the Terms and Conditions."));
+            Assert.That(validationMessages.Any(x => x.Field == "RestrictionsAccepted" && x.Text == "Please check this box. If your trip does not meet these restrictions, please contact us directly to make a booking."));
+        }
         [Test]
         public void FieldsThatAreTooLongReturnValidationErrors()
         {

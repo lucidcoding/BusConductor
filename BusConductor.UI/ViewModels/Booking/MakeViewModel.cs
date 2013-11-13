@@ -74,5 +74,11 @@ namespace BusConductor.UI.ViewModels.Booking
 
         [DisplayName("Voucher code")]
         public string VoucherCode { get; set; }
+
+        [DisplayName("Please confirm you accept the Terms and Conditions")]
+        public bool TermsAndConditionsAccepted { get; set; }
+
+        [DisplayName("Please confirm the driver is aged between 25 and 75, and you do not intend to leave the UK")]
+        public bool RestrictionsAccepted { get; set; }
     }
 }
