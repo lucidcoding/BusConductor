@@ -16,6 +16,10 @@ namespace Lucidity.Utilities.Logging
             _connectionString = connectionString;
         }
 
+        //public SqlLog()
+        //{
+        //}
+
         protected override string WriteEvent(LogEvent logEvent)
         {
             Console.WriteLine(logEvent.Message);

@@ -1,12 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Configuration;
+using System.Web.Mvc;
 using System.Web.Routing;
 using BusConductor.Data.Common;
 using BusConductor.Application.Core;
 using BusConductor.UI.ActionFilters;
 using BusConductor.UI.Common;
-using StructureMap;
+using Lucidity.Utilities.Contracts.Logging;
+using Lucidity.Utilities.Logging;
 using StructureMap.Configuration.DSL;
-using HttpContextProvider = BusConductor.UI.Common.HttpContextProvider;
+//using HttpContextProvider = BusConductor.UI.Common.HttpContextProvider;
 
 namespace BusConductor.UI.Core
 {
@@ -18,14 +20,17 @@ namespace BusConductor.UI.Core
                       {
                           x.ImportRegistry(typeof(ApplicationRegistry));
                           For<IContextProvider>().Use<HttpContextProvider>();
-                          //For<ISessionFactory>().Use(MvcApplication.SessionFactory);
+                          For<ILog>().Use<SqlLog>().Ctor<string>("connectionString").Is(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString);
+                          For<IActionInvoker>().Use<InjectingActionInvoker>();
+                          For<ITempDataProvider>().Use<SessionStateTempDataProvider>();
+                          For<RouteCollection>().Use(RouteTable.Routes);
 
-                          //For<IUserLoginProvider>().Use<HttpContextUserLoginProvider>();
-
-                          //For<IViewEngine>().Use<RazorViewEngine>();
-                          //SetAllProperties(p => p.OfType<ISessionFactory>());
-                          //FillAllPropertiesOfType<ISessionFactory>();
-
+                          SetAllProperties(c =>
+                          {
+                              c.OfType<IActionInvoker>();
+                              c.OfType<ITempDataProvider>();
+                              c.WithAnyTypeFromNamespaceContainingType<LogAttribute>();
+                          });
                       });
 
         }

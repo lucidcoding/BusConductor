@@ -5,6 +5,7 @@ using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.RepositoryContracts;
+using Lucidity.Utilities.Contracts.Logging;
 
 namespace BusConductor.Application.Implementations
 {
@@ -12,17 +13,21 @@ namespace BusConductor.Application.Implementations
     {
         private readonly IBookingRepository _bookingRepository;
         private readonly IMakePendingParameterSetMapper _makePendingParameterSetMapper;
+        private readonly ILog _log;
 
         public BookingService(
             IBookingRepository bookingRepository,
-            IMakePendingParameterSetMapper makePendingParameterSetMapper)
+            IMakePendingParameterSetMapper makePendingParameterSetMapper,
+            ILog log)
         {
             _bookingRepository = bookingRepository;
             _makePendingParameterSetMapper = makePendingParameterSetMapper;
+            _log = log;
         }
 
         public ValidationMessageCollection ValidateMakePending(MakePendingRequest request)
         {
+            _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.Map(request);
             var validationMessages = Booking.ValidateMakePending(parameterSet);
             return validationMessages;
@@ -30,6 +35,7 @@ namespace BusConductor.Application.Implementations
 
         public Booking SummarizePendingBooking(MakePendingRequest request)
         {
+            _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.Map(request);
             var booking = Booking.MakePending(parameterSet);
             return booking;
@@ -37,6 +43,7 @@ namespace BusConductor.Application.Implementations
 
         public Guid MakePending(MakePendingRequest request)
         {
+            _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.Map(request);
             var booking = Booking.MakePending(parameterSet);
             _bookingRepository.Save(booking);

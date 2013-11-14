@@ -338,43 +338,45 @@ CREATE TABLE [dbo].[Voucher](
 END 
 GO
 
-IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
-	WHERE TABLE_NAME = 'Log')
-BEGIN
-	CREATE TABLE [dbo].[Log] (
-		[Id] [bigint] IDENTITY (1, 1) NOT NULL,
-		[Date] [datetime] NOT NULL,
-		[Thread] [varchar] (255) NOT NULL,
-		[Level] [varchar] (50) NOT NULL,
-		[Logger] [varchar] (255) NOT NULL,
-		[Message] [text] NOT NULL,
-		[Exception] [text] NULL
-	)
-
-	GRANT SELECT, INSERT, UPDATE ON [Log] TO [AllowSelectInsertUpdate]
-END
-GO
-
 --IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
---	WHERE TABLE_NAME = 'LogEvent')
+--	WHERE TABLE_NAME = 'Log')
 --BEGIN
---	CREATE TABLE [dbo].[LogEvent](
---		[LogEventId] [bigint] IDENTITY(1,1) NOT NULL,
+--	CREATE TABLE [dbo].[Log] (
+--		[Id] [bigint] IDENTITY (1, 1) NOT NULL,
 --		[Date] [datetime] NOT NULL,
---		[Level] [int] NOT NULL,
---		[Message] [varchar](100) COLLATE Latin1_General_CI_AS NULL,
---		[User] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---		[Exception] [text] COLLATE Latin1_General_CI_AS NULL,
---		[Objects] [xml] NULL,
---		[ExecutingMachine] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---		[CallingAssembly] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---		[CallingClass] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---		[CallingMethod] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---		[ContextGuid] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
---	 CONSTRAINT [PK_SyncLogEvent] PRIMARY KEY CLUSTERED 
---	(
---		[LogEventId] ASC
---	)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
---	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
---END 
+--		[Thread] [varchar] (255) NOT NULL,
+--		[Level] [varchar] (50) NOT NULL,
+--		[Logger] [varchar] (255) NOT NULL,
+--		[Message] [text] NOT NULL,
+--		[Exception] [text] NULL
+--	)
+
+--	GRANT SELECT, INSERT, UPDATE ON [Log] TO [AllowSelectInsertUpdate]
+--END
 --GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'LogEvent')
+BEGIN
+	CREATE TABLE [dbo].[LogEvent](
+		[LogEventId] [bigint] IDENTITY(1,1) NOT NULL,
+		[Date] [datetime] NOT NULL,
+		[Level] [int] NOT NULL,
+		[Message] [varchar](100) COLLATE Latin1_General_CI_AS NULL,
+		[User] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+		[Exception] [text] COLLATE Latin1_General_CI_AS NULL,
+		[Objects] [xml] NULL,
+		[ExecutingMachine] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+		[CallingAssembly] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+		[CallingClass] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+		[CallingMethod] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+		[ContextGuid] [varchar](50) COLLATE Latin1_General_CI_AS NULL,
+	 CONSTRAINT [PK_SyncLogEvent] PRIMARY KEY CLUSTERED 
+	(
+		[LogEventId] ASC
+	)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+	
+	GRANT SELECT, INSERT, UPDATE ON [LogEvent] TO [AllowSelectInsertUpdate]
+END 
+GO

@@ -98,6 +98,10 @@
       <Project>{C8A18468-6E53-492A-AF31-52B51F3B4535}</Project>
       <Name>BusConductor.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lucidity.Utilities.Contracts\Lucidity.Utilities.Contracts.csproj">
+      <Project>{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}</Project>
+      <Name>Lucidity.Utilities.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

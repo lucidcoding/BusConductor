@@ -79,6 +79,7 @@
     <Compile Include="ActionFilters\LogAttribute.cs" />
     <Compile Include="ActionFilters\TransactionScopeAttribute.cs" />
     <Compile Include="Common\HttpContextProvider.cs" />
+    <Compile Include="Common\InjectingActionInvoker.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
     <Compile Include="Controllers\AvailabilityController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
@@ -235,6 +236,10 @@
     <ProjectReference Include="..\BusConductor.Domain\BusConductor.Domain.csproj">
       <Project>{C8A18468-6E53-492A-AF31-52B51F3B4535}</Project>
       <Name>BusConductor.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lucidity.Utilities.Contracts\Lucidity.Utilities.Contracts.csproj">
+      <Project>{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}</Project>
+      <Name>Lucidity.Utilities.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lucidity.Utilities\Lucidity.Utilities.csproj">
       <Project>{FD59D8EE-9F07-4C43-AD0C-D620177E7A05}</Project>

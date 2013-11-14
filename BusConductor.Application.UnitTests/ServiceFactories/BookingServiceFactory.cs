@@ -8,6 +8,7 @@ using BusConductor.Domain.Entities;
 using BusConductor.Domain.ParameterSets;
 using BusConductor.Domain.RepositoryContracts;
 using Moq;
+using Lucidity.Utilities.Contracts.Logging;
 
 namespace BusConductor.Application.UnitTests.ServiceFactories
 {
@@ -15,6 +16,7 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
     {
         public Mock<IBookingRepository> BookingRepository { get; set; }
         public Mock<IMakePendingParameterSetMapper> MakePendingParameterSetMapper { get; set; }
+        public Mock<ILog> Log { get; set; }
         public Bus Bus { get; set; }
         public User User { get; set; }
         public Role Role { get; set; }
@@ -77,7 +79,8 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
         {
             return new Application.Implementations.BookingService(
                 BookingRepository.Object,
-                MakePendingParameterSetMapper.Object);
+                MakePendingParameterSetMapper.Object,
+                Log.Object);
         }
     }
 }

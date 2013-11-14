@@ -611,11 +611,16 @@ p .bus-index .record-description
     margin-bottom: 30px;
 }
 
-.booking-make button.ui-datepicker-trigger {
-    margin: 0px;
+.booking-make button.ui-datepicker-trigger 
+{
     padding-top: 1px;
     padding-bottom: 1px;
-    vertical-align: bottom;
+    vertical-align: top;
+    border: solid 1px darkgray;
+    height: 21px;
+    margin-left: 1px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .booking-make button.ui-datepicker-trigger img {
@@ -631,6 +636,7 @@ p .bus-index .record-description
 .contact-index .main-inner {
     display: inline-block;
 }
+
 .contact-index .map
 {
     width: 250px;
