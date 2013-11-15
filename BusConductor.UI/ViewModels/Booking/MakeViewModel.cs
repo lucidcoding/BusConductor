@@ -5,12 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BusConductor.UI.ViewModels.Calendar;
 
 namespace BusConductor.UI.ViewModels.Booking
 {
     public class MakeViewModel //: IValidatableObject
     {
         public Guid BusId { get; set; }
+
+        public DisplayMonthViewModel Calendar { get; set; }
 
         [DisplayName("Pick-up date")]
         public DateTime? PickUp { get; set; }

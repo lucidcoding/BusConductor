@@ -4,16 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BusConductor.Application.Requests.Booking;
+using BusConductor.Domain.Entities;
+using BusConductor.UI.ViewModelMappers.Calendar;
 using BusConductor.UI.ViewModels.Booking;
 
 namespace BusConductor.UI.ViewModelMappers.Booking
 {
     public static class MakeViewModelMapper
     {
-        public static MakeViewModel Map(Guid busId)
+        public static MakeViewModel Map(Bus bus)
         {
             var viewModel = new MakeViewModel();
-            viewModel.BusId = busId;
+            viewModel.BusId = bus.Id.Value;
+            viewModel.Calendar = DisplayMonthViewModelMapper.Map(bus);
             viewModel.IsMainDriver = true;
             Initialize(viewModel);
             return viewModel;

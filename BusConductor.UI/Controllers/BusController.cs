@@ -48,10 +48,9 @@ namespace BusConductor.UI.Controllers
         {
             //todo: get with only the required bookings.
             var bus = _busRepository.GetById(id);
-            var now = DateTime.Now;
             var viewModel = PropertyMapper.MapMatchingProperties<Bus, DetailsViewModel>(bus);
             viewModel.Id = bus.Id.Value;
-            viewModel.Calendar = DisplayMonthViewModelModelMapper.Map(now.Year, now.Month, bus);
+            viewModel.Calendar = DisplayMonthViewModelMapper.Map(bus);
             return View(viewModel);
         }
     }

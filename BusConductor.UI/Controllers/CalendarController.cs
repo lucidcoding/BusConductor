@@ -23,7 +23,7 @@ namespace BusConductor.UI.Controllers
         public PartialViewResult DisplayMonth(int year, int month, Guid busId)
         {
             var bus = _busRepository.GetById(busId);
-            var viewModel = DisplayMonthViewModelModelMapper.Map(year, month, bus);
+            var viewModel = DisplayMonthViewModelMapper.Map(year, month, bus);
             return PartialView("_Calendar", viewModel);
         }
     }

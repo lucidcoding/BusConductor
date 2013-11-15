@@ -46,7 +46,8 @@ namespace BusConductor.UI.Controllers
         [EntityFrameworkReadContext]
         public ActionResult Make(Guid busId)
         {
-            var viewModel = MakeViewModelMapper.Map(busId);
+            var bus = _busRepository.GetById(busId);
+            var viewModel = MakeViewModelMapper.Map(bus);
             return View(viewModel);
         }
 

@@ -83,7 +83,8 @@ a
     color: #BB4CA3;
 }
 
-a:visited {
+a:visited
+{
     color: #BB4CA3;
 }
 
@@ -108,9 +109,7 @@ body
     max-width: 1100px;
     min-width: 850px;
     border-left: solid white 5px;
-    border-right: solid white 5px;
-    /*-moz-border-radius: 35px;
-    border-radius: 35px;*/
+    border-right: solid white 5px; /*-moz-border-radius: 35px;     border-radius: 35px;*/
 }
 
 .menu-bar
@@ -147,8 +146,7 @@ body
 {
     display: inline;
     padding-top: 10px;
-    padding-bottom: 10px;
-    /*border-left: 1px solid white;*/
+    padding-bottom: 10px; /*border-left: 1px solid white;*/
 }
 
 .menu-bar li:last-child
@@ -167,10 +165,10 @@ body
 {
     padding: 8px;
     color: white;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
-.menu-bar a img 
+.menu-bar a img
 {
     border: none 0px;
 }
@@ -203,7 +201,7 @@ h2
     color: #5BC0D0;
 }
 
-hr 
+hr
 {
     border-style: solid;
     border-width: 1px;
@@ -215,7 +213,7 @@ hr
 .title
 {
     padding-top: 20px;
-    padding-bottom: 10px; 
+    padding-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -225,7 +223,7 @@ hr
 
 .bus-index .record
 {
-   /* min-height: 200px;*/
+    /* min-height: 200px;*/
 }
 
 .bus-index .record-text h2
@@ -258,7 +256,8 @@ p .bus-index .record-description
     float: right;
 }
 
-.bus-index hr {
+.bus-index hr
+{
     clear: left;
     margin-bottom: 10px;
 }
@@ -290,8 +289,7 @@ p .bus-index .record-description
     border: solid 1px #438887;
     background-color: #438887;
     color: white;
-    width: 60px;
-    /*min-width: 60px;*/
+    width: 60px; /*min-width: 60px;*/
     height: 10px;
 }
 
@@ -317,11 +315,12 @@ p .bus-index .record-description
 .availability-index
 {
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
 }
 
-.availability-index .main-element {
+.availability-index .main-element
+{
     position: relative;
     width: auto;
     margin-left: auto;
@@ -334,12 +333,14 @@ p .bus-index .record-description
     background-color: #BB4CA3;
 }*/
 
-.availability-index .earlier {
+.availability-index .earlier
+{
     float: left;
     margin-bottom: 10px;
 }
 
-.availability-index .later {
+.availability-index .later
+{
     float: right;
     margin-bottom: 10px;
 }
@@ -349,7 +350,7 @@ p .bus-index .record-description
     padding: 0px;
     margin: 0px;
     border-collapse: separate;
-    border-spacing:1px;
+    border-spacing: 1px;
     width: 800px;
     table-layout: fixed;
     background-color: white;
@@ -367,7 +368,7 @@ p .bus-index .record-description
     font-size: x-small;
 }
 
-.availability-index table th:first-child 
+.availability-index table th:first-child
 {
     width: 200px;
 }
@@ -390,14 +391,15 @@ p .bus-index .record-description
     background-color: #BB4CA3;
 }
 
-.availability-index table td:first-child 
+.availability-index table td:first-child
 {
     width: 123px;
     padding: 15px;
     background-color: #AEDBDC;
 }
 
-.availability-index table h2 {
+.availability-index table h2
+{
     margin-top: 0px;
     margin-bottom: 0px;
     display: inline;
@@ -405,14 +407,16 @@ p .bus-index .record-description
     vertical-align: middle;
 }
 
-.availability-index img.record-image {
+.availability-index img.record-image
+{
     height: 30px;
     width: 30px;
     vertical-align: middle;
 }
 
 
-.availability-index a img {
+.availability-index a img
+{
     border-style: none;
 }
 
@@ -423,11 +427,12 @@ p .bus-index .record-description
     min-height: 200px;
 }*/
 
-.rates-index {
+.rates-index
+{
     text-align: center;
 }
 
-.rates-index .record 
+.rates-index .record
 {
     text-align: left;
     display: inline-block;
@@ -437,11 +442,12 @@ p .bus-index .record-description
 }
 
 
-.rates-index a img {
+.rates-index a img
+{
     border-style: none;
 }
 
-.rates-index .record-image 
+.rates-index .record-image
 {
     float: left;
     clear: left;
@@ -449,8 +455,8 @@ p .bus-index .record-description
     margin-bottom: 10px;
 }
 
-.rates-index .record-text {
-   
+.rates-index .record-text
+{
     margin-left: 170px;
 }
 
@@ -460,7 +466,7 @@ p .bus-index .record-description
     clear: none;
 }
 
-.rates-index table 
+.rates-index table
 {
     border-collapse: separate;
     border-spacing: 1px;
@@ -478,10 +484,10 @@ p .bus-index .record-description
     padding-bottom: 3px;
 }
 
-.rates-index th .sub-heading 
+.rates-index th .sub-heading
 {
     font-weight: normal;
-    font-style:italic
+    font-style: italic;
 }
 
 .rates-index td
@@ -494,7 +500,7 @@ p .bus-index .record-description
     padding-bottom: 3px;
 }
 
-.rates-index tr:first-child td:first-child 
+.rates-index tr:first-child td:first-child
 {
     background-color: white;
 }
@@ -506,7 +512,7 @@ p .bus-index .record-description
 }*/
 
 
-.rates-index hr 
+.rates-index hr
 {
     clear: left;
     margin-bottom: 10px;
@@ -514,11 +520,12 @@ p .bus-index .record-description
 
 /* Booking.Index */
 
-.booking-index {
+.booking-index
+{
     text-align: center;
 }
 
-.booking-index .record 
+.booking-index .record
 {
     width: 150px;
     max-width: 150px;
@@ -529,33 +536,58 @@ p .bus-index .record-description
     text-align: center;
 }
 
-.booking-index a img {
+.booking-index a img
+{
     border-style: none;
 }
+
 /* Booking.Make */
 
-.booking-make {
+.booking-make
+{
     text-align: center;
+    vertical-align: top;
 }
 
-.booking-make .intro {
+.booking-make:after
+{
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+.booking-make .intro
+{
     text-align: left;
     display: block;
-    width:600px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 30px;
 }
 
-.booking-make form {
+.booking-make div.bc-calendar
+{
     text-align: left;
     display: inline-block;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
+    vertical-align: top;
+    margin-bottom: 30px;
 }
 
-.booking-make .alternate-driver.hide {
+.booking-make form
+{
+    text-align: left;
+    display: inline-block; /*width: auto;*/
+    vertical-align: top;
+}
+
+.booking-make form fieldset
+{
+    padding: 20px;
+}
+
+.booking-make .alternate-driver.hide
+{
     display: none;
 }
 
@@ -592,11 +624,13 @@ p .bus-index .record-description
     height: 70px;
 }
 
-.booking-make .editor-field input[type="text"] {
+.booking-make .editor-field input[type="text"]
+{
     width: 250px;
 }
 
-.booking-make .editor-field input[type="text"].hasDatepicker {
+.booking-make .editor-field input[type="text"].hasDatepicker
+{
     width: 100px;
 }
 
@@ -611,7 +645,7 @@ p .bus-index .record-description
     margin-bottom: 30px;
 }
 
-.booking-make button.ui-datepicker-trigger 
+.booking-make button.ui-datepicker-trigger
 {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -623,17 +657,20 @@ p .bus-index .record-description
     border-radius: 3px;
 }
 
-.booking-make button.ui-datepicker-trigger img {
+.booking-make button.ui-datepicker-trigger img
+{
     vertical-align: bottom;
 }
 
 /* Contact Us */
 
-.contact-index  {
+.contact-index
+{
     text-align: center;
 }
 
-.contact-index .main-inner {
+.contact-index .main-inner
+{
     display: inline-block;
 }
 
@@ -646,11 +683,11 @@ p .bus-index .record-description
     margin-right: 20px;
 }
 
-.contact-index .details 
+.contact-index .details
 {
     text-align: left;
-    display: inline-block;  
-    vertical-align: top;  
+    display: inline-block;
+    vertical-align: top;
 }
 
 .contact-index .details-headings
@@ -661,7 +698,8 @@ p .bus-index .record-description
     margin-bottom: 20px;
 }
 
-.contact-index .details-content {
+.contact-index .details-content
+{
     margin-left: 120px;
     margin-bottom: 20px;
 }
