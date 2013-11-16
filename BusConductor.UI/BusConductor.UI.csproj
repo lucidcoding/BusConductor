@@ -142,6 +142,7 @@
     <Content Include="Content\Images\TitleContactUs.gif" />
     <Content Include="Content\Images\TitleHome.gif" />
     <Content Include="Content\Images\TitleMeetTheFleet.gif" />
+    <Content Include="Content\Images\TitleReviewAndConfirmBooking.gif" />
     <Content Include="Content\Images\TitleTariff.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

@@ -62,7 +62,8 @@ namespace BusConductor.UI.Controllers
             
             if(!ModelState.IsValid)
             {
-                MakeViewModelMapper.Initialize(inViewModel);
+                var bus = _busRepository.GetById(inViewModel.BusId);
+                MakeViewModelMapper.Initialize(inViewModel, bus);
                 return View("Make", inViewModel);
             }
 

@@ -16,8 +16,9 @@ header, footer, nav, section
 
 fieldset
 {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
+    border: 1px solid #5BC0D0;
+    /*padding: 0 1.4em 1.4em 1.4em;*/
+    padding: 20px;
     margin: 0 0 1.5em 0;
 }
 
@@ -549,13 +550,15 @@ p .bus-index .record-description
     vertical-align: top;
 }
 
+/* only need this if floating calendar and form right
+
 .booking-make:after
 {
     content: " ";
     display: block;
     height: 0;
     clear: both;
-}
+}*/
 
 .booking-make .intro
 {
@@ -581,10 +584,10 @@ p .bus-index .record-description
     vertical-align: top;
 }
 
-.booking-make form fieldset
+/*.booking-make form fieldset
 {
     padding: 20px;
-}
+}*/
 
 .booking-make .alternate-driver.hide
 {
@@ -661,6 +664,44 @@ p .bus-index .record-description
 {
     vertical-align: bottom;
 }
+
+/* Booking.Review */
+
+.booking-review
+{
+    text-align: center;
+}
+
+.booking-review form
+{
+    display: inline-block;
+    text-align: left;
+}
+
+
+
+.booking-review .alternate-driver.hide
+{
+    display: none;
+}
+
+.booking-review .editor-label
+{
+    width: 220px;
+    height: 15px;
+    float: left;
+    clear: left;
+}
+
+.booking-review .editor-field
+{
+    height: 15px;
+    margin-left: 240px;
+    width: 250px;
+    font-weight: bold;
+}
+
+
 
 /* Contact Us */
 
