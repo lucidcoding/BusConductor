@@ -99,8 +99,6 @@
     </Compile>
     <Compile Include="Mappers\TaskIndexTaskViewModelMapper.cs" />
     <Compile Include="Mappers\TaskIndexViewModelMapper.cs" />
-    <Compile Include="Misc\IVirtualPathUtilityWrapper.cs" />
-    <Compile Include="Misc\VirtualPathUtilityWrapper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mappers\TaskRaiseEditViewModelMapper.cs" />

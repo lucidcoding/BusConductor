@@ -44,9 +44,9 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                 //Had to do it this way because of tests.
                 if (HttpContext.Current != null)
                 {
-                    var httpCpntextBase = new HttpContextWrapper(HttpContext.Current);
+                    var httpContextBase = new HttpContextWrapper(HttpContext.Current);
                     busViewModel.MainImageUrl = UrlHelper.GenerateContentUrl("~/Images/bluebell_sm_121109.jpg",
-                                                                             httpCpntextBase);
+                                                                             httpContextBase);
                 }
 
                 for (int dayIndex = 0; dayIndex < numberOfDays; dayIndex++)
