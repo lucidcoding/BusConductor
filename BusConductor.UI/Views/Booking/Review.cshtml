@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "Confirm";
 }
-<img src="/Content/Images/TitleReviewAndConfirmBooking.gif" alt="Review and Confirm Booking" class="title" />
+<img src="/Content/Images/TitleReviewAndConfirmBooking.gif" alt="Review and Confirm Booking"
+    class="title" />
 <div class="booking-review">
     @using (Html.BeginForm("Confirm", "Booking"))
     {
@@ -30,6 +31,12 @@
             @Html.HiddenFor(model => model.RestrictionsAccepted)
             @Html.HiddenFor(model => model.TermsAndConditionsAccepted)
             @Html.HiddenFor(model => model.BusId)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BusName):
+            </div>
+            <div class="editor-field">
+                @Model.BusName
+            </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.PickUp):
             </div>
@@ -114,7 +121,7 @@
             <div class="editor-field">
                 @Model.DrivingLicenceNumber
             </div>
-            @if(!Model.IsMainDriver)
+            @if (!Model.IsMainDriver)
             {
                 <div class="editor-label">
                     @Html.LabelFor(model => model.DriverForename):
@@ -151,10 +158,10 @@
                 @Html.LabelFor(model => model.TotalCost):
             </div>
             <div class="editor-field">
-                £@String.Format("{0:#####0.00}",Model.TotalCost)
+                £@String.Format("{0:#####0.00}", Model.TotalCost)
             </div>
             <p>
-                <input type="submit" value="Confirm" />
+                <input type="submit" value="Confirm booking" />
             </p>
         </fieldset>
     }

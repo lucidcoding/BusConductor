@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Enumerations;
@@ -8,6 +9,7 @@ namespace BusConductor.Domain.Entities
 {
     public class Booking : Entity<Guid>
     {
+        private string _bookingNumber;
         private DateTime _pickUp;
         private DateTime _dropOff;
         private int _numberOfAdults;
@@ -22,6 +24,12 @@ namespace BusConductor.Domain.Entities
         private Guid _busId;
         private Bus _bus;
         private decimal _totalCost;
+
+        public virtual string BookingNumber
+        {
+            get { return _bookingNumber; }
+            set { _bookingNumber = value; }
+        }
 
         public virtual DateTime PickUp
         {
@@ -223,7 +231,7 @@ namespace BusConductor.Domain.Entities
             booking._voucher = parameterSet.Voucher;
             var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
             booking._createdBy = User.CreateGuest(createGuestUserParameterSet);
-            booking._createdOn = DateTime.Now;
+            booking._createdOn = parameterSet.CreatedOn;
             booking._deleted = false;
             var totalCostWithoutDiscount = parameterSet.Bus.GetUndiscountedRateFor(parameterSet.PickUp.Value, parameterSet.DropOff.Value);
 
@@ -238,6 +246,32 @@ namespace BusConductor.Domain.Entities
 
             parameterSet.Bus.Bookings.Add(booking);
             return booking;
+        }
+
+        public static Booking MakePendingWithBookingNumber(MakePendingBookingParameterSet parameterSet)
+        {
+            var booking = MakePending(parameterSet);
+            booking.BookingNumber = CalculateBookingNumber(parameterSet);
+            return booking;
+        }
+
+        private static string CalculateBookingNumber(MakePendingBookingParameterSet parameterSet)
+        {
+            var bookingNumbers = parameterSet.OtherBookingsToday
+                .Select(booking => Convert.ToInt32(booking.BookingNumber.Substring(8, 4)))
+                .ToList();
+
+            var nextBookingNumber = 1;
+
+            if (bookingNumbers.Any())
+            {
+                nextBookingNumber = bookingNumbers.Max() + 1;
+            }
+
+            return String.Format("{0:yyyyMMdd}{1:0000}_{2}",
+                                 parameterSet.CreatedOn,
+                                 nextBookingNumber,
+                                 parameterSet.Surname);
         }
     }
 }

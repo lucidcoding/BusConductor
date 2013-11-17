@@ -27,6 +27,7 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
         public BookingServiceFactory()
         {
             MakePendingParameterSetMapper = new Mock<IMakePendingParameterSetMapper>();
+            Log = new Mock<ILog>();
             BookingRepository = new Mock<IBookingRepository>();
             Bus = new Bus { Id = Guid.NewGuid(), Bookings = new List<Booking>(), PricingPeriods = new Collection<PricingPeriod>() };
             User = new User { Id = Guid.NewGuid() };
@@ -69,9 +70,20 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
             ParameterSet.RestrictionsAccepted = true;
             ParameterSet.TermsAndConditionsAccepted = true;
             ParameterSet.CurrentUser = User;
+            ParameterSet.CreatedOn = new DateTime(2013, 10, 1);
+
+            ParameterSet.OtherBookingsToday = new List<Booking>()
+            {
+                  new Booking{ BookingNumber = "201310010001_Black" },   
+                  new Booking{ BookingNumber = "201310010002_Green" },                                 
+            };
 
             MakePendingParameterSetMapper
                 .Setup(x => x.Map(It.IsAny<MakePendingRequest>()))
+                .Returns(ParameterSet);
+
+            MakePendingParameterSetMapper
+                .Setup(x => x.MapWithOtherBookingsToday(It.IsAny<MakePendingRequest>()))
                 .Returns(ParameterSet);
         }
 

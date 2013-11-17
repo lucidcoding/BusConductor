@@ -76,12 +76,14 @@ namespace BusConductor.UI.Controllers
         [HttpPost]
         [TransactionScope]
         [EntityFrameworkWriteContext]
-        public ActionResult Confirm(ReviewViewModel viewModel)
+        public ActionResult Confirm(ReviewViewModel inViewModel)
         {
-            var request = ReviewViewModelMapper.Map(viewModel);
-            _bookingService.MakePending(request);
-            //todo:email and confirmation message
-            return View("Completed");
+            var request = ReviewViewModelMapper.Map(inViewModel);
+            var bookingNumber = _bookingService.MakePending(request);
+            //todo:email 
+            var outViewModel = new CompletedViewModel();
+            outViewModel.BookingNumber = bookingNumber;
+            return View("Completed", outViewModel);
         }
     }
 }

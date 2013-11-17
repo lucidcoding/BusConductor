@@ -53,12 +53,15 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.Voucher = voucher;
             _parameterSet.TermsAndConditionsAccepted = true;
             _parameterSet.RestrictionsAccepted = true;
+            _parameterSet.CreatedOn = new DateTime(2013, 10, 1);
+            _parameterSet.OtherBookingsToday = new List<Booking>();
         }
 
         [Test]
-        public void CanMakePendingBooking()
+        public void CanMakePendingBookingWithBookingNumber()
         {
-            var booking = Booking.MakePending(_parameterSet);
+            var booking = Booking.MakePendingWithBookingNumber(_parameterSet);
+            Assert.That(booking.BookingNumber, Is.EqualTo("201310010001_Blue"));
             Assert.That(booking.PickUp, Is.EqualTo(_parameterSet.PickUp));
             Assert.That(booking.DropOff, Is.EqualTo(_parameterSet.DropOff));
             Assert.That(booking.NumberOfAdults, Is.EqualTo(_parameterSet.NumberOfAdults));
@@ -67,6 +70,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             Assert.That(booking.Status, Is.EqualTo(BookingStatus.Pending));
             Assert.That(booking.Bus, Is.EqualTo(_parameterSet.Bus));
             Assert.That(booking.TotalCost, Is.EqualTo(540m));
+            Assert.That(booking.CreatedOn, Is.EqualTo(_parameterSet.CreatedOn));
             Assert.That(booking.CreatedBy, Is.Not.Null);
             Assert.That(booking.CreatedBy.Username, Is.Not.Empty);
             Assert.That(booking.CreatedBy.Username, Is.Not.Null);
@@ -80,6 +84,18 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             Assert.That(booking.CreatedBy.PostCode, Is.EqualTo(_parameterSet.PostCode));
             Assert.That(booking.CreatedBy.Email, Is.EqualTo(_parameterSet.Email));
             Assert.That(booking.CreatedBy.TelephoneNumber, Is.EqualTo(_parameterSet.TelephoneNumber));
+        }
+
+        [Test]
+        public void GetsNextBookingNumberIfBookingsExistThatDay()
+        {
+            _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010001_Purple" });
+            _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010002_Black" });
+            _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010003_Mauve" });
+            _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010004_Red" });
+            var booking = Booking.MakePendingWithBookingNumber(_parameterSet);
+            Assert.That(booking.BookingNumber, Is.EqualTo("201310010005_Blue"));
+            
         }
 
         [Test]

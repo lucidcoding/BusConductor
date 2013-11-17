@@ -15,6 +15,9 @@ namespace BusConductor.UI.ViewModels.Booking
 
         public DisplayMonthViewModel Calendar { get; set; }
 
+        [DisplayName("Selected camper")]
+        public string BusName { get; set; }
+
         [DisplayName("Pick-up date")]
         public DateTime? PickUp { get; set; }
 

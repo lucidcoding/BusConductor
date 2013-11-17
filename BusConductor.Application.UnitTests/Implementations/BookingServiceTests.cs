@@ -41,8 +41,20 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingService = bookingServiceFactory.GetService();
             var request = new MakePendingRequest();
             bookingService.MakePending(request);
-            bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
+            bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
             bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
+        }
+
+        //todo:check summarize returns expected booking?
+
+        [Test]
+        public void MakePendingReturnsCorrectResult()
+        {
+            var bookingServiceFactory = new BookingServiceFactory();
+            var bookingService = bookingServiceFactory.GetService();
+            var request = new MakePendingRequest();
+            var bookingNumber = bookingService.MakePending(request);
+            Assert.That(bookingNumber, Is.EqualTo("201310010003_Blue"));
         }
     }
 }

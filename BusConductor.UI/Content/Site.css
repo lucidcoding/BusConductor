@@ -220,6 +220,30 @@ hr
     display: block;
 }
 
+input[type="submit"] 
+{
+    background-color: #AEDBDC;
+    border: solid 1px #5BC0D0;
+    height: 21px;
+    margin-left: 1px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
+}
+
+button 
+{
+    background-color: #AEDBDC;
+    border: solid 1px #5BC0D0;
+    height: 21px;
+    margin-left: 1px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: black;
+    cursor: pointer;
+}
+
 /* Bus.Index */
 
 .bus-index .record
@@ -646,6 +670,7 @@ p .bus-index .record-description
 .booking-make .validation-summary-errors
 {
     margin-bottom: 30px;
+    max-width: 400px;
 }
 
 .booking-make button.ui-datepicker-trigger
@@ -653,7 +678,6 @@ p .bus-index .record-description
     padding-top: 1px;
     padding-bottom: 1px;
     vertical-align: top;
-    border: solid 1px darkgray;
     height: 21px;
     margin-left: 1px;
     -moz-border-radius: 3px;

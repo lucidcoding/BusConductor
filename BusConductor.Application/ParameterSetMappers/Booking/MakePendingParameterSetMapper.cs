@@ -1,4 +1,5 @@
-﻿using BusConductor.Application.Requests.Booking;
+﻿using System;
+using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.ParameterSets;
 using BusConductor.Domain.RepositoryContracts;
 
@@ -10,17 +11,20 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
         private readonly IUserRepository _userRepository;
         private readonly IRoleRepository _roleRepository;
         private readonly IVoucherRepository _voucherRepository;
+        private readonly IBookingRepository _bookingRepository;
 
         public MakePendingParameterSetMapper(
             IBusRepository busRepository,
             IUserRepository userRepository,
             IRoleRepository roleRepository,
-            IVoucherRepository voucherRepository)
+            IVoucherRepository voucherRepository,
+            IBookingRepository bookingRepository)
         {
             _busRepository = busRepository;
             _userRepository = userRepository;
             _roleRepository = roleRepository;
             _voucherRepository = voucherRepository;
+            _bookingRepository = bookingRepository;
         }
 
         public MakePendingBookingParameterSet Map(MakePendingRequest request)
@@ -49,10 +53,18 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.VoucherCode = request.VoucherCode;
             parameterSet.TermsAndConditionsAccepted = request.TermsAndConditionsAccepted;
             parameterSet.RestrictionsAccepted = request.RestrictionsAccepted;
+            parameterSet.CreatedOn = DateTime.Now;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
             parameterSet.GuestRole = _roleRepository.GetByName("Guest");
+            return parameterSet;
+        }
+
+        public MakePendingBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request)
+        {
+            var parameterSet = Map(request);
+            parameterSet.OtherBookingsToday = _bookingRepository.GetByDate(parameterSet.CreatedOn);
             return parameterSet;
         }
     }

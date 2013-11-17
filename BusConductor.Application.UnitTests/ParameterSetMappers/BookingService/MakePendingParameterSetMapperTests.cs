@@ -12,13 +12,13 @@ using NUnit.Framework;
 namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
 {
     [TestFixture]
-    [Ignore]
     public class MakePendingParameterSetMapperTests
     {
         private Mock<IBusRepository> _busRepository;
         private Mock<IUserRepository> _userRepository;
         private Mock<IRoleRepository> _roleRepository;
         private Mock<IVoucherRepository> _voucherRepository;
+        private Mock<IBookingRepository> _bookingRepository;
         private Bus _bus;
         private User _user;
         private Role _role;
@@ -33,6 +33,7 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
             _userRepository = new Mock<IUserRepository>();
             _roleRepository = new Mock<IRoleRepository>();
             _voucherRepository = new Mock<IVoucherRepository>();
+            _bookingRepository = new Mock<IBookingRepository>();
             _bus = new Bus { Id = Guid.NewGuid() };
             _user = new User { Id = Guid.NewGuid() };
             _role = new Role { Id = Guid.NewGuid() };
@@ -54,11 +55,20 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
                 .Setup(x => x.GetByCode(_voucher.Code))
                 .Returns(_voucher);
 
+            _bookingRepository
+                .Setup(x => x.GetByDate(It.IsAny<DateTime>()))
+                .Returns(new List<Booking>()
+                             {
+                                 new Booking {BookingNumber = "Book01"},
+                                 new Booking {BookingNumber = "Book02"}
+                             });
+
             _mapper = new MakePendingParameterSetMapper(
                 _busRepository.Object,
                 _userRepository.Object,
                 _roleRepository.Object,
-                _voucherRepository.Object);
+                _voucherRepository.Object,
+                _bookingRepository.Object);
 
             _request = new MakePendingRequest();
             _request.BusId = _bus.Id.Value;
@@ -83,7 +93,7 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
         [Test]
         public void MappingIsCorrect()
         {
-            var parameter = _mapper.Map(_request);
+            var parameter = _mapper.MapWithOtherBookingsToday(_request);
             Assert.That(parameter.PickUp, Is.EqualTo(_request.PickUp));
             Assert.That(parameter.DropOff, Is.EqualTo(_request.DropOff));
             Assert.That(parameter.Bus, Is.EqualTo(_bus));
@@ -104,6 +114,9 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
             Assert.That(parameter.VoucherCode, Is.EqualTo(_request.VoucherCode));
             Assert.That(parameter.Voucher, Is.EqualTo(_voucher));
             Assert.That(parameter.CurrentUser, Is.EqualTo(_user));
+            Assert.That(parameter.OtherBookingsToday.Count, Is.EqualTo(2));
+            Assert.That(parameter.OtherBookingsToday.Any(x => x.BookingNumber == "Book01"));
+            Assert.That(parameter.OtherBookingsToday.Any(x => x.BookingNumber == "Book02"));
         }
     }
 }

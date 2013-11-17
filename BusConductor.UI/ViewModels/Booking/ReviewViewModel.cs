@@ -11,6 +11,9 @@ namespace BusConductor.UI.ViewModels.Booking
         //todo: Maybe have MakeViewModel as a child of this?
         public Guid BusId { get; set; }
 
+        [DisplayName("Selected camper")]
+        public string BusName { get; set; }
+
         [DisplayName("Pick-up date")]
         public DateTime PickUp { get; set; }
 

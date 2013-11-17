@@ -9,6 +9,7 @@ namespace BusConductor.UI.ViewModelMappers.Booking
         {
             var viewModel = new ReviewViewModel();
             viewModel.BusId = booking.Bus.Id.Value;
+            viewModel.BusName = booking.Bus.Name;
             viewModel.PickUp = booking.PickUp;
             viewModel.DropOff = booking.DropOff;
             viewModel.Forename = booking.CreatedBy.Forename;

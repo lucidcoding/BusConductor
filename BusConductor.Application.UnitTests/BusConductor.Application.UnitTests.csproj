@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="ServiceFactories\BookingServiceFactory.cs" />
     <Compile Include="Implementations\BookingServiceTests.cs" />
-    <Compile Include="ParameterSetMappers\BookingService\AltMakePendingParameterSetMapperTests.cs" />
+    <Compile Include="ParameterSetMappers\BookingService\TOGO_AltMakePendingParameterSetMapperTests.cs" />
     <Compile Include="ParameterSetMappers\BookingService\MakePendingParameterSetMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

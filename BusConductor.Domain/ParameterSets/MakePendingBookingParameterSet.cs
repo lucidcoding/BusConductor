@@ -6,6 +6,7 @@ namespace BusConductor.Domain.ParameterSets
 {
     public class MakePendingBookingParameterSet
     {
+        public IList<Booking> OtherBookingsToday { get; set; } 
         public DateTime? PickUp { get; set; }
         public DateTime? DropOff { get; set; } 
         public Bus Bus { get; set; } 
@@ -31,5 +32,6 @@ namespace BusConductor.Domain.ParameterSets
         public bool TermsAndConditionsAccepted { get; set; }
         public bool RestrictionsAccepted { get; set; }
         public User CurrentUser { get; set; }
+        public DateTime CreatedOn { get; set; }
     }
 }

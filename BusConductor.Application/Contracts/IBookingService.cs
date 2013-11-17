@@ -9,6 +9,6 @@ namespace BusConductor.Application.Contracts
     {
         ValidationMessageCollection ValidateMakePending(MakePendingRequest request);
         Booking SummarizePendingBooking(MakePendingRequest request);
-        Guid MakePending(MakePendingRequest request);
+        string MakePending(MakePendingRequest request);
     }
 }

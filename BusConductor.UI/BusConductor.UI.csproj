@@ -111,6 +111,7 @@
     <Compile Include="ViewModels\Availability\IndexBusViewModel.cs" />
     <Compile Include="ViewModels\Availability\IndexDayViewModel.cs" />
     <Compile Include="ViewModels\Availability\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Booking\CompletedViewModel.cs" />
     <Compile Include="ViewModels\Booking\IndexBusViewModel.cs" />
     <Compile Include="ViewModels\Booking\IndexViewModel.cs" />
     <Compile Include="ViewModels\Booking\ReviewViewModel.cs" />

@@ -41,13 +41,13 @@ namespace BusConductor.Application.Implementations
             return booking;
         }
 
-        public Guid MakePending(MakePendingRequest request)
+        public string MakePending(MakePendingRequest request)
         {
             _log.Add(request);
-            var parameterSet = _makePendingParameterSetMapper.Map(request);
-            var booking = Booking.MakePending(parameterSet);
+            var parameterSet = _makePendingParameterSetMapper.MapWithOtherBookingsToday(request);
+            var booking = Booking.MakePendingWithBookingNumber(parameterSet);
             _bookingRepository.Save(booking);
-            return booking.Id.Value;
+            return booking.BookingNumber;
         }
     }
 }

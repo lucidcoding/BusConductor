@@ -37,6 +37,12 @@
                 @Html.ValidationSummary(true, "There were some problems with the information you entered, please correct and resubmit.")
                 @Html.HiddenFor(model => model.BusId)
                 <div class="editor-label">
+                    @Html.LabelFor(model => model.BusName):
+                </div>
+                <div class="editor-field">
+                    @Model.BusName
+                </div>
+                <div class="editor-label">
                     @Html.LabelFor(model => model.PickUp):<span class="required">*</span>
                 </div>
                 <div class="editor-field">
@@ -193,7 +199,7 @@
                     @Html.ValidationMessageFor(model => model.TermsAndConditionsAccepted)
                 </div>
                 <p>
-                    <input type="submit" value="Get Total" />
+                    <input type="submit" value="Calculate price and review" />
                 </p>
             </fieldset>
         }

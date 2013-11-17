@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Entities;
@@ -25,6 +23,7 @@ namespace BusConductor.UI.ViewModelMappers.Booking
         public static void Initialize(MakeViewModel viewModel, Bus bus)
         {
             viewModel.Calendar = DisplayMonthViewModelMapper.Map(bus);
+            viewModel.BusName = bus.Name;
 
             if(viewModel.IsMainDriver)
             {

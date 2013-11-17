@@ -281,6 +281,7 @@ IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
 BEGIN
 CREATE TABLE [dbo].[Booking](
 		[Id] [uniqueidentifier] NOT NULL,
+		[BookingNumber] [nvarchar](25) NOT NULL,
 		[PickUp] [datetime] NULL,
 		[DropOff] [datetime] NULL,
 		[NumberOfAdults] [int] NULL,
@@ -306,11 +307,11 @@ CREATE TABLE [dbo].[Booking](
 
 	GRANT SELECT, INSERT, UPDATE ON [Booking] TO [AllowSelectInsertUpdate]
 	
-	INSERT INTO [Booking] ([Id], [PickUp], [DropOff], [NumberOfAdults], [NumberOfChildren], [IsMainDriver], [DrivingLicenceNumber], [VoucherId],
+	INSERT INTO [Booking] ([Id], [BookingNumber], [PickUp], [DropOff], [NumberOfAdults], [NumberOfChildren], [IsMainDriver], [DrivingLicenceNumber], [VoucherId],
 		[Status], [BusId], [TotalCost], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted])
-	VALUES ('eaa01eab-f3bd-4e24-8368-d3501a227a8b', '2013-11-18 00:00:00', '2013-11-22 00:00:00',
+	VALUES ('eaa01eab-f3bd-4e24-8368-d3501a227a8b', '201311160001_Grey', '2013-11-18 00:00:00', '2013-11-22 00:00:00',
 		2, 0, 1, 'ABD0000', NULL, 1, 'ba325fad-9a65-4732-872c-da2069bb37e8', 100, 'c8238876-47fc-42af-8a32-926061097f1c', 
-		'2013-11-17 00:00:00', NULL, NULL, 0)
+		'2013-11-16 00:00:00', NULL, NULL, 0)
 END
 GO
 
