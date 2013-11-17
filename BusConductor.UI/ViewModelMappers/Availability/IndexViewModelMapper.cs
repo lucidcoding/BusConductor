@@ -37,7 +37,7 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                 busViewModel.BusId = busses[busIndex].Id.Value;
                 busViewModel.Name = busses[busIndex].Name;
                 busViewModel.Days = new List<IndexBusDayViewModel>();
-                busViewModel.MainImageUrl = VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
+                busViewModel.MainImageUrl = "";//todo: make testable: VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
 
                 for (int dayIndex = 0; dayIndex < numberOfDays; dayIndex++)
                 {

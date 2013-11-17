@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerFactories\AvailabilityControllerFactory.cs" />
     <Compile Include="ControllerFactories\BookingControllerFactory.cs" />
     <Compile Include="ControllerFactories\CalendarControllerFactory.cs" />
+    <Compile Include="Controllers\AvailabilityControllerTests\DisplayFromTests.cs" />
     <Compile Include="Controllers\BookingControllerTests\ConfirmTests.cs" />
     <Compile Include="Controllers\BookingControllerTests\ReviewTests.cs" />
     <Compile Include="Controllers\CalendarControllerTests\DisplayMonthTests.cs" />
