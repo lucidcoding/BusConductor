@@ -7,6 +7,7 @@ using System.Web;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 using BusConductor.UI.ViewModels.Availability;
+using System.Web.Mvc;
 
 namespace BusConductor.UI.ViewModelMappers.Availability
 {
@@ -37,7 +38,16 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                 busViewModel.BusId = busses[busIndex].Id.Value;
                 busViewModel.Name = busses[busIndex].Name;
                 busViewModel.Days = new List<IndexBusDayViewModel>();
-                busViewModel.MainImageUrl = "";//todo: make testable: VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
+
+                //busViewModel.MainImageUrl = VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
+
+                //Had to do it this way because of tests.
+                if (HttpContext.Current != null)
+                {
+                    var httpCpntextBase = new HttpContextWrapper(HttpContext.Current);
+                    busViewModel.MainImageUrl = UrlHelper.GenerateContentUrl("~/Images/bluebell_sm_121109.jpg",
+                                                                             httpCpntextBase);
+                }
 
                 for (int dayIndex = 0; dayIndex < numberOfDays; dayIndex++)
                 {
