@@ -95,6 +95,14 @@
       <Project>{0107F1EF-5CF7-48D1-815A-868DC7E36FBA}</Project>
       <Name>BusConductor.UI</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lucidity.Utilities.Contracts\Lucidity.Utilities.Contracts.csproj">
+      <Project>{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}</Project>
+      <Name>Lucidity.Utilities.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lucidity.Utilities\Lucidity.Utilities.csproj">
+      <Project>{FD59D8EE-9F07-4C43-AD0C-D620177E7A05}</Project>
+      <Name>Lucidity.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

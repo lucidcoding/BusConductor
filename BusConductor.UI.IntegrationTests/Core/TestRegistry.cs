@@ -1,7 +1,9 @@
 ﻿using BusConductor.Application.Core;
 using BusConductor.Data.Common;
 using BusConductor.UI.IntegrationTests.Common;
+using Lucidity.Utilities.Logging;
 using StructureMap.Configuration.DSL;
+using Lucidity.Utilities.Contracts.Logging;
 
 namespace BusConductor.UI.IntegrationTests.Core
 {
@@ -14,6 +16,7 @@ namespace BusConductor.UI.IntegrationTests.Core
                           x.ImportRegistry(typeof(ApplicationRegistry));
                           //For<IContextProvider>().Use<NUnitContextProvider>();
                           For<IContextProvider>().HybridHttpOrThreadLocalScoped().Use<GenericContextProvider>();
+                          For<ILog>().Use<StubLog>();
                       });
 
         }
