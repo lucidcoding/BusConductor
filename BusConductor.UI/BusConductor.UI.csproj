@@ -133,7 +133,6 @@
     <Content Include="Content\Images\CalendarPrevious.gif" />
     <Content Include="Content\Images\CalendarNext.gif" />
     <Content Include="Content\Images\Header.gif" />
-    <Content Include="Content\Images\CalendarIcon2.png" />
     <Content Include="Content\Images\MenuAvailability.gif" />
     <Content Include="Content\Images\MenuBookACamper.gif" />
     <Content Include="Content\Images\MenuContactUs.gif" />
