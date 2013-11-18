@@ -1,4 +1,5 @@
-﻿using BusConductor.Application.Core;
+﻿using System.Configuration;
+using BusConductor.Application.Core;
 using BusConductor.Data.Common;
 using BusConductor.UI.IntegrationTests.Common;
 using Lucidity.Utilities.Logging;
@@ -16,7 +17,8 @@ namespace BusConductor.UI.IntegrationTests.Core
                           x.ImportRegistry(typeof(ApplicationRegistry));
                           //For<IContextProvider>().Use<NUnitContextProvider>();
                           For<IContextProvider>().HybridHttpOrThreadLocalScoped().Use<GenericContextProvider>();
-                          For<ILog>().Use<StubLog>();
+                          //For<ILog>().Use<StubLog>();
+                          For<ILog>().Use<SqlLog>().Ctor<string>("connectionString").Is(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString);
                       });
 
         }

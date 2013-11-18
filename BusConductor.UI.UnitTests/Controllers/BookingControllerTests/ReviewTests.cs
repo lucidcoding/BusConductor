@@ -54,18 +54,18 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
             var bus = new Mock<Bus>();
             bus.SetupGet(x => x.Id).Returns(_bookingControllerFactory.BusId);
             _booking.SetupGet(x => x.Bus).Returns(bus.Object);
-            var createdBy = new Mock<User>();
-            createdBy.SetupGet(x => x.Forename).Returns("Tom");
-            createdBy.SetupGet(x => x.Surname).Returns("Turquoise");
-            createdBy.SetupGet(x => x.AddressLine1).Returns("1 Pink Street");
-            createdBy.SetupGet(x => x.AddressLine2).Returns("Address 2");
-            createdBy.SetupGet(x => x.AddressLine3).Returns("Address 3");
-            createdBy.SetupGet(x => x.Town).Returns("Blueborough");
-            createdBy.SetupGet(x => x.County).Returns("Purpleshire");
-            createdBy.SetupGet(x => x.PostCode).Returns("M1 1AA");
-            createdBy.SetupGet(x => x.TelephoneNumber).Returns("01234 567890");
-            createdBy.SetupGet(x => x.Email).Returns("tom@greenltd.com");
-            _booking.SetupGet(x => x.CreatedBy).Returns(createdBy.Object);
+            var customer = new Mock<Customer>();
+            customer.SetupGet(x => x.Forename).Returns("Tom");
+            customer.SetupGet(x => x.Surname).Returns("Turquoise");
+            customer.SetupGet(x => x.AddressLine1).Returns("1 Pink Street");
+            customer.SetupGet(x => x.AddressLine2).Returns("Address 2");
+            customer.SetupGet(x => x.AddressLine3).Returns("Address 3");
+            customer.SetupGet(x => x.Town).Returns("Blueborough");
+            customer.SetupGet(x => x.County).Returns("Purpleshire");
+            customer.SetupGet(x => x.PostCode).Returns("M1 1AA");
+            customer.SetupGet(x => x.TelephoneNumber).Returns("01234 567890");
+            customer.SetupGet(x => x.Email).Returns("tom@greenltd.com");
+            _booking.SetupGet(x => x.Customer).Returns(customer.Object);
 
             _bookingControllerFactory.BookingService
                 .Setup(x => x.SummarizePendingBooking(It.IsAny<MakePendingRequest>()))

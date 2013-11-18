@@ -222,8 +222,8 @@ namespace BusConductor.Domain.Entities
             }
 
             //todo: strip down
-            var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
-            validationMessages.AddRange(User.ValidateCreateGuest(createGuestUserParameterSet));
+            //var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
+            //validationMessages.AddRange(User.ValidateCreateGuest(createGuestUserParameterSet));
 
             var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
             validationMessages.AddRange(Customer.ValidateRegister(registerCustomerParameterSet));
@@ -248,9 +248,7 @@ namespace BusConductor.Domain.Entities
             booking._driverForename = parameterSet.DriverForename;
             booking._driverSurname = parameterSet.DriverSurname;
             booking._voucher = parameterSet.Voucher;
-            //todo: strip out
-            var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
-            booking._createdBy = User.CreateGuest(createGuestUserParameterSet);
+            booking._createdBy = parameterSet.CurrentUser;
             var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
             booking._customer = Customer.Register(registerCustomerParameterSet);
             booking._createdOn = parameterSet.CreatedOn;

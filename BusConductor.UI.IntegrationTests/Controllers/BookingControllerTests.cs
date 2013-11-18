@@ -74,19 +74,21 @@ namespace BusConductor.UI.IntegrationTests.Controllers
             Assert.That(booking.PickUp, Is.EqualTo(viewModel.PickUp));
             Assert.That(booking.DropOff, Is.EqualTo(viewModel.DropOff));
             Assert.That(booking.Bus.Id.Value, Is.EqualTo(viewModel.BusId));
-            Assert.That(booking.CreatedBy.Forename, Is.EqualTo(viewModel.Forename));
-            Assert.That(booking.CreatedBy.Surname, Is.EqualTo(viewModel.Surname));
-            Assert.That(booking.CreatedBy.AddressLine1, Is.EqualTo(viewModel.AddressLine1));
-            Assert.That(booking.CreatedBy.Town, Is.EqualTo(viewModel.Town));
-            Assert.That(booking.CreatedBy.County, Is.EqualTo(viewModel.County));
-            Assert.That(booking.CreatedBy.PostCode, Is.EqualTo(viewModel.PostCode));
-            Assert.That(booking.CreatedBy.TelephoneNumber, Is.EqualTo(viewModel.TelephoneNumber));
+            Assert.That(booking.Customer.Forename, Is.EqualTo(viewModel.Forename));
+            Assert.That(booking.Customer.Surname, Is.EqualTo(viewModel.Surname));
+            Assert.That(booking.Customer.AddressLine1, Is.EqualTo(viewModel.AddressLine1));
+            Assert.That(booking.Customer.Town, Is.EqualTo(viewModel.Town));
+            Assert.That(booking.Customer.County, Is.EqualTo(viewModel.County));
+            Assert.That(booking.Customer.PostCode, Is.EqualTo(viewModel.PostCode));
+            Assert.That(booking.Customer.TelephoneNumber, Is.EqualTo(viewModel.TelephoneNumber));
             Assert.That(booking.IsMainDriver, Is.EqualTo(viewModel.IsMainDriver));
             Assert.That(booking.DriverForename, Is.EqualTo(viewModel.DriverForename));
             Assert.That(booking.DriverSurname, Is.EqualTo(viewModel.DriverSurname));
             Assert.That(booking.NumberOfAdults, Is.EqualTo(viewModel.NumberOfAdults));
             Assert.That(booking.NumberOfChildren, Is.EqualTo(viewModel.NumberOfChildren));
             Assert.That(booking.TotalCost, Is.EqualTo(600));
+            Assert.That(booking.CreatedBy.Id.Value, Is.EqualTo(new Guid("c8238876-47fc-42af-8a32-926061097f1c")));
+            Assert.That(booking.CreatedBy.Username, Is.EqualTo("Application"));
         }
     }
 }

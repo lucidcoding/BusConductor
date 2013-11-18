@@ -16,7 +16,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         [SetUp]
         public void SetUp()
         {
-            var applicationUser = new User { Id = Guid.NewGuid() };
+            var applicationUser = new User { Id = Guid.NewGuid(), Username = "Application" };
             var guestRole = new Role { Id = Guid.NewGuid() };
             var voucher = new Voucher { Id = Guid.NewGuid(), Code = "ABC123", Discount = 10 };
             _parameterSet = new MakePendingBookingParameterSet();
@@ -71,19 +71,18 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             Assert.That(booking.Bus, Is.EqualTo(_parameterSet.Bus));
             Assert.That(booking.TotalCost, Is.EqualTo(540m));
             Assert.That(booking.CreatedOn, Is.EqualTo(_parameterSet.CreatedOn));
-            Assert.That(booking.CreatedBy, Is.Not.Null);
-            Assert.That(booking.CreatedBy.Username, Is.Not.Empty);
-            Assert.That(booking.CreatedBy.Username, Is.Not.Null);
-            Assert.That(booking.CreatedBy.Forename, Is.EqualTo(_parameterSet.Forename));
-            Assert.That(booking.CreatedBy.Surname, Is.EqualTo(_parameterSet.Surname));
-            Assert.That(booking.CreatedBy.AddressLine1, Is.EqualTo(_parameterSet.AddressLine1));
-            Assert.That(booking.CreatedBy.AddressLine2, Is.EqualTo(_parameterSet.AddressLine2));
-            Assert.That(booking.CreatedBy.AddressLine3, Is.EqualTo(_parameterSet.AddressLine3));
-            Assert.That(booking.CreatedBy.Town, Is.EqualTo(_parameterSet.Town));
-            Assert.That(booking.CreatedBy.County, Is.EqualTo(_parameterSet.County));
-            Assert.That(booking.CreatedBy.PostCode, Is.EqualTo(_parameterSet.PostCode));
-            Assert.That(booking.CreatedBy.Email, Is.EqualTo(_parameterSet.Email));
-            Assert.That(booking.CreatedBy.TelephoneNumber, Is.EqualTo(_parameterSet.TelephoneNumber));
+            Assert.That(booking.CreatedBy, Is.EqualTo(_parameterSet.CurrentUser));
+            Assert.That(booking.CreatedBy.Username, Is.EqualTo("Application"));
+            Assert.That(booking.Customer.Forename, Is.EqualTo(_parameterSet.Forename));
+            Assert.That(booking.Customer.Surname, Is.EqualTo(_parameterSet.Surname));
+            Assert.That(booking.Customer.AddressLine1, Is.EqualTo(_parameterSet.AddressLine1));
+            Assert.That(booking.Customer.AddressLine2, Is.EqualTo(_parameterSet.AddressLine2));
+            Assert.That(booking.Customer.AddressLine3, Is.EqualTo(_parameterSet.AddressLine3));
+            Assert.That(booking.Customer.Town, Is.EqualTo(_parameterSet.Town));
+            Assert.That(booking.Customer.County, Is.EqualTo(_parameterSet.County));
+            Assert.That(booking.Customer.PostCode, Is.EqualTo(_parameterSet.PostCode));
+            Assert.That(booking.Customer.Email, Is.EqualTo(_parameterSet.Email));
+            Assert.That(booking.Customer.TelephoneNumber, Is.EqualTo(_parameterSet.TelephoneNumber));
         }
 
         [Test]
