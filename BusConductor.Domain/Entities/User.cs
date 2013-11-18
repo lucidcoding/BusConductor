@@ -5,7 +5,7 @@ using BusConductor.Domain.ParameterSets;
 
 namespace BusConductor.Domain.Entities
 {
-    public class User : Entity<Guid> //n,
+    public class User : Entity<Guid>
     {
         private string _username;
         private Guid _roleId;
