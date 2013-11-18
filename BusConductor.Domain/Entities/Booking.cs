@@ -10,6 +10,8 @@ namespace BusConductor.Domain.Entities
     public class Booking : Entity<Guid>
     {
         private string _bookingNumber;
+        private Guid _customerId;
+        private Customer _customer;
         private DateTime _pickUp;
         private DateTime _dropOff;
         private int _numberOfAdults;
@@ -29,6 +31,18 @@ namespace BusConductor.Domain.Entities
         {
             get { return _bookingNumber; }
             set { _bookingNumber = value; }
+        }
+
+        public virtual Guid CustomerId
+        {
+            get { return _customerId; }
+            set { _customerId = value; }
+        }
+
+        public virtual Customer Customer
+        {
+            get { return _customer; }
+            set { _customer = value; }
         }
 
         public virtual DateTime PickUp
@@ -207,8 +221,13 @@ namespace BusConductor.Domain.Entities
                 validationMessages.AddError("", "Booking conflicts with existing bookings.");
             }
 
+            //todo: strip down
             var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
             validationMessages.AddRange(User.ValidateCreateGuest(createGuestUserParameterSet));
+
+            var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
+            validationMessages.AddRange(Customer.ValidateRegister(registerCustomerParameterSet));
+
             return validationMessages;
         }
 
@@ -229,8 +248,11 @@ namespace BusConductor.Domain.Entities
             booking._driverForename = parameterSet.DriverForename;
             booking._driverSurname = parameterSet.DriverSurname;
             booking._voucher = parameterSet.Voucher;
+            //todo: strip out
             var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
             booking._createdBy = User.CreateGuest(createGuestUserParameterSet);
+            var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
+            booking._customer = Customer.Register(registerCustomerParameterSet);
             booking._createdOn = parameterSet.CreatedOn;
             booking._deleted = false;
             var totalCostWithoutDiscount = parameterSet.Bus.GetUndiscountedRateFor(parameterSet.PickUp.Value, parameterSet.DropOff.Value);

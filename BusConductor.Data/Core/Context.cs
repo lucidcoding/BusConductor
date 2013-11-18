@@ -24,6 +24,7 @@ namespace BusConductor.Data.Core
         public DbSet<TaskType> TaskTypes { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +38,7 @@ namespace BusConductor.Data.Core
             modelBuilder.Entity<TaskType>().ToTable("TaskType");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Voucher>().ToTable("Voucher");
+            modelBuilder.Entity<Customer>().ToTable("Customer");
             
             modelBuilder.Entity<Bus>()
                 .HasRequired<User>(bus => bus.CreatedBy);
@@ -48,6 +50,9 @@ namespace BusConductor.Data.Core
 
             modelBuilder.Entity<Booking>()
                 .HasRequired<User>(booking => booking.CreatedBy);
+
+            modelBuilder.Entity<Booking>()
+                .HasRequired<Customer>(booking => booking.Customer);
 
             modelBuilder.Entity<User>()
                 .HasRequired<User>(user => user.CreatedBy)

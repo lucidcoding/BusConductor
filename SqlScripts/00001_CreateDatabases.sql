@@ -209,6 +209,39 @@ END
 GO
 
 IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
+	WHERE TABLE_NAME = 'Customer')
+BEGIN
+	CREATE TABLE [dbo].[Customer](
+		[Id] [uniqueidentifier] NOT NULL,
+		[Forename] [nvarchar](50) NULL,
+		[Surname] [nvarchar](50) NULL,
+		[AddressLine1] [nvarchar](50) NULL,
+		[AddressLine2] [nvarchar](50) NULL,
+		[AddressLine3] [nvarchar](50) NULL,
+		[Town] [nvarchar](50) NULL,
+		[County] [nvarchar](50) NULL,
+		[PostCode] [nvarchar](10) NULL,
+		[Email] [nvarchar](50) NULL,
+		[TelephoneNumber] [nvarchar](50) NULL,
+		[CreatedById] [uniqueidentifier] NOT NULL,
+		[CreatedOn] [datetime] NOT NULL,
+		[LastModifiedById] [uniqueidentifier] NULL,
+		[LastModifiedOn] [datetime] NULL,
+		[Deleted] [bit]	NOT NULL,
+		CONSTRAINT [PK_Customer] PRIMARY KEY CLUSTERED 
+		(
+			[Id] ASC
+		)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+
+	GRANT SELECT, INSERT, UPDATE ON [Customer] TO [AllowSelectInsertUpdate]
+	
+	DECLARE @now AS DATETIME
+	SET @now = GETDATE()
+END 
+GO
+
+IF NOT EXISTS(SELECT * FROM INFORMATION_SCHEMA.TABLES
 	WHERE TABLE_NAME = 'Bus')
 BEGIN
 CREATE TABLE [dbo].[Bus](
@@ -282,6 +315,7 @@ BEGIN
 CREATE TABLE [dbo].[Booking](
 		[Id] [uniqueidentifier] NOT NULL,
 		[BookingNumber] [nvarchar](25) NOT NULL,
+		[CustomerId] [uniqueidentifier] NULL,
 		[PickUp] [datetime] NULL,
 		[DropOff] [datetime] NULL,
 		[NumberOfAdults] [int] NULL,
@@ -307,11 +341,11 @@ CREATE TABLE [dbo].[Booking](
 
 	GRANT SELECT, INSERT, UPDATE ON [Booking] TO [AllowSelectInsertUpdate]
 	
-	INSERT INTO [Booking] ([Id], [BookingNumber], [PickUp], [DropOff], [NumberOfAdults], [NumberOfChildren], [IsMainDriver], [DrivingLicenceNumber], [VoucherId],
-		[Status], [BusId], [TotalCost], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted])
-	VALUES ('eaa01eab-f3bd-4e24-8368-d3501a227a8b', '201311160001_Grey', '2013-11-18 00:00:00', '2013-11-22 00:00:00',
-		2, 0, 1, 'ABD0000', NULL, 1, 'ba325fad-9a65-4732-872c-da2069bb37e8', 100, 'c8238876-47fc-42af-8a32-926061097f1c', 
-		'2013-11-16 00:00:00', NULL, NULL, 0)
+	--INSERT INTO [Booking] ([Id], [BookingNumber], [PickUp], [DropOff], [NumberOfAdults], [NumberOfChildren], [IsMainDriver], [DrivingLicenceNumber], [VoucherId],
+	--	[Status], [BusId], [TotalCost], [CreatedById], [CreatedOn], [LastModifiedById], [LastModifiedOn], [Deleted])
+	--VALUES ('eaa01eab-f3bd-4e24-8368-d3501a227a8b', '201311160001_Grey', '2013-11-18 00:00:00', '2013-11-22 00:00:00',
+	--	2, 0, 1, 'ABD0000', NULL, 1, 'ba325fad-9a65-4732-872c-da2069bb37e8', 100, 'c8238876-47fc-42af-8a32-926061097f1c', 
+	--	'2013-11-16 00:00:00', NULL, NULL, 0)
 END
 GO
 
