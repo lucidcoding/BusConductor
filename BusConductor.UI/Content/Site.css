@@ -289,6 +289,20 @@ p .bus-index .record-description
 
 /* Calendar */
 
+/*.bc-calendar .header-bar 
+{
+    vertical-align: middle;
+    height: 8px;
+    margin: 2px;
+    padding: 2px;
+}*/
+
+.bc-calendar .month-name 
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .bc-calendar .previous-month
 {
     float: left;
@@ -311,8 +325,8 @@ p .bus-index .record-description
 
 .bc-calendar th
 {
-    border: solid 1px #438887;
-    background-color: #438887;
+    border: solid 1px #BB4CA3;
+    background-color: #BB4CA3;
     color: white;
     width: 60px; /*min-width: 60px;*/
     height: 10px;
