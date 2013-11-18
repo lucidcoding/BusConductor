@@ -289,17 +289,8 @@ p .bus-index .record-description
 
 /* Calendar */
 
-/*.bc-calendar .header-bar 
-{
-    vertical-align: middle;
-    height: 8px;
-    margin: 2px;
-    padding: 2px;
-}*/
-
 .bc-calendar .month-name 
 {
-    display: inline-block;
     vertical-align: middle;
 }
 

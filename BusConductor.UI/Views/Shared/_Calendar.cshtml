@@ -8,9 +8,9 @@
                     <img src="/Content/Images/CalendarPrevious.gif" alt="Previous Month"/>
                 </a>
                 @*@Html.RouteLink("<", "CalendarGet", new { year = @Model.YearOfPreviousMonth, month = @Model.MonthOfPreviousMonth, busId = @Model.BusId }, new { @class = "previous-month" })*@
-                <div class="month-name">
+                <span class="month-name">
                 @Model.MonthName
-                </div>
+                </span>
                 @*@Html.RouteLink(">", "CalendarGet", new { year = @Model.YearOfNextMonth, month = @Model.MonthOfNextMonth, busId = @Model.BusId }, new { @class = "next-month" })*@
                 <a href="@Url.RouteUrl("CalendarGet", new { year = @Model.YearOfNextMonth, month = @Model.MonthOfNextMonth, busId = @Model.BusId })" class = "next-month" >
                     <img src="/Content/Images/CalendarNext.gif" alt="Next Month"/>
