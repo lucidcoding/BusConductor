@@ -1,6 +1,5 @@
 ﻿using System;
 using BusConductor.Application.Requests.Booking;
-using BusConductor.Domain.Entities;
 using BusConductor.Domain.ParameterSets;
 using BusConductor.Domain.RepositoryContracts;
 using Lucidity.Utilities;
@@ -11,20 +10,17 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
     {
         private readonly IBusRepository _busRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IRoleRepository _roleRepository;
         private readonly IVoucherRepository _voucherRepository;
         private readonly IBookingRepository _bookingRepository;
 
         public MakePendingParameterSetMapper(
             IBusRepository busRepository,
             IUserRepository userRepository,
-            IRoleRepository roleRepository,
             IVoucherRepository voucherRepository,
             IBookingRepository bookingRepository)
         {
             _busRepository = busRepository;
             _userRepository = userRepository;
-            _roleRepository = roleRepository;
             _voucherRepository = voucherRepository;
             _bookingRepository = bookingRepository;
         }
