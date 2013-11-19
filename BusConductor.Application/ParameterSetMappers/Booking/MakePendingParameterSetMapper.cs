@@ -1,7 +1,9 @@
 ﻿using System;
 using BusConductor.Application.Requests.Booking;
+using BusConductor.Domain.Entities;
 using BusConductor.Domain.ParameterSets;
 using BusConductor.Domain.RepositoryContracts;
+using Lucidity.Utilities;
 
 namespace BusConductor.Application.ParameterSetMappers.Booking
 {
@@ -29,35 +31,11 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
 
         public CustomerMakeBookingParameterSet Map(MakePendingRequest request)
         {
-            //todo: replace this with tool that copies similar parameters?
-            var parameterSet = new CustomerMakeBookingParameterSet();
-            parameterSet.PickUp = request.PickUp;
-            parameterSet.DropOff = request.DropOff;
-            parameterSet.Forename = request.Forename;
-            parameterSet.Surname = request.Surname;
-            parameterSet.AddressLine1 = request.AddressLine1;
-            parameterSet.AddressLine2 = request.AddressLine2;
-            parameterSet.AddressLine3 = request.AddressLine3;
-            parameterSet.TelephoneNumber = request.Town;
-            parameterSet.County = request.County;
-            parameterSet.PostCode = request.PostCode;
-            parameterSet.Email = request.Email;
-            parameterSet.TelephoneNumber = request.TelephoneNumber;
-            parameterSet.Town = request.Town;
-            parameterSet.IsMainDriver = request.IsMainDriver;
-            parameterSet.DrivingLicenceNumber = request.DrivingLicenceNumber;
-            parameterSet.DriverForename = request.DriverForename;
-            parameterSet.DriverSurname = request.DriverSurname;
-            parameterSet.NumberOfAdults = request.NumberOfAdults;
-            parameterSet.NumberOfChildren = request.NumberOfChildren;
-            parameterSet.VoucherCode = request.VoucherCode;
-            parameterSet.TermsAndConditionsAccepted = request.TermsAndConditionsAccepted;
-            parameterSet.RestrictionsAccepted = request.RestrictionsAccepted;
+            var parameterSet = PropertyMapper.MapMatchingProperties<MakePendingRequest, CustomerMakeBookingParameterSet>(request);
             parameterSet.CreatedOn = DateTime.Now;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
-            //parameterSet.GuestRole = _roleRepository.GetByName("Guest");
             return parameterSet;
         }
 

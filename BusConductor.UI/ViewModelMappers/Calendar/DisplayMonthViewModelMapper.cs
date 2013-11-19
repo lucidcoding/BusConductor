@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 using BusConductor.UI.ViewModels.Calendar;
@@ -16,7 +15,6 @@ namespace BusConductor.UI.ViewModelMappers.Calendar
             return Map(now.Year, now.Month, bus);
         }
 
-        //todo: nice load of unit testing for this.
         public static DisplayMonthViewModel Map(int year, int month, Bus bus)
         {
             var viewModel = new DisplayMonthViewModel();
@@ -26,7 +24,6 @@ namespace BusConductor.UI.ViewModelMappers.Calendar
             var firstDayOfMonth = new DateTime(year, month, 1);
             var firstDayOfFirstWeekOfMonth = DateHelper.GetFirstDayOfFirstPartWeekOfMonth(year, month);
             viewModel.MonthName = firstDayOfMonth.ToString("MMMM", CultureInfo.InvariantCulture);
-            //var firstDayOfFirstWeekOfMonth = firstDayOfMonth.AddDays(DayOfWeek.Monday - firstDayOfMonth.DayOfWeek);
             var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
             var numberOfWeeks = ((lastDayOfMonth - firstDayOfFirstWeekOfMonth).Days / 7) + 1;
             viewModel.YearOfPreviousMonth = firstDayOfMonth.AddMonths(-1).Year;

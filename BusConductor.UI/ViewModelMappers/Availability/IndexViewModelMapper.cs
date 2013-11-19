@@ -54,7 +54,6 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                     var busDayViewModel = new IndexBusDayViewModel();
                     var day = startDate.AddDays(dayIndex);
 
-                    //todo: move these constants somewhere?
                     if(day.DayOfWeek == DayOfWeek.Friday || day.DayOfWeek == DayOfWeek.Monday)
                     {
                         busDayViewModel.AdditionalClass = "change-over-day";

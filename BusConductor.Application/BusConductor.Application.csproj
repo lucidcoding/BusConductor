@@ -102,6 +102,10 @@
       <Project>{DF5C253B-FA84-474D-9EB4-AF89EBEFD0AB}</Project>
       <Name>Lucidity.Utilities.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Lucidity.Utilities\Lucidity.Utilities.csproj">
+      <Project>{FD59D8EE-9F07-4C43-AD0C-D620177E7A05}</Project>
+      <Name>Lucidity.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

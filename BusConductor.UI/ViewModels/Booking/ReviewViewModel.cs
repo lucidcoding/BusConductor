@@ -63,9 +63,6 @@ namespace BusConductor.UI.ViewModels.Booking
         [DisplayName("Number of children")]
         public int NumberOfChildren { get; set; }
 
-        //todo: how did you find us
-        //todo: additional extras.
-
         [DisplayName("Voucher code")]
         public string VoucherCode { get; set; }
 

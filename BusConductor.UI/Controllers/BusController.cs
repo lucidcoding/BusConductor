@@ -34,7 +34,7 @@ namespace BusConductor.UI.Controllers
             foreach (var bus in busses)
             {
                 var busViewModel = PropertyMapper.MapMatchingProperties<Bus, IndexBusViewModel>(bus);
-                //Make the mapper map nullable to non nullables
+                //todo:Make the mapper map nullable to non nullables
                 busViewModel.Id = bus.Id.Value;
                 busViewModel.MainImageUrl = VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
                 viewModel.Busses.Add(busViewModel);
@@ -46,7 +46,6 @@ namespace BusConductor.UI.Controllers
         [EntityFrameworkReadContext]
         public ActionResult Details(Guid id)
         {
-            //todo: get with only the required bookings.
             var bus = _busRepository.GetById(id);
             var viewModel = PropertyMapper.MapMatchingProperties<Bus, DetailsViewModel>(bus);
             viewModel.Id = bus.Id.Value;
