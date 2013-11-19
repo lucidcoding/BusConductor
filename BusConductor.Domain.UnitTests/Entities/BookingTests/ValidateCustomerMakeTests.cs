@@ -7,9 +7,8 @@ using NUnit.Framework;
 
 namespace BusConductor.Domain.UnitTests.Entities.BookingTests
 {
-    //todo: Check bookings can end and start on the same day.
     [TestFixture]
-    public class ValidateMakePendingTests
+    public class ValidateCustomerMakeTests
     {
         private CustomerMakeBookingParameterSet _parameterSet;
 

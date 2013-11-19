@@ -19,7 +19,6 @@ namespace BusConductor.Domain.ParameterSets
         public static RegisterCustomerParameterSet MapFrom(MakeBookingParameterSet makePendingBookingParameterSet)
         {
             var registerCustomerParameterSet = new RegisterCustomerParameterSet();
-            //todo: pass in user
             registerCustomerParameterSet.Forename = makePendingBookingParameterSet.Forename;
             registerCustomerParameterSet.Surname = makePendingBookingParameterSet.Surname;
             registerCustomerParameterSet.AddressLine1 = makePendingBookingParameterSet.AddressLine1;

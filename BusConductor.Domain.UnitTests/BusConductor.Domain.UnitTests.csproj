@@ -49,13 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\BookingTests\AdminMakeWithBookingNumberTests.cs" />
+    <Compile Include="Entities\BookingTests\ValidateAdminMakeTests.cs" />
     <Compile Include="Entities\BusTests\GetBookingStatusForTests.cs" />
     <Compile Include="Entities\BusTests\GetConflictingBookingsTests.cs" />
-    <Compile Include="Entities\BookingTests\ValidateMakePendingTests.cs" />
+    <Compile Include="Entities\BookingTests\ValidateCustomerMakeTests.cs" />
     <Compile Include="Entities\BusTests\GetRateForTests.cs" />
     <Compile Include="Entities\BusTests\GetSampleRateTests.cs" />
     <Compile Include="Entities\BusTests\GetUndiscountedRateForTests.cs" />
-    <Compile Include="Entities\BookingTests\MakePendingTests.cs" />
+    <Compile Include="Entities\BookingTests\CustomerMakeWithBookingNumberTests.cs" />
     <Compile Include="Entities\DriverTests\TOGO_ValidateCreateTests.cs" />
     <Compile Include="Entities\PricingPeriodTests\ContainsDateTests.cs" />
     <Compile Include="Entities\TaskTests\CompleteTests.cs" />

@@ -84,6 +84,7 @@
     <Compile Include="Enumerations\DriveSide.cs" />
     <Compile Include="Enumerations\RagStatus.cs" />
     <Compile Include="Enumerations\TaskStatus.cs" />
+    <Compile Include="ParameterSets\AdminMakeBookingParameterSet.cs" />
     <Compile Include="ParameterSets\MakeBookingParameterSet.cs" />
     <Compile Include="ParameterSets\RegisterCustomerParameterSet.cs" />
     <Compile Include="ParameterSets\CreateDriverParameterSet.cs" />

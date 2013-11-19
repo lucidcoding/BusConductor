@@ -96,7 +96,6 @@ namespace BusConductor.Domain.Entities
         {
             var customer = new Customer();
             customer._id = Guid.NewGuid();
-            //customer._username = username;
             customer._createdOn = DateTime.Now;
             customer.CreatedById = currentUser.Id.Value; //todo: is this really right?
             customer._createdBy = currentUser;
@@ -190,12 +189,8 @@ namespace BusConductor.Domain.Entities
 
         public static Customer Register(RegisterCustomerParameterSet parameterSet)
         {
-            //todo: pass in user
             var customer = new Customer();
             customer._id = Guid.NewGuid();
-            //customer._username = String.Format("Guest{0}", customer.Id.ToString().Replace("-", ""));
-            //todo: might need
-            //customer._role = parameterSet.GuestRole;
             customer._forename = parameterSet.Forename;
             customer._surname = parameterSet.Surname;
             customer._addressLine1 = parameterSet.AddressLine1;
@@ -207,7 +202,7 @@ namespace BusConductor.Domain.Entities
             customer._email = parameterSet.Email;
             customer._telephoneNumber = parameterSet.TelephoneNumber;
             customer._createdOn = DateTime.Now;
-            customer._createdById = parameterSet.CurrentUser.Id.Value; //todo: is this really right?
+            customer._createdById = parameterSet.CurrentUser.Id.Value; //todo: check this is needed and research
             customer._createdBy = parameterSet.CurrentUser;
             customer._deleted = false;
             return customer;

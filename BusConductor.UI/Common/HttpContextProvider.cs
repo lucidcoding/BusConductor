@@ -5,7 +5,6 @@ using BusConductor.Data.Core;
 
 namespace BusConductor.UI.Common
 {   
-    //todo: move this to UI?
     public class HttpContextProvider : IContextProvider
     {
         public Context GetContext()

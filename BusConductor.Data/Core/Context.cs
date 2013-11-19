@@ -8,7 +8,6 @@ namespace BusConductor.Data.Core
     {
         //todo: change it so we don't have to have ID for every child.
 
-        //todo: put in config
         public Context() : base(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString)
         {
             this.Configuration.LazyLoadingEnabled = true;

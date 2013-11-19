@@ -128,9 +128,41 @@ namespace BusConductor.Domain.Entities
             set { _voucher = value; }
         }
 
-        public static ValidationMessageCollection ValidateAdminMake(CustomerMakeBookingParameterSet parameterSet)
+        //todo: unit test
+        public static ValidationMessageCollection ValidateAdminMake(AdminMakeBookingParameterSet parameterSet)
         {
-            var validationMessages = new ValidationMessageCollection();
+            var validationMessages = ValidateMake(parameterSet);
+
+            if (!parameterSet.IsMainDriver)
+            {
+                if (string.IsNullOrEmpty(parameterSet.DriverForename))
+                {
+                    validationMessages.AddError("DriverForename", "The forename of the main driver is required.");
+                }
+
+                if (string.IsNullOrEmpty(parameterSet.DriverSurname))
+                {
+                    validationMessages.AddError("DriverSurname", "The surname of the main driver is required.");
+                }
+            }
+
+            if(!parameterSet.Status.HasValue)
+            {
+                validationMessages.AddError("Status", "The status is required.");
+            }
+
+            if(!parameterSet.TotalCost.HasValue)
+            {
+                validationMessages.AddError("TotalCost", "Total cost is required.");
+            }
+            else
+            {
+                if (parameterSet.TotalCost.Value == 0 && !parameterSet.WarningsAcknowledged)
+                {
+                    validationMessages.AddWarning("Total cost is zero.");
+                }
+            }
+
             return validationMessages;
         }
 
@@ -190,7 +222,7 @@ namespace BusConductor.Domain.Entities
             return validationMessages;
         }
 
-        public static ValidationMessageCollection ValidateMake(MakeBookingParameterSet parameterSet)
+        protected static ValidationMessageCollection ValidateMake(MakeBookingParameterSet parameterSet)
         {
             var validationMessages = new ValidationMessageCollection();
 
@@ -238,7 +270,18 @@ namespace BusConductor.Domain.Entities
 
             return validationMessages;
         }
-        
+
+        //todo: unit test
+        public static Booking AdminMake(AdminMakeBookingParameterSet parameterSet)
+        {
+            var validationMessages = ValidateAdminMake(parameterSet);
+            if (validationMessages.Any()) throw new ValidationException(validationMessages);
+            var booking = Make(parameterSet);
+            booking._status = parameterSet.Status.Value; //Won't be null because will have been caught by exception above.
+            booking._totalCost = parameterSet.TotalCost.Value; //Won't be null because will have been caught by exception above.
+            return booking;
+        }
+
         public static Booking CustomerMake(CustomerMakeBookingParameterSet parameterSet)
         {
             var validationMessages = ValidateCustomerMake(parameterSet);
@@ -260,7 +303,7 @@ namespace BusConductor.Domain.Entities
             return booking;
         }
 
-        public static Booking Make(MakeBookingParameterSet parameterSet)
+        protected static Booking Make(MakeBookingParameterSet parameterSet)
         {
             var booking = new Booking();
             booking.Id = Guid.NewGuid();
@@ -282,6 +325,13 @@ namespace BusConductor.Domain.Entities
             return booking;
         }
 
+        public static Booking AdminMakeWithBookingNumber(AdminMakeBookingParameterSet parameterSet)
+        {
+            var booking = AdminMake(parameterSet);
+            booking.BookingNumber = CalculateBookingNumber(parameterSet);
+            return booking;
+        }
+
         public static Booking CustomerMakeWithBookingNumber(CustomerMakeBookingParameterSet parameterSet)
         {
             var booking = CustomerMake(parameterSet);
@@ -289,7 +339,7 @@ namespace BusConductor.Domain.Entities
             return booking;
         }
 
-        private static string CalculateBookingNumber(CustomerMakeBookingParameterSet parameterSet)
+        private static string CalculateBookingNumber(MakeBookingParameterSet parameterSet)
         {
             var bookingNumbers = parameterSet.OtherBookingsToday
                 .Select(booking => Convert.ToInt32(booking.BookingNumber.Substring(8, 4)))

@@ -350,24 +350,24 @@ p .bus-index .record-description
     background: url('Images/PendingPm.gif') no-repeat center;
 }
 
-.bc-calendar td.confirmed-am
-{
-    background: url('Images/ConfirmedAm.gif') no-repeat center;
-}
-
 .bc-calendar td.pending-am-pending-pm
 {
     background-color: #5BC0D0;
 }
 
-.bc-calendar td.confirmed-am-confirmed-pm
+.bc-calendar td.confirmed-am
 {
-    background-color: #BB4CA3;
+    background: url('Images/ConfirmedAm.gif') no-repeat center;
 }
 
 .bc-calendar td.confirmed-pm
 {
     background: url('Images/ConfirmedPm.gif') no-repeat center;
+}
+
+.bc-calendar td.confirmed-am-confirmed-pm
+{
+    background-color: #BB4CA3;
 }
 
 .bc-calendar td.confirmed-am-pending-pm
@@ -747,8 +747,6 @@ p .bus-index .record-description
     text-align: left;
 }
 
-
-
 .booking-review .alternate-driver.hide
 {
     display: none;
@@ -769,8 +767,6 @@ p .bus-index .record-description
     width: 250px;
     font-weight: bold;
 }
-
-
 
 /* Contact Us */
 

@@ -8,7 +8,6 @@ namespace BusConductor.Domain.UnitTests.Entities.BusTests
     [TestFixture]
     public class GetUndiscountedRateForTests
     {
-        //todo: many more of these.
         [Test]
         [TestCase(2000, 1, 3, 2000, 1, 7, 500)]
         [TestCase(2000, 1, 7, 2000, 1, 10, 450)]
