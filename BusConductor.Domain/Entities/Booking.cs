@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Enumerations;
@@ -129,32 +128,15 @@ namespace BusConductor.Domain.Entities
             set { _voucher = value; }
         }
 
-        public static ValidationMessageCollection ValidateMakePending(MakePendingBookingParameterSet parameterSet)
+        public static ValidationMessageCollection ValidateAdminMake(CustomerMakeBookingParameterSet parameterSet)
         {
             var validationMessages = new ValidationMessageCollection();
+            return validationMessages;
+        }
 
-            if (!parameterSet.PickUp.HasValue || parameterSet.PickUp.Value == default(DateTime))
-            {
-                validationMessages.AddError("PickUp", "Pick up date is required.");
-            }
-            else
-            {
-                if (parameterSet.PickUp.Value < DateTime.Now.Date) validationMessages.AddError("PickUp", "Pick up date must not be in the past.");
-            }
-
-            if (!parameterSet.DropOff.HasValue || parameterSet.DropOff == default(DateTime))
-            {
-                validationMessages.AddError("DropOff", "Drop off date is required.");
-            }
-            else
-            {
-                if (parameterSet.DropOff.Value < DateTime.Now) validationMessages.AddError("DropOff", "Drop off date must not be in the past.");
-            }
-
-            if(parameterSet.PickUp.HasValue && parameterSet.DropOff.HasValue)
-            {
-                if (parameterSet.DropOff.Value < parameterSet.PickUp.Value) validationMessages.AddError("DropOff", "Drop off date must not be before pickup date.");
-            }
+        public static ValidationMessageCollection ValidateCustomerMake(CustomerMakeBookingParameterSet parameterSet)
+        {
+            var validationMessages = ValidateMake(parameterSet);
 
             if(parameterSet.PickUp.HasValue 
                 && parameterSet.PickUp.Value.DayOfWeek != DayOfWeek.Monday
@@ -169,9 +151,6 @@ namespace BusConductor.Domain.Entities
             {
                 validationMessages.AddError("DropOff", "Drop off date must be a Monday or a Friday.");
             }
-
-            if (parameterSet.Bus == null) validationMessages.AddError("Bus", "Bus is required.");
-            if (parameterSet.NumberOfAdults <= 0) validationMessages.AddError("NumberOfAdults", "Booking must be for 1 or more adults.");
             
             if (!parameterSet.IsMainDriver)
             {
@@ -184,11 +163,6 @@ namespace BusConductor.Domain.Entities
                 {
                     validationMessages.AddError("DriverSurname", "If you are not the main driver, the surname of the main driver is required.");
                 }
-            }
-
-            if(string.IsNullOrEmpty(parameterSet.DrivingLicenceNumber))
-            {
-                validationMessages.AddError("DrivingLicenceNumber", "Driving licence number is required.");
             }
 
             if(!string.IsNullOrEmpty(parameterSet.VoucherCode) && parameterSet.Voucher == null)
@@ -213,7 +187,45 @@ namespace BusConductor.Domain.Entities
                 validationMessages.AddError("RestrictionsAccepted", "Please check this box. If your trip does not meet these restrictions, please contact us directly to make a booking.");
             }
 
-            if(parameterSet.Bus != null 
+            return validationMessages;
+        }
+
+        public static ValidationMessageCollection ValidateMake(MakeBookingParameterSet parameterSet)
+        {
+            var validationMessages = new ValidationMessageCollection();
+
+            if (!parameterSet.PickUp.HasValue || parameterSet.PickUp.Value == default(DateTime))
+            {
+                validationMessages.AddError("PickUp", "Pick up date is required.");
+            }
+            else
+            {
+                if (parameterSet.PickUp.Value < DateTime.Now.Date) validationMessages.AddError("PickUp", "Pick up date must not be in the past.");
+            }
+
+            if (!parameterSet.DropOff.HasValue || parameterSet.DropOff == default(DateTime))
+            {
+                validationMessages.AddError("DropOff", "Drop off date is required.");
+            }
+            else
+            {
+                if (parameterSet.DropOff.Value < DateTime.Now) validationMessages.AddError("DropOff", "Drop off date must not be in the past.");
+            }
+
+            if (parameterSet.PickUp.HasValue && parameterSet.DropOff.HasValue)
+            {
+                if (parameterSet.DropOff.Value < parameterSet.PickUp.Value) validationMessages.AddError("DropOff", "Drop off date must not be before pickup date.");
+            }
+
+            if (parameterSet.Bus == null) validationMessages.AddError("Bus", "Bus is required.");
+            if (parameterSet.NumberOfAdults <= 0) validationMessages.AddError("NumberOfAdults", "Booking must be for 1 or more adults.");
+
+            if (string.IsNullOrEmpty(parameterSet.DrivingLicenceNumber))
+            {
+                validationMessages.AddError("DrivingLicenceNumber", "Driving licence number is required.");
+            }
+
+            if (parameterSet.Bus != null
                 && parameterSet.PickUp.HasValue
                 && parameterSet.DropOff.HasValue
                 && parameterSet.Bus.GetConflictingBookings(parameterSet.PickUp.Value, parameterSet.DropOff.Value).Any())
@@ -221,38 +233,19 @@ namespace BusConductor.Domain.Entities
                 validationMessages.AddError("", "Booking conflicts with existing bookings.");
             }
 
-            //todo: strip down
-            //var createGuestUserParameterSet = CreateGuestUserParameterSet.MapFrom(parameterSet);
-            //validationMessages.AddRange(User.ValidateCreateGuest(createGuestUserParameterSet));
-
             var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
             validationMessages.AddRange(Customer.ValidateRegister(registerCustomerParameterSet));
 
             return validationMessages;
         }
-
-        public static Booking MakePending(MakePendingBookingParameterSet parameterSet)
+        
+        public static Booking CustomerMake(CustomerMakeBookingParameterSet parameterSet)
         {
-            var validationMessages = ValidateMakePending(parameterSet);
-            if(validationMessages.Any()) throw new ValidationException(validationMessages);
-            var booking = new Booking();
-            booking.Id = Guid.NewGuid();
-            booking._pickUp = parameterSet.PickUp.Value; //Won't be null because will have been caught by exception above.
-            booking._dropOff = parameterSet.DropOff.Value; //Won't be null because will have been caught by exception above.
-            booking._bus = parameterSet.Bus;
+            var validationMessages = ValidateCustomerMake(parameterSet);
+            if (validationMessages.Any()) throw new ValidationException(validationMessages);
+            var booking = Make(parameterSet);
             booking._status = BookingStatus.Pending;
-            booking._numberOfAdults = parameterSet.NumberOfAdults;
-            booking._numberOfChildren = parameterSet.NumberOfChildren;
-            booking._isMainDriver = parameterSet.IsMainDriver;
-            booking._drivingLicenceNumber = parameterSet.DrivingLicenceNumber;
-            booking._driverForename = parameterSet.DriverForename;
-            booking._driverSurname = parameterSet.DriverSurname;
             booking._voucher = parameterSet.Voucher;
-            booking._createdBy = parameterSet.CurrentUser;
-            var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
-            booking._customer = Customer.Register(registerCustomerParameterSet);
-            booking._createdOn = parameterSet.CreatedOn;
-            booking._deleted = false;
             var totalCostWithoutDiscount = parameterSet.Bus.GetUndiscountedRateFor(parameterSet.PickUp.Value, parameterSet.DropOff.Value);
 
             if (parameterSet.Voucher != null)
@@ -264,18 +257,39 @@ namespace BusConductor.Domain.Entities
                 booking._totalCost = totalCostWithoutDiscount;
             }
 
+            return booking;
+        }
+
+        public static Booking Make(MakeBookingParameterSet parameterSet)
+        {
+            var booking = new Booking();
+            booking.Id = Guid.NewGuid();
+            booking._pickUp = parameterSet.PickUp.Value; //Won't be null because will have been caught by exception above.
+            booking._dropOff = parameterSet.DropOff.Value; //Won't be null because will have been caught by exception above.
+            booking._bus = parameterSet.Bus;
+            booking._numberOfAdults = parameterSet.NumberOfAdults;
+            booking._numberOfChildren = parameterSet.NumberOfChildren;
+            booking._isMainDriver = parameterSet.IsMainDriver;
+            booking._drivingLicenceNumber = parameterSet.DrivingLicenceNumber;
+            booking._driverForename = parameterSet.DriverForename;
+            booking._driverSurname = parameterSet.DriverSurname;
+            booking._createdBy = parameterSet.CurrentUser;
+            var registerCustomerParameterSet = RegisterCustomerParameterSet.MapFrom(parameterSet);
+            booking._customer = Customer.Register(registerCustomerParameterSet);
+            booking._createdOn = parameterSet.CreatedOn;
+            booking._deleted = false;
             parameterSet.Bus.Bookings.Add(booking);
             return booking;
         }
 
-        public static Booking MakePendingWithBookingNumber(MakePendingBookingParameterSet parameterSet)
+        public static Booking CustomerMakeWithBookingNumber(CustomerMakeBookingParameterSet parameterSet)
         {
-            var booking = MakePending(parameterSet);
+            var booking = CustomerMake(parameterSet);
             booking.BookingNumber = CalculateBookingNumber(parameterSet);
             return booking;
         }
 
-        private static string CalculateBookingNumber(MakePendingBookingParameterSet parameterSet)
+        private static string CalculateBookingNumber(CustomerMakeBookingParameterSet parameterSet)
         {
             var bookingNumbers = parameterSet.OtherBookingsToday
                 .Select(booking => Convert.ToInt32(booking.BookingNumber.Substring(8, 4)))

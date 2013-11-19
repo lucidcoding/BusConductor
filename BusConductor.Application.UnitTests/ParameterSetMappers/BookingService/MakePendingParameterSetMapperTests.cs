@@ -97,7 +97,7 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
             Assert.That(parameter.PickUp, Is.EqualTo(_request.PickUp));
             Assert.That(parameter.DropOff, Is.EqualTo(_request.DropOff));
             Assert.That(parameter.Bus, Is.EqualTo(_bus));
-            Assert.That(parameter.GuestRole, Is.EqualTo(_role));
+            //Assert.That(parameter.GuestRole, Is.EqualTo(_role));
             Assert.That(parameter.Forename, Is.EqualTo(_request.Forename));
             Assert.That(parameter.Surname, Is.EqualTo(_request.Surname));
             Assert.That(parameter.AddressLine1, Is.EqualTo(_request.AddressLine1));

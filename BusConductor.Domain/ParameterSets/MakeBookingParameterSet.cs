@@ -4,13 +4,12 @@ using BusConductor.Domain.Entities;
 
 namespace BusConductor.Domain.ParameterSets
 {
-    public class MakePendingBookingParameterSet
+    public class MakeBookingParameterSet
     {
-        public IList<Booking> OtherBookingsToday { get; set; } 
+        public IList<Booking> OtherBookingsToday { get; set; }
         public DateTime? PickUp { get; set; }
-        public DateTime? DropOff { get; set; } 
-        public Bus Bus { get; set; } 
-        public Role GuestRole { get; set; }
+        public DateTime? DropOff { get; set; }
+        public Bus Bus { get; set; }
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string AddressLine1 { get; set; }
@@ -27,10 +26,6 @@ namespace BusConductor.Domain.ParameterSets
         public string DriverSurname { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfChildren { get; set; }
-        public string VoucherCode { get; set; }
-        public Voucher Voucher { get; set; }
-        public bool TermsAndConditionsAccepted { get; set; }
-        public bool RestrictionsAccepted { get; set; }
         public User CurrentUser { get; set; }
         public DateTime CreatedOn { get; set; }
     }

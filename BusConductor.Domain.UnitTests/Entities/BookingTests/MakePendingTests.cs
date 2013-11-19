@@ -11,7 +11,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
     [TestFixture]
     public class MakePendingTests
     {
-        private MakePendingBookingParameterSet _parameterSet;
+        private CustomerMakeBookingParameterSet _parameterSet;
 
         [SetUp]
         public void SetUp()
@@ -19,7 +19,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             var applicationUser = new User { Id = Guid.NewGuid(), Username = "Application" };
             var guestRole = new Role { Id = Guid.NewGuid() };
             var voucher = new Voucher { Id = Guid.NewGuid(), Code = "ABC123", Discount = 10 };
-            _parameterSet = new MakePendingBookingParameterSet();
+            _parameterSet = new CustomerMakeBookingParameterSet();
             _parameterSet.PickUp = new DateTime(2090, 6, 9);
             _parameterSet.DropOff = new DateTime(2090, 6, 16);
             _parameterSet.Bus = new Bus();
@@ -33,7 +33,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             pricingPeriod.EndDay = 31;
             pricingPeriod.FridayToFridayRate = 600;
             _parameterSet.Bus.PricingPeriods.Add(pricingPeriod);
-            _parameterSet.GuestRole = guestRole;
+            //_parameterSet.GuestRole = guestRole;
             _parameterSet.Forename = "Barry";
             _parameterSet.Surname = "Blue";
             _parameterSet.AddressLine1 = "99 Black Street";
@@ -60,7 +60,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         [Test]
         public void CanMakePendingBookingWithBookingNumber()
         {
-            var booking = Booking.MakePendingWithBookingNumber(_parameterSet);
+            var booking = Booking.CustomerMakeWithBookingNumber(_parameterSet);
             Assert.That(booking.BookingNumber, Is.EqualTo("201310010001_Blue"));
             Assert.That(booking.PickUp, Is.EqualTo(_parameterSet.PickUp));
             Assert.That(booking.DropOff, Is.EqualTo(_parameterSet.DropOff));
@@ -92,7 +92,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010002_Black" });
             _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010003_Mauve" });
             _parameterSet.OtherBookingsToday.Add(new Booking { BookingNumber = "201310010004_Red" });
-            var booking = Booking.MakePendingWithBookingNumber(_parameterSet);
+            var booking = Booking.CustomerMakeWithBookingNumber(_parameterSet);
             Assert.That(booking.BookingNumber, Is.EqualTo("201310010005_Blue"));
             
         }
@@ -102,7 +102,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void InvalidBookingThrowsException()
         {
             _parameterSet.Forename = null;
-            Booking.MakePending(_parameterSet);
+            Booking.CustomerMake(_parameterSet);
         }
     }
 }

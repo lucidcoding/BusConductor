@@ -27,10 +27,10 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             _bookingRepository = bookingRepository;
         }
 
-        public MakePendingBookingParameterSet Map(MakePendingRequest request)
+        public CustomerMakeBookingParameterSet Map(MakePendingRequest request)
         {
             //todo: replace this with tool that copies similar parameters?
-            var parameterSet = new MakePendingBookingParameterSet();
+            var parameterSet = new CustomerMakeBookingParameterSet();
             parameterSet.PickUp = request.PickUp;
             parameterSet.DropOff = request.DropOff;
             parameterSet.Forename = request.Forename;
@@ -57,11 +57,11 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
             parameterSet.Bus = _busRepository.GetById(request.BusId);
             parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
-            parameterSet.GuestRole = _roleRepository.GetByName("Guest");
+            //parameterSet.GuestRole = _roleRepository.GetByName("Guest");
             return parameterSet;
         }
 
-        public MakePendingBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request)
+        public CustomerMakeBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request)
         {
             var parameterSet = Map(request);
             parameterSet.OtherBookingsToday = _bookingRepository.GetByDate(parameterSet.CreatedOn);

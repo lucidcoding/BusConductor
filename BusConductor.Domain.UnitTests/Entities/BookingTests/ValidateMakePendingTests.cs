@@ -11,16 +11,16 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
     [TestFixture]
     public class ValidateMakePendingTests
     {
-        private MakePendingBookingParameterSet _parameterSet;
+        private CustomerMakeBookingParameterSet _parameterSet;
 
         [SetUp]
         public void SetUp()
         {
-            _parameterSet = new MakePendingBookingParameterSet();
+            _parameterSet = new CustomerMakeBookingParameterSet();
             _parameterSet.PickUp = new DateTime(2090, 6, 12);
             _parameterSet.DropOff = new DateTime(2090, 6, 19);
             _parameterSet.Bus = new Bus {Id = Guid.NewGuid(), Bookings = new List<Booking>()};
-            _parameterSet.GuestRole = new Role {Id = Guid.NewGuid()};
+            //_parameterSet.GuestRole = new Role {Id = Guid.NewGuid()};
             _parameterSet.Forename = "Brian";
             _parameterSet.Surname = "Blue";
             _parameterSet.AddressLine1 = "9 Green Lane";
@@ -44,7 +44,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         [Test]
         public void ValidBookingReturnsNoErrors()
         {
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(0));
         }
 
@@ -54,7 +54,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.IsMainDriver = false;
             _parameterSet.DriverForename = "Rachel";
             _parameterSet.DriverSurname = "Red";
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(0));
         }
 
@@ -72,7 +72,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.Email = null;
             _parameterSet.TelephoneNumber = null;
             _parameterSet.DrivingLicenceNumber = null;
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(11));
             Assert.That(validationMessages.Any(x => x.Field == "PickUp" && x.Text == "Pick up date is required."));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date is required."));
@@ -92,7 +92,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         {
             _parameterSet.TermsAndConditionsAccepted = false;
             _parameterSet.RestrictionsAccepted = false;
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(2));
             Assert.That(validationMessages.Any(x => x.Field == "TermsAndConditionsAccepted" && x.Text == "You must accept the Terms and Conditions."));
             Assert.That(validationMessages.Any(x => x.Field == "RestrictionsAccepted" && x.Text == "Please check this box. If your trip does not meet these restrictions, please contact us directly to make a booking."));
@@ -109,7 +109,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.County = new string('x', 51);
             _parameterSet.Email = new string('x', 51);
             _parameterSet.TelephoneNumber = new string('0', 51); 
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(9));
             Assert.That(validationMessages.Any(x => x.Field == "Forename" && x.Text == "Forename must be 50 characters or less."));
             Assert.That(validationMessages.Any(x => x.Field == "Surname" && x.Text == "Surname must be 50 characters or less."));
@@ -127,7 +127,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         {
             _parameterSet.PickUp = new DateTime();
             _parameterSet.DropOff = new DateTime();
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(2));
             Assert.That(validationMessages.Any(x => x.Field == "PickUp" && x.Text == "Pick up date is required."));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date is required."));
@@ -138,7 +138,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         {
             _parameterSet.PickUp = new DateTime(2000, 1, 3);
             _parameterSet.DropOff = new DateTime(2000, 1, 7);
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(2));
             Assert.That(validationMessages.Any(x => x.Field == "PickUp" && x.Text == "Pick up date must not be in the past."));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date must not be in the past."));
@@ -149,7 +149,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         {
             _parameterSet.PickUp = new DateTime(2090, 6, 19);
             _parameterSet.DropOff = new DateTime(2090, 6, 12);
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date must not be before pickup date.")); 
         }
@@ -159,7 +159,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         {
             _parameterSet.PickUp = new DateTime(2090, 6, 13);
             _parameterSet.DropOff = new DateTime(2090, 6, 20);
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(2));
             Assert.That(validationMessages.Any(x => x.Field == "PickUp" && x.Text == "Pick up date must be a Monday or a Friday."));
             Assert.That(validationMessages.Any(x => x.Field == "DropOff" && x.Text == "Drop off date must be a Monday or a Friday."));
@@ -169,7 +169,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void ReturnsErrorIfNumberOfAdultsIsZero()
         {
             _parameterSet.NumberOfAdults = 0;
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "NumberOfAdults" && x.Text == "Booking must be for 1 or more adults.")); 
         }
@@ -178,7 +178,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void ReturnsErrorIfIsMainDriverIsFalseAndDriverForenameAndSurnameNotSet()
         {
             _parameterSet.IsMainDriver = false;
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(2));
             Assert.That(validationMessages.Any(x => x.Field == "DriverForename" && x.Text == "If you are not the main driver, the forename of the main driver is required."));
             Assert.That(validationMessages.Any(x => x.Field == "DriverSurname" && x.Text == "If you are not the main driver, the surname of the main driver is required."));
@@ -188,7 +188,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void ReturnsErrorIfVoucherIsNotFound()
         {
             _parameterSet.Voucher = null;
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "VoucherCode" && x.Text == "Voucher code is not valid."));
         }
@@ -197,7 +197,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void ReturnsErrorIfVoucherHasExpired()
         {
             _parameterSet.Voucher.ExpiryDate = DateTime.Now.AddDays(-2);
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "VoucherCode" && x.Text == "Voucher code has expired."));
         }
@@ -206,7 +206,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void InvalidPostCodeReturnsError()
         {
             _parameterSet.PostCode = "Invalid";
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "PostCode" && x.Text == "Post code is not valid."));
         }
@@ -215,7 +215,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
         public void InvalidEmailReturnsError()
         {
             _parameterSet.Email = "Invalid";
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Field == "Email" && x.Text == "Email is not valid."));
         }
@@ -228,7 +228,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             booking.DropOff = new DateTime(2090, 6, 14);
             booking.Bus = _parameterSet.Bus;
             _parameterSet.Bus.Bookings.Add(booking);
-            var validationMessages = Booking.ValidateMakePending(_parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
             Assert.That(validationMessages.Any(x => x.Text == "Booking conflicts with existing bookings."));
         }

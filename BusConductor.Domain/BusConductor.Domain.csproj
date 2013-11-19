@@ -83,10 +83,11 @@
     <Compile Include="Enumerations\DriveSide.cs" />
     <Compile Include="Enumerations\RagStatus.cs" />
     <Compile Include="Enumerations\TaskStatus.cs" />
+    <Compile Include="ParameterSets\MakeBookingParameterSet.cs" />
     <Compile Include="ParameterSets\RegisterCustomerParameterSet.cs" />
     <Compile Include="ParameterSets\CreateDriverParameterSet.cs" />
-    <Compile Include="ParameterSets\CreateGuestUserParameterSet.cs" />
-    <Compile Include="ParameterSets\MakePendingBookingParameterSet.cs" />
+    <Compile Include="ParameterSets\TO_GO_CreateGuestUserParameterSet.cs" />
+    <Compile Include="ParameterSets\CustomerMakeBookingParameterSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryContracts\IVoucherRepository.cs" />
     <Compile Include="RepositoryContracts\ISlotRepository.cs" />

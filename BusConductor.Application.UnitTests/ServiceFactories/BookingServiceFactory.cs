@@ -22,7 +22,7 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
         public Role Role { get; set; }
         public Voucher Voucher { get; set; }
         public Booking Booking { get; set; }
-        public MakePendingBookingParameterSet ParameterSet { get; set; }
+        public CustomerMakeBookingParameterSet ParameterSet { get; set; }
 
         public BookingServiceFactory()
         {
@@ -46,11 +46,11 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
                                            MondayToFridayRate = 1
                                        });
 
-            ParameterSet = new MakePendingBookingParameterSet();
+            ParameterSet = new CustomerMakeBookingParameterSet();
             ParameterSet.PickUp = new DateTime(2090, 1, 2);
             ParameterSet.DropOff = new DateTime(2090, 1, 6);
             ParameterSet.Bus = Bus;
-            ParameterSet.GuestRole = Role;
+            //ParameterSet.GuestRole = Role;
             ParameterSet.Forename = "Barry";
             ParameterSet.Surname = "Blue";
             ParameterSet.AddressLine1 = "1 Orange Lane";
