@@ -30,11 +30,11 @@ namespace BusConductor.UI.UnitTests.ControllerFactories
 
                 if ((date.Day >= 2 && date.Day <= 6) || (date.Day >= 9 && date.Day <= 13))
                 {
-                    bus1.Setup(x => x.GetBookingStatusFor(date)).Returns(BookingStatus.Pending);
+                    bus1.Setup(x => x.GetBookingStatusFor(date)).Returns(BusDayBookingStatus.PendingAllDay);
                 }
                 else
                 {
-                    bus1.Setup(x => x.GetBookingStatusFor(date)).Returns(BookingStatus.Free);
+                    bus1.Setup(x => x.GetBookingStatusFor(date)).Returns(BusDayBookingStatus.Free);
                 }
             }
 
@@ -50,11 +50,11 @@ namespace BusConductor.UI.UnitTests.ControllerFactories
 
                 if ((date.Day >= 6 && date.Day <= 9) || (date.Day >= 13 && date.Day <= 16))
                 {
-                    bus2.Setup(x => x.GetBookingStatusFor(date)).Returns(BookingStatus.Pending);
+                    bus2.Setup(x => x.GetBookingStatusFor(date)).Returns(BusDayBookingStatus.PendingAllDay);
                 }
                 else
                 {
-                    bus2.Setup(x => x.GetBookingStatusFor(date)).Returns(BookingStatus.Free);
+                    bus2.Setup(x => x.GetBookingStatusFor(date)).Returns(BusDayBookingStatus.Free);
                 }
             }
 

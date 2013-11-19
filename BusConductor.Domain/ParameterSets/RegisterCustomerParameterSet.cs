@@ -16,11 +16,10 @@ namespace BusConductor.Domain.ParameterSets
         public string TelephoneNumber { get; set; }
         public User CurrentUser { get; set; }
 
-        public static RegisterCustomerParameterSet MapFrom(MakePendingBookingParameterSet makePendingBookingParameterSet)
+        public static RegisterCustomerParameterSet MapFrom(MakeBookingParameterSet makePendingBookingParameterSet)
         {
             var registerCustomerParameterSet = new RegisterCustomerParameterSet();
             //todo: pass in user
-            //registerCustomerParameterSet.GuestRole = makePendingBookingParameterSet.GuestRole;
             registerCustomerParameterSet.Forename = makePendingBookingParameterSet.Forename;
             registerCustomerParameterSet.Surname = makePendingBookingParameterSet.Surname;
             registerCustomerParameterSet.AddressLine1 = makePendingBookingParameterSet.AddressLine1;

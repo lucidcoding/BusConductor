@@ -20,7 +20,7 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
             var request = new MakePendingRequest();
-            var booking = bookingService.ValidateMakePending(request);
+            var booking = bookingService.ValidateCustomerMake(request);
             bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
         }
 
@@ -30,7 +30,7 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
             var request = new MakePendingRequest();
-            var booking = bookingService.SummarizePendingBooking(request);
+            var booking = bookingService.SummarizeCustomerMake(request);
             bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
         }
 
@@ -40,7 +40,7 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
             var request = new MakePendingRequest();
-            bookingService.MakePending(request);
+            bookingService.CustomerMake(request);
             bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
             bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
         }
@@ -53,7 +53,7 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
             var request = new MakePendingRequest();
-            var bookingNumber = bookingService.MakePending(request);
+            var bookingNumber = bookingService.CustomerMake(request);
             Assert.That(bookingNumber, Is.EqualTo("201310010003_Blue"));
         }
     }

@@ -80,6 +80,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Voucher.cs" />
     <Compile Include="Enumerations\BookingStatus.cs" />
+    <Compile Include="Enumerations\BusDayBookingStatus.cs" />
     <Compile Include="Enumerations\DriveSide.cs" />
     <Compile Include="Enumerations\RagStatus.cs" />
     <Compile Include="Enumerations\TaskStatus.cs" />

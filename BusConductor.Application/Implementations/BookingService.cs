@@ -25,27 +25,27 @@ namespace BusConductor.Application.Implementations
             _log = log;
         }
 
-        public ValidationMessageCollection ValidateMakePending(MakePendingRequest request)
+        public ValidationMessageCollection ValidateCustomerMake(MakePendingRequest request)
         {
             _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.Map(request);
-            var validationMessages = Booking.ValidateMakePending(parameterSet);
+            var validationMessages = Booking.ValidateCustomerMake(parameterSet);
             return validationMessages;
         }
 
-        public Booking SummarizePendingBooking(MakePendingRequest request)
+        public Booking SummarizeCustomerMake(MakePendingRequest request)
         {
             _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.Map(request);
-            var booking = Booking.MakePending(parameterSet);
+            var booking = Booking.CustomerMake(parameterSet);
             return booking;
         }
 
-        public string MakePending(MakePendingRequest request)
+        public string CustomerMake(MakePendingRequest request)
         {
             _log.Add(request);
             var parameterSet = _makePendingParameterSetMapper.MapWithOtherBookingsToday(request);
-            var booking = Booking.MakePendingWithBookingNumber(parameterSet);
+            var booking = Booking.CustomerMakeWithBookingNumber(parameterSet);
             _bookingRepository.Save(booking);
             return booking.BookingNumber;
         }

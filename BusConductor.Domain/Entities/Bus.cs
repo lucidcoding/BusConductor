@@ -158,17 +158,29 @@ namespace BusConductor.Domain.Entities
                 + dropOff.ToString(CultureInfo.InvariantCulture));
         }
 
-        public virtual BookingStatus GetBookingStatusFor(DateTime date)
+        public virtual BusDayBookingStatus GetBookingStatusFor(DateTime date)
         {
+            var returnValue = BusDayBookingStatus.Free;
+
             foreach (var booking in _bookings) 
             {
-                if (date >= booking.PickUp && date < booking.DropOff)
+                if (date > booking.PickUp && date < booking.DropOff)
                 {
-                    return booking.Status;
+                    return booking.Status == BookingStatus.Pending ? BusDayBookingStatus.PendingAllDay : BusDayBookingStatus.ConfirmedAllDay;
+                }
+
+                if(date == booking.PickUp)
+                {
+                    returnValue |= booking.Status == BookingStatus.Pending ? BusDayBookingStatus.PendingPm : BusDayBookingStatus.ConfirmedPm;
+                }
+
+                if (date == booking.DropOff)
+                {
+                    returnValue |= booking.Status == BookingStatus.Pending ? BusDayBookingStatus.PendingAm : BusDayBookingStatus.ConfirmedAm;
                 }
             }
 
-            return BookingStatus.Free;
+            return returnValue;
         }
 
         public virtual IList<Booking> GetConflictingBookings(DateTime pickUp, DateTime dropOff)

@@ -68,7 +68,7 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
             _booking.SetupGet(x => x.Customer).Returns(customer.Object);
 
             _bookingControllerFactory.BookingService
-                .Setup(x => x.SummarizePendingBooking(It.IsAny<MakePendingRequest>()))
+                .Setup(x => x.SummarizeCustomerMake(It.IsAny<MakePendingRequest>()))
                 .Returns(_booking.Object);
         }
 
@@ -76,8 +76,8 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
         public void ReviewCallsCorrectMethods()
         {
             _bookingControllerFactory.GetController().Review(_inViewModel);
-            _bookingControllerFactory.BookingService.Verify(x => x.ValidateMakePending(It.IsAny<MakePendingRequest>()));
-            _bookingControllerFactory.BookingService.Verify(x => x.SummarizePendingBooking(It.IsAny<MakePendingRequest>()));
+            _bookingControllerFactory.BookingService.Verify(x => x.ValidateCustomerMake(It.IsAny<MakePendingRequest>()));
+            _bookingControllerFactory.BookingService.Verify(x => x.SummarizeCustomerMake(It.IsAny<MakePendingRequest>()));
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
             MakePendingRequest request = null;
 
             _bookingControllerFactory.BookingService
-                .Setup(x => x.SummarizePendingBooking(It.IsAny<MakePendingRequest>()))
+                .Setup(x => x.SummarizeCustomerMake(It.IsAny<MakePendingRequest>()))
                 .Callback(delegate(MakePendingRequest x) { request = x; })
                 .Returns(_booking.Object);
 

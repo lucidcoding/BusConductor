@@ -7,8 +7,8 @@ namespace BusConductor.Application.Contracts
 {
     public interface IBookingService
     {
-        ValidationMessageCollection ValidateMakePending(MakePendingRequest request);
-        Booking SummarizePendingBooking(MakePendingRequest request);
-        string MakePending(MakePendingRequest request);
+        ValidationMessageCollection ValidateCustomerMake(MakePendingRequest request);
+        Booking SummarizeCustomerMake(MakePendingRequest request);
+        string CustomerMake(MakePendingRequest request);
     }
 }

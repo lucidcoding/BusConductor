@@ -332,12 +332,52 @@ p .bus-index .record-description
 
 .bc-calendar td.pending
 {
-    background-color: orange;
+    background-color: #5BC0D0;
 }
 
 .bc-calendar td.confirmed
 {
-    background-color: red;
+    background-color: #BB4CA3;
+}
+
+.bc-calendar td.pending-am
+{
+    background: url('Images/PendingAm.gif') no-repeat center;
+}
+
+.bc-calendar td.pending-pm
+{
+    background: url('Images/PendingPm.gif') no-repeat center;
+}
+
+.bc-calendar td.confirmed-am
+{
+    background: url('Images/ConfirmedAm.gif') no-repeat center;
+}
+
+.bc-calendar td.pending-am-pending-pm
+{
+    background-color: #5BC0D0;
+}
+
+.bc-calendar td.confirmed-am-confirmed-pm
+{
+    background-color: #BB4CA3;
+}
+
+.bc-calendar td.confirmed-pm
+{
+    background: url('Images/ConfirmedPm.gif') no-repeat center;
+}
+
+.bc-calendar td.confirmed-am-pending-pm
+{
+    background: url('Images/PendingAmConfirmedPm.gif') no-repeat center;
+}
+
+.bc-calendar td.confirmed-am-confirmed-pm
+{
+    background: url('Images/ConfirmedAmPendingPm.gif') no-repeat center;
 }
 
 /* Availability */

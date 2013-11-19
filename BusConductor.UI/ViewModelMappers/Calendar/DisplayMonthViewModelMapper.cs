@@ -49,11 +49,35 @@ namespace BusConductor.UI.ViewModelMappers.Calendar
 
                     switch(bus.GetBookingStatusFor(date))
                     {
-                        case BookingStatus.Confirmed :
+                        case BusDayBookingStatus.ConfirmedAllDay:
                             viewModel.Weeks[week].Days[day].AdditionalClass = "confirmed";
                             break;
-                        case BookingStatus.Pending:
+                        case BusDayBookingStatus.PendingAllDay:
                             viewModel.Weeks[week].Days[day].AdditionalClass = "pending";
+                            break;
+                        case BusDayBookingStatus.PendingAm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "pending-am";
+                            break;
+                        case BusDayBookingStatus.PendingPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "pending-pm";
+                            break;
+                        case BusDayBookingStatus.ConfirmedAm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "confirmed-am";
+                            break;
+                        case BusDayBookingStatus.ConfirmedPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "confirmed-pm";
+                            break;
+                        case BusDayBookingStatus.PendingAm | BusDayBookingStatus.PendingPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "pending-am-pending-pm";
+                            break;
+                        case BusDayBookingStatus.ConfirmedAm | BusDayBookingStatus.ConfirmedPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "confirmed-am-confirmed-pm";
+                            break;
+                        case BusDayBookingStatus.PendingAm | BusDayBookingStatus.ConfirmedPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "pending-am-confirmed-pm";
+                            break;
+                        case BusDayBookingStatus.ConfirmedAm | BusDayBookingStatus.PendingPm:
+                            viewModel.Weeks[week].Days[day].AdditionalClass = "confirmed-am-pending-pm";
                             break;
                     }
                 }

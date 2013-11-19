@@ -57,7 +57,7 @@ namespace BusConductor.UI.Controllers
         public ActionResult Review(MakeViewModel inViewModel)
         {
             var request = MakeViewModelMapper.Map(inViewModel);
-            var validationMessages = _bookingService.ValidateMakePending(request);
+            var validationMessages = _bookingService.ValidateCustomerMake(request);
             validationMessages.ForEach(validationMessage => ModelState.AddModelError(validationMessage.Field, validationMessage.Text));
             
             if(!ModelState.IsValid)
@@ -67,7 +67,7 @@ namespace BusConductor.UI.Controllers
                 return View("Make", inViewModel);
             }
 
-            var booking = _bookingService.SummarizePendingBooking(request);
+            var booking = _bookingService.SummarizeCustomerMake(request);
             var outViewModel = ReviewViewModelMapper.Map(booking);
             return View(outViewModel);
         }
@@ -79,7 +79,7 @@ namespace BusConductor.UI.Controllers
         public ActionResult Confirm(ReviewViewModel inViewModel)
         {
             var request = ReviewViewModelMapper.Map(inViewModel);
-            var bookingNumber = _bookingService.MakePending(request);
+            var bookingNumber = _bookingService.CustomerMake(request);
             //todo:email 
             var outViewModel = new CompletedViewModel();
             outViewModel.BookingNumber = bookingNumber;

@@ -44,7 +44,7 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
         public void ConfirmCallsCorrectMethods()
         {
             _bookingControllerFactory.GetController().Confirm(_inViewModel);
-            _bookingControllerFactory.BookingService.Verify(x => x.MakePending(It.IsAny<MakePendingRequest>()));
+            _bookingControllerFactory.BookingService.Verify(x => x.CustomerMake(It.IsAny<MakePendingRequest>()));
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
             MakePendingRequest request = null;
 
             _bookingControllerFactory.BookingService
-                .Setup(x => x.MakePending(It.IsAny<MakePendingRequest>()))
+                .Setup(x => x.CustomerMake(It.IsAny<MakePendingRequest>()))
                 .Callback(delegate(MakePendingRequest x) { request = x; });
 
             _bookingControllerFactory.GetController().Confirm(_inViewModel);

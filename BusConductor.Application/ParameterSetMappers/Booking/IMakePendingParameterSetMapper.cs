@@ -5,7 +5,7 @@ namespace BusConductor.Application.ParameterSetMappers.Booking
 {
     public interface IMakePendingParameterSetMapper
     {
-        MakePendingBookingParameterSet Map(MakePendingRequest request);
-        MakePendingBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request);
+        CustomerMakeBookingParameterSet Map(MakePendingRequest request);
+        CustomerMakeBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request);
     }
 }

@@ -60,7 +60,7 @@ namespace BusConductor.UI.ViewModelMappers.Availability
                         busDayViewModel.AdditionalClass = "change-over-day";
                     }
 
-                    if(busses[busIndex].GetBookingStatusFor(day) != BookingStatus.Free)
+                    if (busses[busIndex].GetBookingStatusFor(day) != BusDayBookingStatus.Free)
                     {
                         busDayViewModel.AdditionalClass = "booked";
                     }

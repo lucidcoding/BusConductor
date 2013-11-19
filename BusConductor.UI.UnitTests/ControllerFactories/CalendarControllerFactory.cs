@@ -16,17 +16,39 @@ namespace BusConductor.UI.UnitTests.ControllerFactories
         public int Month { get; set; }
 
         //todo: maybe too much in here. Some things can go out.
-        public CalendarControllerFactory(int year, int month, int bookingStartDate, int bookingEndDate)
+        public CalendarControllerFactory(
+            int year, 
+            int month, 
+            int pendingBookingStartDate,
+            int pendingBookingEndDate,
+            int confirmedBookingStartDate,
+            int confirmedBookingEndDate)
         {
             BusRepository = new Mock<IBusRepository>();
             BusId = Guid.NewGuid();
             Bus = new Mock<Bus>();
             Bus.SetupGet(x => x.Id).Returns(BusId);
-            Bus.Setup(x => x.GetBookingStatusFor(It.IsAny<DateTime>())).Returns(BookingStatus.Free);
+            Bus.Setup(x => x.GetBookingStatusFor(It.IsAny<DateTime>())).Returns(BusDayBookingStatus.Free);
 
-            for (var day = bookingStartDate; day <= bookingEndDate; day++)
+            for (var day = pendingBookingStartDate + 1; day < pendingBookingEndDate; day++)
             {
-                Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, day))).Returns(BookingStatus.Pending);
+                Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, day))).Returns(BusDayBookingStatus.PendingAllDay);
+            }
+
+            Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, pendingBookingStartDate))).Returns(BusDayBookingStatus.PendingPm);
+            Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, pendingBookingEndDate))).Returns(BusDayBookingStatus.PendingAm);
+
+            for (var day = confirmedBookingStartDate + 1; day < confirmedBookingEndDate; day++)
+            {
+                Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, day))).Returns(BusDayBookingStatus.ConfirmedAllDay);
+            }
+
+            Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, confirmedBookingStartDate))).Returns(BusDayBookingStatus.ConfirmedPm);
+            Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, confirmedBookingEndDate))).Returns(BusDayBookingStatus.ConfirmedAm);
+
+            if(pendingBookingEndDate == confirmedBookingStartDate)
+            {
+                Bus.Setup(x => x.GetBookingStatusFor(new DateTime(year, month, confirmedBookingStartDate))).Returns(BusDayBookingStatus.PendingAm | BusDayBookingStatus.ConfirmedPm);
             }
 
             Year = year;
