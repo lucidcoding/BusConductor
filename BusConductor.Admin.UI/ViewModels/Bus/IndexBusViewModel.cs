@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace BusConductor.Admin.UI.ViewModels.Bus
 {
@@ -6,6 +9,5 @@ namespace BusConductor.Admin.UI.ViewModels.Bus
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
     }
 }
