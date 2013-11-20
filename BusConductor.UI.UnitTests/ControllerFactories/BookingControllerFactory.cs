@@ -33,7 +33,7 @@ namespace BusConductor.UI.UnitTests.ControllerFactories
                 .Returns(Bus.Object);
 
             BookingService
-                .Setup(x => x.ValidateCustomerMake(It.IsAny<MakePendingRequest>()))
+                .Setup(x => x.ValidateCustomerMake(It.IsAny<CustomerMakeBookingRequest>()))
                 .Returns(new ValidationMessageCollection());
         }
 

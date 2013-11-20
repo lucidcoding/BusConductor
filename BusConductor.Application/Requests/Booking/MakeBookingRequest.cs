@@ -2,7 +2,7 @@
 
 namespace BusConductor.Application.Requests.Booking
 {
-    public class MakePendingRequest
+    public class MakeBookingRequest
     {
         public Guid BusId { get; set; }
         public DateTime? PickUp { get; set; }
@@ -23,8 +23,5 @@ namespace BusConductor.Application.Requests.Booking
         public string DriverSurname { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfChildren { get; set; }
-        public string VoucherCode { get; set; }
-        public bool TermsAndConditionsAccepted { get; set; }
-        public bool RestrictionsAccepted { get; set; }
     }
 }

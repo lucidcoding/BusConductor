@@ -81,10 +81,14 @@
     <Compile Include="Implementations\BookingService.cs" />
     <Compile Include="Implementations\TaskService.cs" />
     <Compile Include="Implementations\UserService.cs" />
-    <Compile Include="ParameterSetMappers\Booking\IMakePendingParameterSetMapper.cs" />
-    <Compile Include="ParameterSetMappers\Booking\MakePendingParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Booking\AdminMakeParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Booking\IAdminMakeParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Booking\ICustomerMakeParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Booking\CustomerMakeParameterSetMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\Booking\MakePendingRequest.cs" />
+    <Compile Include="Requests\Booking\AdminMakeBookingRequest.cs" />
+    <Compile Include="Requests\Booking\CustomerMakeBookingRequest.cs" />
+    <Compile Include="Requests\Booking\MakeBookingRequest.cs" />
     <Compile Include="Requests\EditTaskRequest.cs" />
     <Compile Include="Requests\CreateUserRequest.cs" />
     <Compile Include="Requests\RaiseTaskRequest.cs" />

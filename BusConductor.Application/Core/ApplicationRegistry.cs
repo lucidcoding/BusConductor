@@ -15,7 +15,8 @@ namespace BusConductor.Application.Core
                 For<IUserService>().Use<UserService>();
                 For<ITaskService>().Use<TaskService>();
                 For<IBookingService>().Use<BookingService>();
-                For<IMakePendingParameterSetMapper>().Use<MakePendingParameterSetMapper>();
+                For<ICustomerMakeParameterSetMapper>().Use<CustomerMakeParameterSetMapper>();
+                For<IAdminMakeParameterSetMapper>().Use<AdminMakeParameterSetMapper>();
                 //For<ILog>().Use(LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType));
                 x.ImportRegistry(typeof(DataRegistry));
             });

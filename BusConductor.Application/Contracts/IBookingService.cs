@@ -7,8 +7,11 @@ namespace BusConductor.Application.Contracts
 {
     public interface IBookingService
     {
-        ValidationMessageCollection ValidateCustomerMake(MakePendingRequest request);
-        Booking SummarizeCustomerMake(MakePendingRequest request);
-        string CustomerMake(MakePendingRequest request);
+        ValidationMessageCollection ValidateCustomerMake(CustomerMakeBookingRequest request);
+        Booking SummarizeCustomerMake(CustomerMakeBookingRequest request);
+        string CustomerMake(CustomerMakeBookingRequest request);
+        ValidationMessageCollection ValidateAdminMake(AdminMakeBookingRequest request);
+        Booking SummarizeAdminMake(AdminMakeBookingRequest request);
+        string AdminMake(AdminMakeBookingRequest request);
     }
 }

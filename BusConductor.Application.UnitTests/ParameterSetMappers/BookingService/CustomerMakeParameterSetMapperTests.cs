@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
 {
     [TestFixture]
-    public class MakePendingParameterSetMapperTests
+    public class CustomerMakeParameterSetMapperTests
     {
         private Mock<IBusRepository> _busRepository;
         private Mock<IUserRepository> _userRepository;
@@ -20,10 +20,9 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
         private Mock<IBookingRepository> _bookingRepository;
         private Bus _bus;
         private User _user;
-        private Role _role;
         private Voucher _voucher;
-        private MakePendingParameterSetMapper _mapper;
-        private MakePendingRequest _request;
+        private CustomerMakeParameterSetMapper _mapper;
+        private CustomerMakeBookingRequest _request;
 
         [SetUp]
         public void SetUp()
@@ -34,7 +33,6 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
             _bookingRepository = new Mock<IBookingRepository>();
             _bus = new Bus { Id = Guid.NewGuid() };
             _user = new User { Id = Guid.NewGuid() };
-            _role = new Role { Id = Guid.NewGuid() };
             _voucher = new Voucher { Id = Guid.NewGuid(), Code = "ABC123" };
 
             _busRepository
@@ -57,13 +55,13 @@ namespace BusConductor.Application.UnitTests.ParameterSetMappers.BookingService
                                  new Booking {BookingNumber = "Book02"}
                              });
 
-            _mapper = new MakePendingParameterSetMapper(
+            _mapper = new CustomerMakeParameterSetMapper(
                 _busRepository.Object,
                 _userRepository.Object,
                 _voucherRepository.Object,
                 _bookingRepository.Object);
 
-            _request = new MakePendingRequest();
+            _request = new CustomerMakeBookingRequest();
             _request.BusId = _bus.Id.Value;
             _request.PickUp = new DateTime(2090, 10, 1);
             _request.DropOff = new DateTime(2090, 10, 8);

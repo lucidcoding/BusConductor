@@ -15,46 +15,94 @@ namespace BusConductor.Application.UnitTests.Implementations
         }
 
         [Test]
-        public void ValidateMakePendingCallsCorrectMethods()
+        public void ValidateCustomerMakeCallsCorrectMethods()
         {
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
-            var request = new MakePendingRequest();
+            var request = new CustomerMakeBookingRequest();
             var booking = bookingService.ValidateCustomerMake(request);
-            bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
+            bookingServiceFactory.CustomerMakeParameterSetMapper.Verify(x => x.Map(request), Times.Once());
         }
 
         [Test]
-        public void SummarizePendingBookingCallsCorrectMethods()
+        public void SummarizeCustomerMakeCallsCorrectMethods()
         {
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
-            var request = new MakePendingRequest();
+            var request = new CustomerMakeBookingRequest();
             var booking = bookingService.SummarizeCustomerMake(request);
-            bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.Map(request), Times.Once());
+            bookingServiceFactory.CustomerMakeParameterSetMapper.Verify(x => x.Map(request), Times.Once());
         }
 
         [Test]
-        public void MakePendingBookingCallsCorrectMethods()
+        public void CustomerMakeCallsCorrectMethods()
         {
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
-            var request = new MakePendingRequest();
+            var request = new CustomerMakeBookingRequest();
             bookingService.CustomerMake(request);
-            bookingServiceFactory.MakePendingParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
+            bookingServiceFactory.CustomerMakeParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
             bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
         }
 
         //todo:check summarize returns expected booking?
 
         [Test]
-        public void MakePendingReturnsCorrectResult()
+        public void CustomerMakeReturnsCorrectResult()
         {
             var bookingServiceFactory = new BookingServiceFactory();
             var bookingService = bookingServiceFactory.GetService();
-            var request = new MakePendingRequest();
+            var request = new CustomerMakeBookingRequest();
             var bookingNumber = bookingService.CustomerMake(request);
             Assert.That(bookingNumber, Is.EqualTo("201310010003_Blue"));
+        }
+
+
+
+
+
+
+        [Test]
+        public void ValidateAdminMakeCallsCorrectMethods()
+        {
+            var bookingServiceFactory = new BookingServiceFactory();
+            var bookingService = bookingServiceFactory.GetService();
+            var request = new AdminMakeBookingRequest();
+            var booking = bookingService.ValidateAdminMake(request);
+            bookingServiceFactory.AdminMakeParameterSetMapper.Verify(x => x.Map(request), Times.Once());
+        }
+
+        [Test]
+        public void SummarizeAdminMakeCallsCorrectMethods()
+        {
+            var bookingServiceFactory = new BookingServiceFactory();
+            var bookingService = bookingServiceFactory.GetService();
+            var request = new AdminMakeBookingRequest();
+            var booking = bookingService.SummarizeAdminMake(request);
+            bookingServiceFactory.AdminMakeParameterSetMapper.Verify(x => x.Map(request), Times.Once());
+        }
+
+        [Test]
+        public void AdminMakeCallsCorrectMethods()
+        {
+            var bookingServiceFactory = new BookingServiceFactory();
+            var bookingService = bookingServiceFactory.GetService();
+            var request = new AdminMakeBookingRequest();
+            bookingService.AdminMake(request);
+            bookingServiceFactory.AdminMakeParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
+            bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
+        }
+
+        //todo:check summarize returns expected booking?
+
+        [Test]
+        public void AdminMakeReturnsCorrectResult()
+        {
+            var bookingServiceFactory = new BookingServiceFactory();
+            var bookingService = bookingServiceFactory.GetService();
+            var request = new AdminMakeBookingRequest();
+            var bookingNumber = bookingService.AdminMake(request);
+            Assert.That(bookingNumber, Is.EqualTo("201310020003_Green"));
         }
     }
 }

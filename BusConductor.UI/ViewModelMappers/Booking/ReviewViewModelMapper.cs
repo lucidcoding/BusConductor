@@ -33,9 +33,9 @@ namespace BusConductor.UI.ViewModelMappers.Booking
             return viewModel;
         }
 
-        public static MakePendingRequest Map(ReviewViewModel viewModel)
+        public static CustomerMakeBookingRequest Map(ReviewViewModel viewModel)
         {
-            var request = new MakePendingRequest();
+            var request = new CustomerMakeBookingRequest();
             request.BusId = viewModel.BusId;
             request.PickUp = viewModel.PickUp;
             request.DropOff = viewModel.DropOff;

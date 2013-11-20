@@ -44,17 +44,17 @@ namespace BusConductor.UI.UnitTests.Controllers.BookingControllerTests
         public void ConfirmCallsCorrectMethods()
         {
             _bookingControllerFactory.GetController().Confirm(_inViewModel);
-            _bookingControllerFactory.BookingService.Verify(x => x.CustomerMake(It.IsAny<MakePendingRequest>()));
+            _bookingControllerFactory.BookingService.Verify(x => x.CustomerMake(It.IsAny<CustomerMakeBookingRequest>()));
         }
 
         [Test]
         public void ConfirmCreatesCorrectRequest()
         {
-            MakePendingRequest request = null;
+            CustomerMakeBookingRequest request = null;
 
             _bookingControllerFactory.BookingService
-                .Setup(x => x.CustomerMake(It.IsAny<MakePendingRequest>()))
-                .Callback(delegate(MakePendingRequest x) { request = x; });
+                .Setup(x => x.CustomerMake(It.IsAny<CustomerMakeBookingRequest>()))
+                .Callback(delegate(CustomerMakeBookingRequest x) { request = x; });
 
             _bookingControllerFactory.GetController().Confirm(_inViewModel);
             Assert.That(request.BusId, Is.EqualTo(_inViewModel.BusId));

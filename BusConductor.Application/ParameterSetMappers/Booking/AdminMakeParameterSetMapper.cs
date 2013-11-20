@@ -6,36 +6,32 @@ using Lucidity.Utilities;
 
 namespace BusConductor.Application.ParameterSetMappers.Booking
 {
-    public class MakePendingParameterSetMapper : IMakePendingParameterSetMapper
+    public class AdminMakeParameterSetMapper : IAdminMakeParameterSetMapper
     {
         private readonly IBusRepository _busRepository;
         private readonly IUserRepository _userRepository;
-        private readonly IVoucherRepository _voucherRepository;
         private readonly IBookingRepository _bookingRepository;
 
-        public MakePendingParameterSetMapper(
+        public AdminMakeParameterSetMapper(
             IBusRepository busRepository,
             IUserRepository userRepository,
-            IVoucherRepository voucherRepository,
             IBookingRepository bookingRepository)
         {
             _busRepository = busRepository;
             _userRepository = userRepository;
-            _voucherRepository = voucherRepository;
             _bookingRepository = bookingRepository;
         }
 
-        public CustomerMakeBookingParameterSet Map(MakePendingRequest request)
+        public AdminMakeBookingParameterSet Map(AdminMakeBookingRequest request)
         {
-            var parameterSet = PropertyMapper.MapMatchingProperties<MakePendingRequest, CustomerMakeBookingParameterSet>(request);
+            var parameterSet = PropertyMapper.MapMatchingProperties<AdminMakeBookingRequest, AdminMakeBookingParameterSet>(request);
             parameterSet.CreatedOn = DateTime.Now;
             parameterSet.Bus = _busRepository.GetById(request.BusId);
-            parameterSet.Voucher = !string.IsNullOrEmpty(request.VoucherCode) ? _voucherRepository.GetByCode(request.VoucherCode) : null;
-            parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
+            parameterSet.CurrentUser = _userRepository.GetById(request.CurrentUserId);
             return parameterSet;
         }
 
-        public CustomerMakeBookingParameterSet MapWithOtherBookingsToday(MakePendingRequest request)
+        public AdminMakeBookingParameterSet MapWithOtherBookingsToday(AdminMakeBookingRequest request)
         {
             var parameterSet = Map(request);
             parameterSet.OtherBookingsToday = _bookingRepository.GetByDate(parameterSet.CreatedOn);

@@ -46,10 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParameterSetMappers\BookingService\AdminMakeParameterSetMapperTests.cs" />
     <Compile Include="ServiceFactories\BookingServiceFactory.cs" />
     <Compile Include="Implementations\BookingServiceTests.cs" />
     <Compile Include="ParameterSetMappers\BookingService\TOGO_AltMakePendingParameterSetMapperTests.cs" />
-    <Compile Include="ParameterSetMappers\BookingService\MakePendingParameterSetMapperTests.cs" />
+    <Compile Include="ParameterSetMappers\BookingService\CustomerMakeParameterSetMapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
