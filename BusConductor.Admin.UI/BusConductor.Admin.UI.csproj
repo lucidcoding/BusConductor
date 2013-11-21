@@ -67,7 +67,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Commands\Booking\TestCommand.cs" />
     <Compile Include="ViewModels\Booking\IndexViewModel.cs" />
     <Compile Include="ViewModels\Bus\DetailsViewModel.cs" />
     <Compile Include="ViewModels\Bus\IndexBusViewModel.cs" />
