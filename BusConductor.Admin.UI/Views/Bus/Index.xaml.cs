@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BusConductor.Admin.UI.ViewModels.Bus;
+using BusConductor.Admin.UI.Views.Bus;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BusConductor.Admin.UI.Views.Booking
 {
@@ -27,7 +30,7 @@ namespace BusConductor.Admin.UI.Views.Booking
         {
             _viewModel = new IndexViewModel()
                              {
-                                 Busses = new List<IndexBusViewModel>()
+                                 Busses = new ObservableCollection<IndexBusViewModel>()
                                               {
                                                   new IndexBusViewModel {Id = Guid.NewGuid(), Name = "Test 1"},
                                                   new IndexBusViewModel {Id = Guid.NewGuid(), Name = "Test 2"},
@@ -36,6 +39,11 @@ namespace BusConductor.Admin.UI.Views.Booking
 
             InitializeComponent();
             base.DataContext = _viewModel;
+
+            Messenger.Default.Register<Uri>(this, "Navigate",
+                (uri) => NavigationService.Navigate(uri));
         }
+
+
     }
 }
