@@ -16,5 +16,15 @@ namespace BusConductor.UI.Common
 
             return HttpContext.Current.Items["Context"] as Context;
         }
+
+        public void Dispose()
+        {
+
+        }
+
+
+        public void SaveChanges()
+        {
+        }
     }
 }

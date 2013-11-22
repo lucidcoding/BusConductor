@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using BusConductor.Admin.UI.Common;
+using BusConductor.Admin.UI.Test;
 using BusConductor.Application.Core;
 using BusConductor.Data.Common;
 using BusConductor.Data.Repositories;
@@ -26,6 +27,8 @@ namespace BusConductor.Admin.UI.Core
                 //http://stackoverflow.com/questions/7177017/wpf-mvvm-nhibernate-a-simple-example
 
                 x.ImportRegistry(typeof(ApplicationRegistry));
+
+                For<ITestDependency>().HybridHttpOrThreadLocalScoped().Use<TestDependency>();
 
                 //todo: change back
                 //For<ILog>().Use<SqlLog>().Ctor<string>("connectionString").Is(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString);

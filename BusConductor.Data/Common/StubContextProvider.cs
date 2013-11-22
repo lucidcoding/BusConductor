@@ -12,5 +12,15 @@ namespace BusConductor.Data.Common
         {
             throw new NotImplementedException();
         }
+
+        public void Dispose()
+        {
+            
+        }
+
+
+        public void SaveChanges()
+        {
+        }
     }
 }

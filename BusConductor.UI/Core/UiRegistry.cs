@@ -19,7 +19,10 @@ namespace BusConductor.UI.Core
             Configure(x =>
                       {
                           x.ImportRegistry(typeof(ApplicationRegistry));
-                          For<IContextProvider>().Use<HttpContextProvider>();
+                          //For<IContextProvider>().Use<HttpContextProvider>();
+
+                          For<IContextProvider>().HttpContextScoped().Use<GenericContextProvider>();
+
                           For<ILog>().Use<SqlLog>().Ctor<string>("connectionString").Is(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString);
                           For<IActionInvoker>().Use<InjectingActionInvoker>();
                           For<ITempDataProvider>().Use<SessionStateTempDataProvider>();

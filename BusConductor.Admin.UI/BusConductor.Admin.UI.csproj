@@ -79,6 +79,8 @@
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\StructureMapServiceLocator.cs" />
     <Compile Include="Core\UiRegistry.cs" />
+    <Compile Include="Test\ITestDependency.cs" />
+    <Compile Include="Test\TestDependency.cs" />
     <Compile Include="ViewModels\Booking\IndexViewModel.cs" />
     <Compile Include="ViewModels\Bus\DetailsViewModel.cs" />
     <Compile Include="ViewModels\Bus\IndexBusViewModel.cs" />

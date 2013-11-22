@@ -22,8 +22,6 @@ namespace BusConductor.UI
 
     public class MvcApplication : System.Web.HttpApplication
     {
-        //public static ISessionFactory SessionFactory { get; set; }
-
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             //TOdo: research this:
@@ -74,8 +72,6 @@ namespace BusConductor.UI
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            //SessionFactory = SessionFactoryFactory.GetSessionFactory();
-
             //todo: is this the correct place for this?
             Database.SetInitializer<Context>(null);
 

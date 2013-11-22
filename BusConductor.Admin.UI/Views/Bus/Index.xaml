@@ -6,11 +6,10 @@
       xmlns:local="clr-namespace:BusConductor.Admin.UI.ViewModels.Bus" mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Index"
-      DataContext="{Binding BusIndex, Source={StaticResource Locator}}"
       >
-    <!--<Page.DataContext>
+    <Page.DataContext>
         <local:IndexViewModel />
-    </Page.DataContext>-->
+    </Page.DataContext>
 
         <ListView Name="ListViewEmployeeDetails" Grid.Row="1" Margin="4,109,12,23"  ItemsSource="{Binding Busses}"  >
         <ListView.View>
@@ -22,7 +21,7 @@
                         <DataTemplate>
                                 <!--<Button Content="Edit" Command="{Binding Path=DataContext.RunCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" />-->
                             <!--<Button Content="Edit" Command="{Binding DataContext.MyTestCommand}" CommandParameter="{Binding}"/>-->
-                            <Button Content="Edit" Command="{Binding TestCommand}"/>
+                            <Button Content="Edit" Click="Edit_Clicked" CommandParameter="{Binding Id}"/>
                             <!--<Button  Click="Button_Click" CommandParameter="{Binding}" />-->
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>

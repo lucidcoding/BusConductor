@@ -19,5 +19,14 @@ namespace BusConductor.UI.IntegrationTests.Common
 
             return TestContext.CurrentContext.Test.Properties["Context"] as Context;
         }
+
+        public void Dispose()
+        {
+
+        }
+
+        public void SaveChanges()
+        {
+        }
     }
 }
