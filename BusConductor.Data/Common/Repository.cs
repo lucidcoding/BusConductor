@@ -54,10 +54,13 @@ namespace BusConductor.Data.Common
             return query.ToList();
         }
 
-        //public virtual TEntity GetById(TId id)
-        //{
-        //    return _dbSet.Find(id);
-        //}
+        public virtual IList<TEntity> GetAllUndeleted()
+        {
+            IQueryable<TEntity> query = DbSet;
+            return query
+                .Where(entity => !entity.Deleted)
+                .ToList();
+        }
     }
 }
 

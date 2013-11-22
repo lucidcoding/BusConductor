@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace BusConductor.Domain.Common
 {
@@ -11,8 +10,6 @@ namespace BusConductor.Domain.Common
         void Update(TEntity obj);
         TEntity GetById(TId id);
         IList<TEntity> GetAll();
-        //IList<TEntity> GetByIds(List<TId> ids);
-        //void Flush();
-        //void Clear();
+        IList<TEntity> GetAllUndeleted();
     }
 }

@@ -87,6 +87,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\StubContextProvider.cs" />
     <Compile Include="Core\Context.cs" />
     <Compile Include="Common\IContextProvider.cs" />
     <Compile Include="Common\Repository.cs" />

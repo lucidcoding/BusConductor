@@ -12,9 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BusConductor.Admin.UI.Core;
 using BusConductor.Admin.UI.ViewModels.Bus;
 using BusConductor.Admin.UI.Views.Bus;
 using GalaSoft.MvvmLight.Messaging;
+using StructureMap;
 
 namespace BusConductor.Admin.UI.Views.Booking
 {
@@ -28,17 +30,19 @@ namespace BusConductor.Admin.UI.Views.Booking
         //http://www.codeproject.com/Articles/165368/WPF-MVVM-Quick-Start-Tutorial
         public Index()
         {
-            _viewModel = new IndexViewModel()
-                             {
-                                 Busses = new ObservableCollection<IndexBusViewModel>()
-                                              {
-                                                  new IndexBusViewModel {Id = Guid.NewGuid(), Name = "Test 1"},
-                                                  new IndexBusViewModel {Id = Guid.NewGuid(), Name = "Test 2"},
-                                              }
-                             };
+            //todo: move from here
+            //ObjectFactory.Container.Configure(x => x.AddRegistry<UiRegistry>());
+
+
+            //_viewModel = new IndexViewModel()
+            //                 {
+                                 
+            //                 };
 
             InitializeComponent();
-            base.DataContext = _viewModel;
+            _viewModel = (IndexViewModel) base.DataContext;
+
+            //base.DataContext = _viewModel;
 
             Messenger.Default.Register<Uri>(this, "Navigate",
                 (uri) => NavigationService.Navigate(uri));
