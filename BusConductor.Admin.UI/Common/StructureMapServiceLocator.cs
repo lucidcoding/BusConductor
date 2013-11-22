@@ -8,17 +8,18 @@ namespace BusConductor.Admin.UI.Common
 {
     public class StructureMapServiceLocator : IServiceLocator
     {
-        private IContainer _container;
+        private readonly IContainer _container;
 
         public StructureMapServiceLocator(IContainer container)
         {
-            this._container = container;
+            _container = container;
         }
         #region IServiceLocator Members
 
         public IEnumerable<object> GetAllInstances(Type serviceType)
         {
             IList list = null;
+
             try
             {
                 list = _container.GetAllInstances(serviceType);
