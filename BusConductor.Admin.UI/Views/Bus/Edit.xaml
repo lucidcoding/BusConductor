@@ -57,18 +57,18 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox  SelectedValuePath="Tag" SelectedValue="{Binding StartMonth}">
-                                    <ComboBoxItem Tag="0">Jan</ComboBoxItem>
-                                    <ComboBoxItem Tag="1">Feb</ComboBoxItem>
-                                    <ComboBoxItem Tag="2">Mar</ComboBoxItem>
-                                    <ComboBoxItem Tag="3">Apr</ComboBoxItem>
-                                    <ComboBoxItem Tag="4">May</ComboBoxItem>
-                                    <ComboBoxItem Tag="5">Jun</ComboBoxItem>
-                                    <ComboBoxItem Tag="6">Jul</ComboBoxItem>
-                                    <ComboBoxItem Tag="7">Aug</ComboBoxItem>
-                                    <ComboBoxItem Tag="8">Sep</ComboBoxItem>
-                                    <ComboBoxItem Tag="9">Oct</ComboBoxItem>
-                                    <ComboBoxItem Tag="10">Nov</ComboBoxItem>
-                                    <ComboBoxItem Tag="11">Dec</ComboBoxItem>
+                                    <ComboBoxItem Tag="1">Jan</ComboBoxItem>
+                                    <ComboBoxItem Tag="2">Feb</ComboBoxItem>
+                                    <ComboBoxItem Tag="3">Mar</ComboBoxItem>
+                                    <ComboBoxItem Tag="4">Apr</ComboBoxItem>
+                                    <ComboBoxItem Tag="5">May</ComboBoxItem>
+                                    <ComboBoxItem Tag="6">Jun</ComboBoxItem>
+                                    <ComboBoxItem Tag="7">Jul</ComboBoxItem>
+                                    <ComboBoxItem Tag="8">Aug</ComboBoxItem>
+                                    <ComboBoxItem Tag="9">Sep</ComboBoxItem>
+                                    <ComboBoxItem Tag="10">Oct</ComboBoxItem>
+                                    <ComboBoxItem Tag="11">Nov</ComboBoxItem>
+                                    <ComboBoxItem Tag="12">Dec</ComboBoxItem>
                                 </ComboBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -84,18 +84,18 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ComboBox  SelectedValuePath="Tag" SelectedValue="{Binding EndMonth}">
-                                    <ComboBoxItem Tag="0">Jan</ComboBoxItem>
-                                    <ComboBoxItem Tag="1">Feb</ComboBoxItem>
-                                    <ComboBoxItem Tag="2">Mar</ComboBoxItem>
-                                    <ComboBoxItem Tag="3">Apr</ComboBoxItem>
-                                    <ComboBoxItem Tag="4">May</ComboBoxItem>
-                                    <ComboBoxItem Tag="5">Jun</ComboBoxItem>
-                                    <ComboBoxItem Tag="6">Jul</ComboBoxItem>
-                                    <ComboBoxItem Tag="7">Aug</ComboBoxItem>
-                                    <ComboBoxItem Tag="8">Sep</ComboBoxItem>
-                                    <ComboBoxItem Tag="9">Oct</ComboBoxItem>
-                                    <ComboBoxItem Tag="10">Nov</ComboBoxItem>
-                                    <ComboBoxItem Tag="11">Dec</ComboBoxItem>
+                                    <ComboBoxItem Tag="1">Jan</ComboBoxItem>
+                                    <ComboBoxItem Tag="2">Feb</ComboBoxItem>
+                                    <ComboBoxItem Tag="3">Mar</ComboBoxItem>
+                                    <ComboBoxItem Tag="4">Apr</ComboBoxItem>
+                                    <ComboBoxItem Tag="5">May</ComboBoxItem>
+                                    <ComboBoxItem Tag="6">Jun</ComboBoxItem>
+                                    <ComboBoxItem Tag="7">Jul</ComboBoxItem>
+                                    <ComboBoxItem Tag="8">Aug</ComboBoxItem>
+                                    <ComboBoxItem Tag="9">Sep</ComboBoxItem>
+                                    <ComboBoxItem Tag="10">Oct</ComboBoxItem>
+                                    <ComboBoxItem Tag="11">Nov</ComboBoxItem>
+                                    <ComboBoxItem Tag="12">Dec</ComboBoxItem>
                                 </ComboBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -131,7 +131,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Save" Click="Save_Clicked" Width="100" HorizontalAlignment="Left" />
+        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Add Pricing Period" Click="AddPricingPeriod_Click" Width="150" HorizontalAlignment="Left" />
+        <Button Grid.Row="9" Grid.ColumnSpan="2" Content="Save" Click="Save_Clicked" Width="100" HorizontalAlignment="Left" />
         
     </Grid>
 </Page>

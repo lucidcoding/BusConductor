@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using BusConductor.Admin.UI.ViewModels.Bus;
+using BusConductor.Admin.UI.Views.Shared;
 using BusConductor.Application.Contracts;
 using BusConductor.Application.Requests.Bus;
 using BusConductor.Data.Common;
+using BusConductor.Domain.Common;
 using BusConductor.Domain.RepositoryContracts;
 using StructureMap;
 using ListViewItemValidation;
+using System.Transactions;
 
 namespace BusConductor.Admin.UI.Views.Bus
 {
+    //todo: order pricing periods
     public partial class Edit : Page
     {
         private IContextProvider _contextProvider;
@@ -61,6 +66,22 @@ namespace BusConductor.Admin.UI.Views.Bus
             }
         }
 
+        private void AddPricingPeriod_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = DataContext as EditViewModel;
+            viewModel.PricingPeriods.Add(new EditPricingPeriodViewModel
+                                             {
+                                                 Id = Guid.NewGuid(),
+                                                 StartMonth = 0,
+                                                 StartDay = 1,
+                                                 EndMonth = 0,
+                                                 EndDay = 1,
+                                                 FridayToFridayRate = 0,
+                                                 FridayToMondayRate = 0,
+                                                 MondayToFridayRate = 0
+                                             });
+        }
+
         public void Save_Clicked(object sender, RoutedEventArgs e)
         {
             var yearError = Validation.GetHasError(Year);
@@ -91,10 +112,35 @@ namespace BusConductor.Admin.UI.Views.Bus
                 request.PricingPeriods.Add(editPricingPeriodRequest);
             }
 
+            ValidationMessageCollection validationMessages;
+
+            using (_contextProvider)
+            {
+                validationMessages = _busService.ValidateEdit(request);
+            }
+
+            if (validationMessages.Any())
+            {
+                var validationDialog = new ValidationDialog(validationMessages);
+
+                //todo: needs to be a window to do this.
+                //validationDialog.Owner = this;
+
+                //validationDialog.ShowDialog();
+                Nullable<bool> dialogResult = validationDialog.ShowDialog();
+                return;
+            }
+
+            using(var transactionScope = new TransactionScope())
             using(_contextProvider)
             {
                 _busService.Edit(request);
+                _contextProvider.SaveChanges();
+                transactionScope.Complete();
             }
+
+            //todo: message to say all is well.
+
 
             //var a = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(ListViewPricingPeriods.Items[0]);
             //var ab = Validation.GetHasError(a);

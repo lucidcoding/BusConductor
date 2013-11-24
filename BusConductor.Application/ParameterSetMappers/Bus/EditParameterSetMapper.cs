@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
 using BusConductor.Application.Requests.Bus;
 using BusConductor.Domain.ParameterSets.Bus;
+using BusConductor.Domain.RepositoryContracts;
 
 namespace BusConductor.Application.ParameterSetMappers.Bus
 {
     public class EditParameterSetMapper : IEditParameterSetMapper
     {
+        private readonly IUserRepository _userRepository;
+
+        public EditParameterSetMapper(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         public EditParameterSet Map(EditRequest request)
         {
             var parameterSet = new EditParameterSet();
@@ -18,6 +26,9 @@ namespace BusConductor.Application.ParameterSetMappers.Bus
             parameterSet.Year = request.Year;
             parameterSet.PricingPeriods = new List<EditPricingPeriodParameterSet>();
 
+            //todo: change
+            parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
+
             foreach(var editPricingPeriodRequest in request.PricingPeriods)
             {
                 var editPricingPeriodParameterSet = new EditPricingPeriodParameterSet();
@@ -29,6 +40,12 @@ namespace BusConductor.Application.ParameterSetMappers.Bus
                 editPricingPeriodParameterSet.FridayToFridayRate = editPricingPeriodRequest.FridayToFridayRate;
                 editPricingPeriodParameterSet.FridayToMondayRate = editPricingPeriodRequest.FridayToMondayRate;
                 editPricingPeriodParameterSet.MondayToFridayRate = editPricingPeriodRequest.MondayToFridayRate;
+
+
+                //todo: change
+                editPricingPeriodParameterSet.CurrentUser = _userRepository.GetByUsername("Application");
+
+
                 parameterSet.PricingPeriods.Add(editPricingPeriodParameterSet);
             }
 

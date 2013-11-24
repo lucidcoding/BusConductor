@@ -1,4 +1,5 @@
 ﻿using System;
+using BusConductor.Domain.Entities;
 
 namespace BusConductor.Domain.ParameterSets.Bus
 {
@@ -12,5 +13,6 @@ namespace BusConductor.Domain.ParameterSets.Bus
         public decimal FridayToFridayRate { get; set; }
         public decimal FridayToMondayRate { get; set; }
         public decimal MondayToFridayRate { get; set; }
+        public User CurrentUser { get; set; }
     }
 }

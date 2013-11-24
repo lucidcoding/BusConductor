@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 
 namespace BusConductor.Domain.ParameterSets.Bus
@@ -13,5 +14,6 @@ namespace BusConductor.Domain.ParameterSets.Bus
         public int Berth { get; set; }
         public int Year { get; set; }
         public IList<EditPricingPeriodParameterSet> PricingPeriods { get; set; }
+        public User CurrentUser { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace BusConductor.Application.Implementations
             var parameterSet = _editParameterSetMapper.Map(request);
             var bus = _busRepository.GetById(request.Id);
             bus.Edit(parameterSet);
-            _busRepository.Save(bus);
+            _busRepository.Update(bus);
         }
     }
 }

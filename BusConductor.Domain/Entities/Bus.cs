@@ -83,12 +83,49 @@ namespace BusConductor.Domain.Entities
         public virtual ValidationMessageCollection ValidateEdit(EditParameterSet parameterSet)
         {
             var validationMessages = new ValidationMessageCollection();
+            bool overlappingPricingPeriods = false;
+            bool daysUnmatchedByPricingPeriods = false;
+
+            //todo: refactor out.
+            var newPricingPeriods = parameterSet.PricingPeriods.Select(pricingPeriod => new PricingPeriod
+            {
+                StartMonth = pricingPeriod.StartMonth,
+                StartDay = pricingPeriod.StartDay,
+                EndMonth = pricingPeriod.EndMonth,
+                EndDay = pricingPeriod.EndDay
+            });
+
+            for (var date = new DateTime(2000, 1, 1); date < new DateTime(2001, 1, 1); date = date.AddDays(1))
+            {
+                var matchingPeriods = newPricingPeriods.Count(pricingPeriod => pricingPeriod.ContainsDate(date));
+
+                if(matchingPeriods == 0)
+                {
+                    daysUnmatchedByPricingPeriods = true;
+                }
+
+                if(matchingPeriods > 1)
+                {
+                    overlappingPricingPeriods = true;
+                }
+            }
+
+            if(daysUnmatchedByPricingPeriods)
+            {
+                validationMessages.AddError("Some days are not covered by pricing periods.");
+            }
+
+            if(overlappingPricingPeriods)
+            {
+                validationMessages.AddError("Some days are covered by more than one pricing period");
+            }
 
             return validationMessages;
         }
 
         public virtual void Edit(EditParameterSet parameterSet)
         {
+            var now = DateTime.Now;
             _name = parameterSet.Name;
             _description = parameterSet.Description;
             _overview = parameterSet.Overview;
@@ -96,14 +133,31 @@ namespace BusConductor.Domain.Entities
             _driveSide = parameterSet.DriveSide;
             _berth = parameterSet.Berth;
             _year = parameterSet.Year;
-            _pricingPeriods = new Collection<PricingPeriod>();
+            _lastModifiedBy = parameterSet.CurrentUser;
+            _lastModifiedOn = now;
 
-            //todo: reafctor this
+            //todo: reafctor this into pricing period
             foreach(var editPricingPeriodParameterSet in parameterSet.PricingPeriods)
             {
-                var pricingPeriod = new PricingPeriod();
-                pricingPeriod.Bus = this;
-                pricingPeriod.Id = editPricingPeriodParameterSet.Id;
+                //Todo: why can't I just replace existing entity with new one with same ID?
+                PricingPeriod pricingPeriod;
+
+                if(_pricingPeriods.Any(x => x.Id.Value == editPricingPeriodParameterSet.Id))
+                {
+                    pricingPeriod = _pricingPeriods.Single(x => x.Id.Value == editPricingPeriodParameterSet.Id);
+                    pricingPeriod.LastModifiedBy = parameterSet.CurrentUser;
+                    pricingPeriod.LastModifiedOn = now;
+                }
+                else
+                {
+                    pricingPeriod = new PricingPeriod();
+                    pricingPeriod.Id = Guid.NewGuid();
+                    pricingPeriod.Bus = this;
+                    pricingPeriod.CreatedBy = parameterSet.CurrentUser;
+                    pricingPeriod.CreatedOn = now;
+                    _pricingPeriods.Add(pricingPeriod);
+                }
+
                 pricingPeriod.StartMonth = editPricingPeriodParameterSet.StartMonth;
                 pricingPeriod.StartDay = editPricingPeriodParameterSet.StartDay;
                 pricingPeriod.EndMonth = editPricingPeriodParameterSet.EndMonth;
@@ -111,8 +165,9 @@ namespace BusConductor.Domain.Entities
                 pricingPeriod.FridayToFridayRate = editPricingPeriodParameterSet.FridayToFridayRate;
                 pricingPeriod.FridayToMondayRate = editPricingPeriodParameterSet.FridayToMondayRate;
                 pricingPeriod.MondayToFridayRate = editPricingPeriodParameterSet.MondayToFridayRate;
-                _pricingPeriods.Add(pricingPeriod);
             }
+
+            //todo: Also do delete.
         }
 
         public virtual PricingPeriod GetPricingPeriodFor(DateTime pickUp)
