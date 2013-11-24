@@ -75,20 +75,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IBookingService.cs" />
+    <Compile Include="Contracts\IBusService.cs" />
     <Compile Include="Contracts\ITaskService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Core\ApplicationRegistry.cs" />
     <Compile Include="Implementations\BookingService.cs" />
+    <Compile Include="Implementations\BusService.cs" />
     <Compile Include="Implementations\TaskService.cs" />
     <Compile Include="Implementations\UserService.cs" />
     <Compile Include="ParameterSetMappers\Booking\AdminMakeParameterSetMapper.cs" />
     <Compile Include="ParameterSetMappers\Booking\IAdminMakeParameterSetMapper.cs" />
     <Compile Include="ParameterSetMappers\Booking\ICustomerMakeParameterSetMapper.cs" />
     <Compile Include="ParameterSetMappers\Booking\CustomerMakeParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Bus\EditParameterSetMapper.cs" />
+    <Compile Include="ParameterSetMappers\Bus\IEditParameterSetMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requests\Booking\AdminMakeBookingRequest.cs" />
     <Compile Include="Requests\Booking\CustomerMakeBookingRequest.cs" />
     <Compile Include="Requests\Booking\MakeBookingRequest.cs" />
+    <Compile Include="Requests\Bus\EditPricingPeriodRequest.cs" />
+    <Compile Include="Requests\Bus\EditRequest.cs" />
     <Compile Include="Requests\EditTaskRequest.cs" />
     <Compile Include="Requests\CreateUserRequest.cs" />
     <Compile Include="Requests\RaiseTaskRequest.cs" />

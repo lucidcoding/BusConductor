@@ -28,11 +28,14 @@ namespace BusConductor.UI.Core
                           For<ITempDataProvider>().Use<SessionStateTempDataProvider>();
                           For<RouteCollection>().Use(RouteTable.Routes);
 
+                          //todo: Check I need all this?
                           SetAllProperties(c =>
                           {
                               c.OfType<IActionInvoker>();
                               c.OfType<ITempDataProvider>();
                               c.WithAnyTypeFromNamespaceContainingType<LogAttribute>();
+                              c.WithAnyTypeFromNamespaceContainingType<EntityFrameworkReadContextAttribute>();
+                              c.WithAnyTypeFromNamespaceContainingType<EntityFrameworkWriteContextAttribute>();
                           });
                       });
 

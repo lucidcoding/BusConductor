@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Customer;
 
 namespace BusConductor.Domain.Entities
 {

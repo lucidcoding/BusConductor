@@ -79,7 +79,7 @@ namespace BusConductor.UI.IntegrationTests.Controllers
 
             Booking booking = null;
 
-            using (var contextProvider = ObjectFactory.GetInstance<IContextProvider>())
+            using (ObjectFactory.GetInstance<IContextProvider>())
             {
                 booking =
                     bookingRepository.GetAll().Single(

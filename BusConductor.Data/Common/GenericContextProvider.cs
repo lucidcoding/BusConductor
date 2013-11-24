@@ -12,7 +12,12 @@ namespace BusConductor.Data.Common
 
         public Context GetContext()
         {
-            return _context ?? (_context = new Context());
+            if(_context == null)
+            {
+                _context = new Context();
+            }
+
+            return _context;
         }
 
         public void SaveChanges()

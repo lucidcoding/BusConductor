@@ -1,6 +1,7 @@
 ﻿using BusConductor.Domain.Entities;
+using BusConductor.Domain.ParameterSets.Booking;
 
-namespace BusConductor.Domain.ParameterSets
+namespace BusConductor.Domain.ParameterSets.Customer
 {
     public class RegisterCustomerParameterSet
     {

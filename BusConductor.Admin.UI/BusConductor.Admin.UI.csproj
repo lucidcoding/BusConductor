@@ -40,6 +40,12 @@
     <StartupObject>BusConductor.Admin.UI.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
       <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
@@ -53,6 +59,7 @@
       <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity">
@@ -79,16 +86,18 @@
     <Compile Include="Common\NavigationService.cs" />
     <Compile Include="Common\StructureMapServiceLocator.cs" />
     <Compile Include="Core\UiRegistry.cs" />
+    <Compile Include="Misc\Class1.cs" />
     <Compile Include="Test\ITestDependency.cs" />
     <Compile Include="Test\TestDependency.cs" />
     <Compile Include="ViewModels\Booking\IndexViewModel.cs" />
-    <Compile Include="ViewModels\Bus\DetailsViewModel.cs" />
+    <Compile Include="ViewModels\Bus\EditPricingPeriodViewModel.cs" />
+    <Compile Include="ViewModels\Bus\EditViewModel.cs" />
     <Compile Include="ViewModels\Bus\IndexBusViewModel.cs" />
     <Compile Include="ViewModels\Bus\IndexViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\Bus\Details.xaml.cs">
-      <DependentUpon>Details.xaml</DependentUpon>
+    <Compile Include="Views\Bus\Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Bus\Index.xaml.cs">
       <DependentUpon>Index.xaml</DependentUpon>
@@ -97,7 +106,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Bus\Details.xaml">
+    <Page Include="Views\Bus\Edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

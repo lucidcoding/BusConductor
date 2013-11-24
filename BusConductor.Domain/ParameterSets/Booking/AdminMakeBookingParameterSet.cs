@@ -1,6 +1,6 @@
 ﻿using BusConductor.Domain.Enumerations;
 
-namespace BusConductor.Domain.ParameterSets
+namespace BusConductor.Domain.ParameterSets.Booking
 {
     public class AdminMakeBookingParameterSet : MakeBookingParameterSet
     {

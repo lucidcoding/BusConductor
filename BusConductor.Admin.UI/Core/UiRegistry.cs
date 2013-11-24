@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using BusConductor.Admin.UI.Common;
 using BusConductor.Admin.UI.Test;
+using BusConductor.Admin.UI.Views.Bus;
 using BusConductor.Application.Core;
 using BusConductor.Data.Common;
 using BusConductor.Data.Repositories;
@@ -35,8 +36,10 @@ namespace BusConductor.Admin.UI.Core
                 //For<ILog>().Use<SqlLog>().Ctor<string>("test");
                 For<INavigationService>().Use<NavigationService>();
 
-                For<IContextProvider>().Use<StubContextProvider>();
+                For<IContextProvider>().Singleton().Use<GenericContextProvider>();
                 For<ILog>().Use<StubLog>();
+
+         
             });
 
         }

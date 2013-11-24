@@ -3,6 +3,8 @@ using System.Linq;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Enumerations;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Booking;
+using BusConductor.Domain.ParameterSets.Customer;
 
 namespace BusConductor.Domain.Entities
 {

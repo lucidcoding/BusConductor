@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Booking;
 using NUnit.Framework;
 
 namespace BusConductor.Domain.UnitTests.Entities.BookingTests

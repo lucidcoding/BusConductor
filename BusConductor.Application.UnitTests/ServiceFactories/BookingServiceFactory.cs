@@ -7,6 +7,7 @@ using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Booking;
 using BusConductor.Domain.RepositoryContracts;
 using Moq;
 using Lucidity.Utilities.Contracts.Logging;

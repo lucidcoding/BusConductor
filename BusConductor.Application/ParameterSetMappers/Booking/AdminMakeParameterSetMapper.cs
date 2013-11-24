@@ -1,6 +1,7 @@
 ﻿using System;
 using BusConductor.Application.Requests.Booking;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Booking;
 using BusConductor.Domain.RepositoryContracts;
 using Lucidity.Utilities;
 

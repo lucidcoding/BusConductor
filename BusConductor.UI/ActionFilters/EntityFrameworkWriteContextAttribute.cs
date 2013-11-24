@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using BusConductor.Data.Common;
 using BusConductor.Data.Core;
+using StructureMap;
 using StructureMap.Attributes;
 
 namespace BusConductor.UI.ActionFilters
@@ -20,6 +21,11 @@ namespace BusConductor.UI.ActionFilters
         {
             ContextProvider.SaveChanges();
             ContextProvider.Dispose();
+
+            //todo: lookinto this?
+            //ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+            //http://stackoverflow.com/questions/4483659/how-to-dispose-resources-with-dependency-injection
+
         }
     }
 }

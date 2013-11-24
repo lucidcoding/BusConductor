@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Enumerations;
+using BusConductor.Domain.ParameterSets.Bus;
 
 namespace BusConductor.Domain.Entities
 {
@@ -78,45 +80,40 @@ namespace BusConductor.Domain.Entities
             return 0;
         }
 
-        //    if(date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
-        //    {
-        //        switch (date.Month)
-        //        {
-        //            case 12:
-        //            case 1:
-        //            case 2:
-        //                return _winterWeekendRate;
-        //            case 3:
-        //            case 4:
-        //            case 5:
-        //                return _springWeekendRate;
-        //            case 6:
-        //            case 7:
-        //            case 8:
-        //                return _summerWeekendRate;
-        //            default:
-        //                return _autumnWeekendRate;
-        //        }
-        //    }
+        public virtual ValidationMessageCollection ValidateEdit(EditParameterSet parameterSet)
+        {
+            var validationMessages = new ValidationMessageCollection();
 
-        //    switch(date.Month)
-        //    {
-        //        case 12:
-        //        case 1:
-        //        case 2:
-        //            return _winterWeekdayRate;
-        //        case 3:
-        //        case 4:
-        //        case 5:
-        //            return _springWeekdayRate;
-        //        case 6:
-        //        case 7:
-        //        case 8:
-        //            return _summerWeekdayRate;
-        //        default:
-        //            return _autumnWeekdayRate;
-        //    }
-        //}
+            return validationMessages;
+        }
+
+        public virtual void Edit(EditParameterSet parameterSet)
+        {
+            _name = parameterSet.Name;
+            _description = parameterSet.Description;
+            _overview = parameterSet.Overview;
+            _details = parameterSet.Details;
+            _driveSide = parameterSet.DriveSide;
+            _berth = parameterSet.Berth;
+            _year = parameterSet.Year;
+            _pricingPeriods = new Collection<PricingPeriod>();
+
+            //todo: reafctor this
+            foreach(var editPricingPeriodParameterSet in parameterSet.PricingPeriods)
+            {
+                var pricingPeriod = new PricingPeriod();
+                pricingPeriod.Bus = this;
+                pricingPeriod.Id = editPricingPeriodParameterSet.Id;
+                pricingPeriod.StartMonth = editPricingPeriodParameterSet.StartMonth;
+                pricingPeriod.StartDay = editPricingPeriodParameterSet.StartDay;
+                pricingPeriod.EndMonth = editPricingPeriodParameterSet.EndMonth;
+                pricingPeriod.EndDay = editPricingPeriodParameterSet.EndDay;
+                pricingPeriod.FridayToFridayRate = editPricingPeriodParameterSet.FridayToFridayRate;
+                pricingPeriod.FridayToMondayRate = editPricingPeriodParameterSet.FridayToMondayRate;
+                pricingPeriod.MondayToFridayRate = editPricingPeriodParameterSet.MondayToFridayRate;
+                _pricingPeriods.Add(pricingPeriod);
+            }
+        }
 
         public virtual PricingPeriod GetPricingPeriodFor(DateTime pickUp)
         {

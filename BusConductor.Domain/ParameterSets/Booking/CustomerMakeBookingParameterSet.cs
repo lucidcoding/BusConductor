@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using BusConductor.Domain.Entities;
+﻿using BusConductor.Domain.Entities;
 
-namespace BusConductor.Domain.ParameterSets
+namespace BusConductor.Domain.ParameterSets.Booking
 {
     public class CustomerMakeBookingParameterSet : MakeBookingParameterSet
     {

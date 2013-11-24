@@ -5,6 +5,7 @@ using BusConductor.Domain.Common;
 using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 using BusConductor.Domain.ParameterSets;
+using BusConductor.Domain.ParameterSets.Booking;
 using NUnit.Framework;
 
 namespace BusConductor.Domain.UnitTests.Entities.BookingTests

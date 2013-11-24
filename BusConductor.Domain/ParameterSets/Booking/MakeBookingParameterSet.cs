@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using BusConductor.Domain.Entities;
 
-namespace BusConductor.Domain.ParameterSets
+namespace BusConductor.Domain.ParameterSets.Booking
 {
     public class MakeBookingParameterSet
     {
-        public IList<Booking> OtherBookingsToday { get; set; }
+        public IList<Entities.Booking> OtherBookingsToday { get; set; }
         public DateTime? PickUp { get; set; }
         public DateTime? DropOff { get; set; }
-        public Bus Bus { get; set; }
+        public Entities.Bus Bus { get; set; }
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string AddressLine1 { get; set; }
