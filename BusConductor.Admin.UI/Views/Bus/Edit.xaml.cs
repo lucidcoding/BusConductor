@@ -122,12 +122,8 @@ namespace BusConductor.Admin.UI.Views.Bus
             if (validationMessages.Any())
             {
                 var validationDialog = new ValidationDialog(validationMessages);
-
-                //todo: needs to be a window to do this.
-                //validationDialog.Owner = this;
-
-                //validationDialog.ShowDialog();
-                Nullable<bool> dialogResult = validationDialog.ShowDialog();
+                validationDialog.Owner = Window.GetWindow(this);
+                var dialogResult = validationDialog.ShowDialog();
                 return;
             }
 
