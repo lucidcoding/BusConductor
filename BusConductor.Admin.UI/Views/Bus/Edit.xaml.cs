@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Navigation;
 using BusConductor.Admin.UI.ViewModels.Bus;
 using BusConductor.Admin.UI.Views.Shared;
 using BusConductor.Application.Contracts;
@@ -14,8 +14,6 @@ using BusConductor.Data.Common;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.RepositoryContracts;
 using StructureMap;
-using ListViewItemValidation;
-using System.Transactions;
 
 namespace BusConductor.Admin.UI.Views.Bus
 {
@@ -84,7 +82,27 @@ namespace BusConductor.Admin.UI.Views.Bus
 
         public void Save_Clicked(object sender, RoutedEventArgs e)
         {
-            var yearError = Validation.GetHasError(Year);
+            var firstLineValidation = new List<string>();
+            if (Validation.GetHasError(Year)) firstLineValidation.Add("Year is not valid");
+
+            foreach(var item in ListViewPricingPeriods.Items)
+            {
+                var pricingPeriodTitle = " at Pricing Period at index " + ListViewPricingPeriods.Items.IndexOf(item);
+                var listViewItem = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
+                if(Validation.GetHasError(FindChild<TextBox>(listViewItem, "StartDay"))) firstLineValidation.Add("Incorrect Start Day" + pricingPeriodTitle);
+                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "EndDay"))) firstLineValidation.Add("Incorrect End Day" + pricingPeriodTitle);
+                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "FridayToFridayRate"))) firstLineValidation.Add("Incorrect Friday to Friday rate" + pricingPeriodTitle);
+                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "FridayToMondayRate"))) firstLineValidation.Add("Incorrect Friday to Monday rate" + pricingPeriodTitle);
+                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "MondayToFridayRate"))) firstLineValidation.Add("Incorrect Monday to Friday rate" + pricingPeriodTitle);
+            }
+
+            if (firstLineValidation.Any())
+            {
+                var validationDialog = new ValidationDialog(firstLineValidation);
+                validationDialog.Owner = Window.GetWindow(this);
+                var dialogResult = validationDialog.ShowDialog();
+                return;
+            }
 
             var viewModel = DataContext as EditViewModel;
             var request = new EditRequest();
@@ -121,7 +139,7 @@ namespace BusConductor.Admin.UI.Views.Bus
 
             if (validationMessages.Any())
             {
-                var validationDialog = new ValidationDialog(validationMessages);
+                var validationDialog = new ValidationDialog(validationMessages.Select(x => x.Text));
                 validationDialog.Owner = Window.GetWindow(this);
                 var dialogResult = validationDialog.ShowDialog();
                 return;
@@ -137,51 +155,49 @@ namespace BusConductor.Admin.UI.Views.Bus
 
             //todo: message to say all is well.
 
-
-            //var a = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(ListViewPricingPeriods.Items[0]);
-            //var ab = Validation.GetHasError(a);
-            //    var d = a.GetDescendantByType<TextBox>();
-
-            //    var f = a.FindName("StartDay");
-            //    var b = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(ListViewPricingPeriods.Items[1]);
-            //    var c = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(ListViewPricingPeriods.Items[2]);
-
-            // get the current selected item
-            //ListViewItem item = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromIndex(0) as ListViewItem;
-            //TextBox startDay = null;
-            //if (item != null)
-            //{
-            //    //get the item's template parent
-            //    ContentPresenter templateParent = GetFrameworkElementByName<ContentPresenter>(item);
-            //    //get the DataTemplate that TextBlock in.
-            //    DataTemplate dataTemplate = ListViewPricingPeriods.ItemTemplate;
-            //    if (dataTemplate != null && templateParent != null)
-            //    {
-            //        startDay = dataTemplate.FindName("StartDay", templateParent) as TextBox;
-            //    }
-
-            //}
         }
 
-        private static T GetFrameworkElementByName<T>(FrameworkElement referenceElement) where T : FrameworkElement
+        public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
         {
-            FrameworkElement child = null;
-            for (Int32 i = 0; i < VisualTreeHelper.GetChildrenCount(referenceElement); i++)
+            // Confirm parent and childName are valid. 
+            if (parent == null) return null;
+
+            T foundChild = null;
+
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
             {
-                child = VisualTreeHelper.GetChild(referenceElement, i) as FrameworkElement;
-                System.Diagnostics.Debug.WriteLine(child);
-                if (child != null && child.GetType() == typeof(T))
-                { break; }
-                else if (child != null)
+                var child = VisualTreeHelper.GetChild(parent, i);
+                // If the child is not of the request child type child
+                T childType = child as T;
+                if (childType == null)
                 {
-                    child = GetFrameworkElementByName<T>(child);
-                    if (child != null && child.GetType() == typeof(T))
+                    // recursively drill down the tree
+                    foundChild = FindChild<T>(child, childName);
+
+                    // If the child is found, break so we do not overwrite the found child. 
+                    if (foundChild != null) break;
+                }
+                else if (!string.IsNullOrEmpty(childName))
+                {
+                    var frameworkElement = child as FrameworkElement;
+                    // If the child's name is set for search
+                    if (frameworkElement != null && frameworkElement.Name == childName)
                     {
+                        // if the child's name is of the request name
+                        foundChild = (T)child;
                         break;
                     }
                 }
+                else
+                {
+                    // child element found.
+                    foundChild = (T)child;
+                    break;
+                }
             }
-            return child as T;
+
+            return foundChild;
         }
     }
 }

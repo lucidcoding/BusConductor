@@ -6,8 +6,6 @@
       xmlns:local="clr-namespace:BusConductor.Admin.UI.ViewModels.Bus"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:Enumerations="clr-namespace:BusConductor.Domain.Enumerations;assembly=BusConductor.Domain"
-      xmlns:l="clr-namespace:ListViewItemValidation" mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="800"
 	Title="Details">
     <Page.Resources>
             <ObjectDataProvider x:Key="DriveSideOptions" MethodName="GetValues"

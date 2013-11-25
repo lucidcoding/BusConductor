@@ -1,15 +1,15 @@
 ﻿<Window x:Class="BusConductor.Admin.UI.Views.Shared.ValidationDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:BusConductor.Admin.UI.ViewModels.Shared" Title="ValidationDialog" Height="300" Width="300">
+        xmlns:local="clr-namespace:BusConductor.Admin.UI.ViewModels.Shared" Title="ValidationDialog" Height="300" Width="600">
     <Window.DataContext>
         <local:ValidationViewModel />
     </Window.DataContext>
     <Grid>
-        <ListView Grid.Row="6" Grid.ColumnSpan="2" Name="ListViewPricingPeriods" ItemsSource="{Binding Messages}"  >
+        <ListView ItemsSource="{Binding Messages}"  >
             <ListView.View>
                 <GridView x:Name="PricingPeriodsGrid">
-                    <GridViewColumn Header="Start Month" >
+                    <GridViewColumn >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Label Name="Message" Content="{Binding}" />

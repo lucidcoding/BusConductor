@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using BusConductor.Domain.Entities;
 using BusConductor.Domain.Enumerations;
 
 namespace BusConductor.Admin.UI.ViewModels.Bus
@@ -17,6 +15,5 @@ namespace BusConductor.Admin.UI.ViewModels.Bus
         public int Berth { get; set; }
         public int Year { get; set; }
         public ObservableCollection<EditPricingPeriodViewModel> PricingPeriods { get; set; }
-        //public ObservableCollection<Booking> _bookings;
     }
 }
