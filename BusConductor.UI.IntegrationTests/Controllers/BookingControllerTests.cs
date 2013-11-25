@@ -27,63 +27,51 @@ namespace BusConductor.UI.IntegrationTests.Controllers
 
         }
 
-        //todo: improve way context is handled?
         [TearDown]
         public void TearDown()
         {
-            var contextProvider = ObjectFactory.GetInstance<IContextProvider>() as GenericContextProvider;
-            contextProvider.SaveChanges();
-            contextProvider.Dispose();
         }
 
         [Test]
         public void Works()
         {
-            
-                var viewModel = new ReviewViewModel();
-                viewModel.BusId = new Guid("6a9857a6-d0b0-4e1a-84cb-ee9ade159560");
-                viewModel.PickUp = new DateTime(2090, 1, 2);
-                viewModel.DropOff = new DateTime(2090, 1, 6);
-                viewModel.Forename = "Percy";
-                viewModel.Surname = "Purple";
-                viewModel.AddressLine1 = "5 Green Lane";
-                viewModel.Town = "Blackville";
-                viewModel.County = "Blueshire";
-                viewModel.PostCode = "M1 1AA";
-                viewModel.Email = "percy@purple.com";
-                viewModel.TelephoneNumber = "percy@purple.com";
-                viewModel.IsMainDriver = false;
-                viewModel.DrivingLicenceNumber = "ABC1234";
-                viewModel.DriverForename = "Betty";
-                viewModel.DriverSurname = "Beige";
-                viewModel.NumberOfAdults = 2;
-                viewModel.NumberOfChildren = 1;
-                viewModel.VoucherCode = null; //todo: test this?
-                viewModel.RestrictionsAccepted = true;
-                viewModel.TermsAndConditionsAccepted = true;
+            var contextProvider = ObjectFactory.GetInstance<IContextProvider>();
 
-                using (var contextProvider = ObjectFactory.GetInstance<IContextProvider>())
-                {
-                    _bookingController.Confirm(viewModel);
-                    contextProvider.SaveChanges();
-                }
+            var viewModel = new ReviewViewModel();
+            viewModel.BusId = new Guid("6a9857a6-d0b0-4e1a-84cb-ee9ade159560");
+            viewModel.PickUp = new DateTime(2090, 1, 2);
+            viewModel.DropOff = new DateTime(2090, 1, 6);
+            viewModel.Forename = "Percy";
+            viewModel.Surname = "Purple";
+            viewModel.AddressLine1 = "5 Green Lane";
+            viewModel.Town = "Blackville";
+            viewModel.County = "Blueshire";
+            viewModel.PostCode = "M1 1AA";
+            viewModel.Email = "percy@purple.com";
+            viewModel.TelephoneNumber = "percy@purple.com";
+            viewModel.IsMainDriver = false;
+            viewModel.DrivingLicenceNumber = "ABC1234";
+            viewModel.DriverForename = "Betty";
+            viewModel.DriverSurname = "Beige";
+            viewModel.NumberOfAdults = 2;
+            viewModel.NumberOfChildren = 1;
+            viewModel.VoucherCode = null; //todo: test this?
+            viewModel.RestrictionsAccepted = true;
+            viewModel.TermsAndConditionsAccepted = true;
+
+            using (contextProvider)
+            {
+                _bookingController.Confirm(viewModel);
+                contextProvider.SaveChanges();
+            }
 
             ////todo:need booking id.
-            ////todo: refactor this somewhere.
-            //var contextProvider = ObjectFactory.GetInstance<IContextProvider>() as GenericContextProvider;
-            //contextProvider.SaveChanges();
-            //contextProvider.Dispose();
-
-            //todo: find a better way to do this.
             var bookingRepository = ObjectFactory.GetInstance<IBookingRepository>();
 
-            Booking booking = null;
-
-            using (ObjectFactory.GetInstance<IContextProvider>())
+            using (contextProvider)
             {
-                booking =
-                    bookingRepository.GetAll().Single(
-                        x => x.Id.Value != new Guid("eaa01eab-f3bd-4e24-8368-d3501a227a8b"));
+                var booking = bookingRepository.GetAll().Single(
+                    x => x.Id.Value != new Guid("eaa01eab-f3bd-4e24-8368-d3501a227a8b"));
 
                 Assert.That(booking.PickUp, Is.EqualTo(viewModel.PickUp));
                 Assert.That(booking.DropOff, Is.EqualTo(viewModel.DropOff));

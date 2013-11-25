@@ -55,9 +55,6 @@
     <Compile Include="Controllers\BookingControllerTests\ConfirmTests.cs" />
     <Compile Include="Controllers\BookingControllerTests\ReviewTests.cs" />
     <Compile Include="Controllers\CalendarControllerTests\DisplayMonthTests.cs" />
-    <Compile Include="Controllers\TaskControllerTests\IndexTests.cs" />
-    <Compile Include="Controllers\TaskControllerTests\RaiseTests.cs" />
-    <Compile Include="ControllerFactories\TaskControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

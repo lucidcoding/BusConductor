@@ -45,8 +45,6 @@ namespace BusConductor.Application.UnitTests.Implementations
             bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
         }
 
-        //todo:check summarize returns expected booking?
-
         [Test]
         public void CustomerMakeReturnsCorrectResult()
         {
@@ -56,11 +54,6 @@ namespace BusConductor.Application.UnitTests.Implementations
             var bookingNumber = bookingService.CustomerMake(request);
             Assert.That(bookingNumber, Is.EqualTo("201310010003_Blue"));
         }
-
-
-
-
-
 
         [Test]
         public void ValidateAdminMakeCallsCorrectMethods()
@@ -92,8 +85,6 @@ namespace BusConductor.Application.UnitTests.Implementations
             bookingServiceFactory.AdminMakeParameterSetMapper.Verify(x => x.MapWithOtherBookingsToday(request), Times.Once());
             bookingServiceFactory.BookingRepository.Verify(x => x.Save(It.IsAny<Booking>()), Times.Once());
         }
-
-        //todo:check summarize returns expected booking?
 
         [Test]
         public void AdminMakeReturnsCorrectResult()

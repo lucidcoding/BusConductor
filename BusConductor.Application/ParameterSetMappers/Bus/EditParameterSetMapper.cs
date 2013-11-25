@@ -25,8 +25,6 @@ namespace BusConductor.Application.ParameterSetMappers.Bus
             parameterSet.Berth = request.Berth;
             parameterSet.Year = request.Year;
             parameterSet.PricingPeriods = new List<EditPricingPeriodParameterSet>();
-
-            //todo: change
             parameterSet.CurrentUser = _userRepository.GetByUsername("Application");
 
             foreach(var editPricingPeriodRequest in request.PricingPeriods)
@@ -40,12 +38,7 @@ namespace BusConductor.Application.ParameterSetMappers.Bus
                 editPricingPeriodParameterSet.FridayToFridayRate = editPricingPeriodRequest.FridayToFridayRate;
                 editPricingPeriodParameterSet.FridayToMondayRate = editPricingPeriodRequest.FridayToMondayRate;
                 editPricingPeriodParameterSet.MondayToFridayRate = editPricingPeriodRequest.MondayToFridayRate;
-
-
-                //todo: change
                 editPricingPeriodParameterSet.CurrentUser = _userRepository.GetByUsername("Application");
-
-
                 parameterSet.PricingPeriods.Add(editPricingPeriodParameterSet);
             }
 

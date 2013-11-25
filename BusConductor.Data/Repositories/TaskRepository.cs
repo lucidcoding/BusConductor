@@ -13,51 +13,5 @@ namespace BusConductor.Data.Repositories
             base(contextProvider)
         {
         }
-
-        public IList<Task> Search(
-            Guid? assignedToId,
-            Guid? taskTypeId,
-            DateTime? dueDateFrom,
-            DateTime? dueDateTo,
-            TaskStatus? taskStatus,
-            bool? deleted
-        )
-        {
-            //var criteria = Session.CreateCriteria<Task>();
-
-            //if(assignedToId.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Eq("AssignedTo.Id", assignedToId.Value));
-            //}
-
-            //if (taskTypeId.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Eq("Type.Id", taskTypeId.Value));
-            //}
-
-            //if (dueDateFrom.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Ge("DueDate", dueDateFrom.Value));
-            //}
-
-            //if (dueDateTo.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Le("DueDate", dueDateTo.Value.AddDays(1)));
-            //}
-
-            //if(taskStatus.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Eq("Status", taskStatus.Value));
-            //}
-
-            //if(deleted.HasValue)
-            //{
-            //    criteria.Add(Restrictions.Eq("Deleted", deleted.Value));
-            //}
-
-            //return criteria.List<Task>();
-            //todo: fix this.
-            return null;
-        }
     }
 }

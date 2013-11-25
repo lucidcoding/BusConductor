@@ -91,7 +91,6 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RatesController.cs" />
-    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Core\UiRegistry.cs" />
     <Compile Include="ActionFilters\EntityFrameworkReadContextAttribute.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
@@ -99,11 +98,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappers\TaskIndexTaskViewModelMapper.cs" />
-    <Compile Include="Mappers\TaskIndexViewModelMapper.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Mappers\TaskRaiseEditViewModelMapper.cs" />
     <Compile Include="Misc\CustomMembershipProvider.cs" />
     <Compile Include="ViewModelMappers\Availability\IndexViewModelMapper.cs" />
     <Compile Include="ViewModelMappers\Booking\ReviewViewModelMapper.cs" />
@@ -126,9 +122,6 @@
     <Compile Include="ViewModels\Calendar\DisplayMonthWeekViewModel.cs" />
     <Compile Include="ViewModels\Rates\IndexBusViewModel.cs" />
     <Compile Include="ViewModels\Rates\IndexViewModel.cs" />
-    <Compile Include="ViewModels\TaskRaiseEditViewModel.cs" />
-    <Compile Include="ViewModels\TaskIndexTaskViewModel.cs" />
-    <Compile Include="ViewModels\TaskIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Background.gif" />
@@ -258,15 +251,6 @@
       <Project>{FD59D8EE-9F07-4C43-AD0C-D620177E7A05}</Project>
       <Name>Lucidity.Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Task\RaiseEdit.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Task\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Task\_IndexTasks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Bus\Index.cshtml" />
