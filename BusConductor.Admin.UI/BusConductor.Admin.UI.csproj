@@ -84,6 +84,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\UiRegistry.cs" />
+    <Compile Include="Helpers\DependencyObjectExtensions.cs" />
     <Compile Include="ViewModels\Booking\IndexViewModel.cs" />
     <Compile Include="ViewModels\Bus\EditPricingPeriodViewModel.cs" />
     <Compile Include="ViewModels\Bus\EditViewModel.cs" />

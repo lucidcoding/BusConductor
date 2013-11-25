@@ -6,6 +6,7 @@ using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using BusConductor.Admin.UI.Helpers;
 using BusConductor.Admin.UI.ViewModels.Bus;
 using BusConductor.Admin.UI.Views.Shared;
 using BusConductor.Application.Contracts;
@@ -88,11 +89,16 @@ namespace BusConductor.Admin.UI.Views.Bus
             {
                 var pricingPeriodTitle = " at Pricing Period at index " + ListViewPricingPeriods.Items.IndexOf(item);
                 var listViewItem = ListViewPricingPeriods.ItemContainerGenerator.ContainerFromItem(item) as ListViewItem;
-                if(Validation.GetHasError(FindChild<TextBox>(listViewItem, "StartDay"))) firstLineValidation.Add("Incorrect Start Day" + pricingPeriodTitle);
-                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "EndDay"))) firstLineValidation.Add("Incorrect End Day" + pricingPeriodTitle);
-                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "FridayToFridayRate"))) firstLineValidation.Add("Incorrect Friday to Friday rate" + pricingPeriodTitle);
-                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "FridayToMondayRate"))) firstLineValidation.Add("Incorrect Friday to Monday rate" + pricingPeriodTitle);
-                if (Validation.GetHasError(FindChild<TextBox>(listViewItem, "MondayToFridayRate"))) firstLineValidation.Add("Incorrect Monday to Friday rate" + pricingPeriodTitle);
+                //if(Validation.GetHasError(ControlFinder.FindChild<TextBox>(listViewItem, "StartDay"))) firstLineValidation.Add("Incorrect Start Day" + pricingPeriodTitle);
+                //if (Validation.GetHasError(ControlFinder.FindChild<TextBox>(listViewItem, "EndDay"))) firstLineValidation.Add("Incorrect End Day" + pricingPeriodTitle);
+                //if (Validation.GetHasError(ControlFinder.FindChild<TextBox>(listViewItem, "FridayToFridayRate"))) firstLineValidation.Add("Incorrect Friday to Friday rate" + pricingPeriodTitle);
+                //if (Validation.GetHasError(ControlFinder.FindChild<TextBox>(listViewItem, "FridayToMondayRate"))) firstLineValidation.Add("Incorrect Friday to Monday rate" + pricingPeriodTitle);
+                //if (Validation.GetHasError(ControlFinder.FindChild<TextBox>(listViewItem, "MondayToFridayRate"))) firstLineValidation.Add("Incorrect Monday to Friday rate" + pricingPeriodTitle);
+                if (Validation.GetHasError(listViewItem.FindChild<TextBox>("StartDay"))) firstLineValidation.Add("Incorrect Start Day" + pricingPeriodTitle);
+                if (Validation.GetHasError(listViewItem.FindChild<TextBox>("EndDay"))) firstLineValidation.Add("Incorrect End Day" + pricingPeriodTitle);
+                if (Validation.GetHasError(listViewItem.FindChild<TextBox>("FridayToFridayRate"))) firstLineValidation.Add("Incorrect Friday to Friday rate" + pricingPeriodTitle);
+                if (Validation.GetHasError(listViewItem.FindChild<TextBox>("FridayToMondayRate"))) firstLineValidation.Add("Incorrect Friday to Monday rate" + pricingPeriodTitle);
+                if (Validation.GetHasError(listViewItem.FindChild<TextBox>("MondayToFridayRate"))) firstLineValidation.Add("Incorrect Monday to Friday rate" + pricingPeriodTitle);
             }
 
             if (firstLineValidation.Any())
@@ -153,49 +159,6 @@ namespace BusConductor.Admin.UI.Views.Bus
             }
 
             MessageBox.Show(viewModel.Name + " has been updated.");
-        }
-
-        public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
-        {
-            // Confirm parent and childName are valid. 
-            if (parent == null) return null;
-
-            T foundChild = null;
-
-            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
-            for (int i = 0; i < childrenCount; i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                // If the child is not of the request child type child
-                T childType = child as T;
-                if (childType == null)
-                {
-                    // recursively drill down the tree
-                    foundChild = FindChild<T>(child, childName);
-
-                    // If the child is found, break so we do not overwrite the found child. 
-                    if (foundChild != null) break;
-                }
-                else if (!string.IsNullOrEmpty(childName))
-                {
-                    var frameworkElement = child as FrameworkElement;
-                    // If the child's name is set for search
-                    if (frameworkElement != null && frameworkElement.Name == childName)
-                    {
-                        // if the child's name is of the request name
-                        foundChild = (T)child;
-                        break;
-                    }
-                }
-                else
-                {
-                    // child element found.
-                    foundChild = (T)child;
-                    break;
-                }
-            }
-
-            return foundChild;
         }
     }
 }
