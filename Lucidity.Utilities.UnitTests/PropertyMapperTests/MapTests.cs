@@ -121,10 +121,10 @@ namespace Lucidity.Utilities.UnitTests.PropertyMapperTests
 
             var viewModel = PropertyMapper.MapMatchingProperties<MapTestEntity, MapTestViewModel>(entity, true);
             Assert.That(viewModel.FromNullableCheckBool, Is.True);
-            Assert.That(viewModel.FromNullableCheckInt, Is.EqualTo(entity.FromNullableCheckBool));
-            Assert.That(viewModel.FromNullableCheckDateTime, Is.EqualTo(entity.FromNullableCheckInt));
+            Assert.That(viewModel.FromNullableCheckInt, Is.EqualTo(entity.FromNullableCheckInt));
+            Assert.That(viewModel.FromNullableCheckDateTime, Is.EqualTo(entity.FromNullableCheckDateTime));
             Assert.That(viewModel.ToNullableCheckBool, Is.True);
-            Assert.That(viewModel.ToNullableCheckInt, Is.EqualTo(entity.ToNullableCheckBool));
+            Assert.That(viewModel.ToNullableCheckInt, Is.EqualTo(entity.ToNullableCheckInt));
             Assert.That(viewModel.ToNullableCheckDateTime, Is.EqualTo(entity.ToNullableCheckDateTime));
         }
 

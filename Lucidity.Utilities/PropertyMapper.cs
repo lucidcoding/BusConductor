@@ -27,32 +27,33 @@ namespace Lucidity.Utilities
                         var inputValue = inputProperty.GetValue(input, null);
                         outputProperty.SetValue(output, inputValue, null);
                     }
-                    //else if (mapNullables)
-                    //{
-                    //    //todo: finish this.
-                    //    var inputIsNullable = inputProperty.PropertyType.IsGenericType &&
-                    //                          inputProperty.PropertyType.GetGenericTypeDefinition() ==
-                    //                          typeof (Nullable<>);
+                    else if (mapNullables)
+                    {
+                        var inputIsNullable = inputProperty.PropertyType.IsGenericType &&
+                                              inputProperty.PropertyType.GetGenericTypeDefinition() ==
+                                              typeof(Nullable<>);
 
-                    //    var outputIsNullable = outputProperty.PropertyType.IsGenericType &&
-                    //                           outputProperty.PropertyType.GetGenericTypeDefinition() ==
-                    //                           typeof (Nullable<>);
+                        var outputIsNullable = outputProperty.PropertyType.IsGenericType &&
+                                               outputProperty.PropertyType.GetGenericTypeDefinition() ==
+                                               typeof(Nullable<>);
 
-                    //    if (inputIsNullable && !outputIsNullable)
-                    //    {
-                    //        var underlyingInputType = inputProperty.PropertyType.GetGenericArguments()[0];
-                    //        var a = inputProperty.GetValue(input, null);
-                    //        var inputHasValue = (bool)inputProperty.GetValue(input, null);
+                        if (inputIsNullable && !outputIsNullable)
+                        {
+                            var inputValue = inputProperty.GetValue(input, null);
+                            if (inputValue != null)
+                            {
+                                outputProperty.SetValue(output, inputValue, null);
+                            }
+                        }
 
-                    //        if(inputHasValue)
-                    //        {
-                                
-                    //        }
-                    //    }
-                    //}
+                        if (!inputIsNullable && outputIsNullable)
+                        {
+                            var inputValue = inputProperty.GetValue(input, null);
+                            outputProperty.SetValue(output, inputValue, null);
+                        }
+                    }
                 }
             }
-
 
             return output;
         }
