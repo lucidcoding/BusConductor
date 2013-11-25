@@ -15,9 +15,7 @@ namespace BusConductor.UI.IntegrationTests.Core
             Configure(x =>
                       {
                           x.ImportRegistry(typeof(ApplicationRegistry));
-                          //For<IContextProvider>().Use<NUnitContextProvider>();
                           For<IContextProvider>().Singleton().Use<GenericContextProvider>();
-                          //For<ILog>().Use<StubLog>();
                           For<ILog>().Use<SqlLog>().Ctor<string>("connectionString").Is(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString);
                       });
 
