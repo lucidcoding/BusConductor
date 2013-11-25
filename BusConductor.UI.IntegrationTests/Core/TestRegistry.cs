@@ -1,7 +1,6 @@
 ﻿using System.Configuration;
 using BusConductor.Application.Core;
 using BusConductor.Data.Common;
-using BusConductor.UI.IntegrationTests.Common;
 using Lucidity.Utilities.Logging;
 using StructureMap.Configuration.DSL;
 using Lucidity.Utilities.Contracts.Logging;

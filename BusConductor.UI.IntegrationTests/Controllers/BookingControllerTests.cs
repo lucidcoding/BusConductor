@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
 using BusConductor.Data.Common;
-using BusConductor.Domain.Entities;
 using BusConductor.Domain.RepositoryContracts;
 using BusConductor.UI.Controllers;
-using BusConductor.UI.IntegrationTests.Common;
 using BusConductor.UI.IntegrationTests.Core;
 using BusConductor.UI.IntegrationTests.Helpers;
 using BusConductor.UI.ViewModels.Booking;
@@ -24,7 +22,6 @@ namespace BusConductor.UI.IntegrationTests.Controllers
             ObjectFactory.Container.Configure(x => x.AddRegistry<TestRegistry>());
             _bookingController = ObjectFactory.GetInstance<BookingController>();
             ScriptRunner.RunScript();
-
         }
 
         [TearDown]
@@ -36,7 +33,6 @@ namespace BusConductor.UI.IntegrationTests.Controllers
         public void Works()
         {
             var contextProvider = ObjectFactory.GetInstance<IContextProvider>();
-
             var viewModel = new ReviewViewModel();
             viewModel.BusId = new Guid("6a9857a6-d0b0-4e1a-84cb-ee9ade159560");
             viewModel.PickUp = new DateTime(2090, 1, 2);
@@ -55,7 +51,7 @@ namespace BusConductor.UI.IntegrationTests.Controllers
             viewModel.DriverSurname = "Beige";
             viewModel.NumberOfAdults = 2;
             viewModel.NumberOfChildren = 1;
-            viewModel.VoucherCode = null; //todo: test this?
+            viewModel.VoucherCode = null;
             viewModel.RestrictionsAccepted = true;
             viewModel.TermsAndConditionsAccepted = true;
 
@@ -65,14 +61,10 @@ namespace BusConductor.UI.IntegrationTests.Controllers
                 contextProvider.SaveChanges();
             }
 
-            ////todo:need booking id.
-            var bookingRepository = ObjectFactory.GetInstance<IBookingRepository>();
-
             using (contextProvider)
-            {
-                var booking = bookingRepository.GetAll().Single(
-                    x => x.Id.Value != new Guid("eaa01eab-f3bd-4e24-8368-d3501a227a8b"));
-
+            {   
+                var bookingRepository = ObjectFactory.GetInstance<IBookingRepository>();
+                var booking = bookingRepository.GetAll().Single(x => x.Id.Value != new Guid("eaa01eab-f3bd-4e24-8368-d3501a227a8b"));
                 Assert.That(booking.PickUp, Is.EqualTo(viewModel.PickUp));
                 Assert.That(booking.DropOff, Is.EqualTo(viewModel.DropOff));
                 Assert.That(booking.Bus.Id.Value, Is.EqualTo(viewModel.BusId));

@@ -67,7 +67,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\NUnitContextProvider.cs" />
     <Compile Include="Controllers\BookingControllerTests.cs" />
     <Compile Include="Core\TestRegistry.cs" />
     <Compile Include="Helpers\ScriptRunner.cs" />
