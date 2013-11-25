@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using BusConductor.Data.Core;
+﻿using BusConductor.Data.Core;
 
 namespace BusConductor.Data.Common
 {
@@ -10,14 +6,12 @@ namespace BusConductor.Data.Common
     {
         public Context GetContext()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public void Dispose()
         {
-            
         }
-
 
         public void SaveChanges()
         {

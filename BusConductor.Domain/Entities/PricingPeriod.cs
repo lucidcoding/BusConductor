@@ -1,5 +1,6 @@
 ﻿using System;
 using BusConductor.Domain.Common;
+using BusConductor.Domain.ParameterSets.PricingPeriod;
 
 namespace BusConductor.Domain.Entities
 {
@@ -87,6 +88,35 @@ namespace BusConductor.Domain.Entities
 
             return sampleStartDate <= sampleTestDate
                 && sampleEndDate >= sampleTestDate;
+        }
+
+        public static PricingPeriod Add(AddEditParameterSet parameterSet)
+        {
+            var pricingPeriod = new PricingPeriod();
+            pricingPeriod.SetValues(parameterSet);
+            pricingPeriod._createdOn = DateTime.Now;
+            pricingPeriod._createdBy = parameterSet.CurrentUser;
+            return pricingPeriod;
+        }
+
+        public virtual void Edit(AddEditParameterSet parameterSet)
+        {
+            SetValues(parameterSet);
+            _lastModifiedOn = DateTime.Now;
+            _lastModifiedBy = parameterSet.CurrentUser;
+        }
+
+        protected virtual void SetValues(AddEditParameterSet parameterSet)
+        {
+            _id = parameterSet.Id;
+            _bus = parameterSet.Bus;
+            _startMonth = parameterSet.StartMonth;
+            _startDay = parameterSet.StartDay;
+            _endMonth = parameterSet.EndMonth;
+            _endDay = parameterSet.EndDay;
+            _fridayToFridayRate = parameterSet.FridayToFridayRate;
+            _fridayToMondayRate = parameterSet.FridayToMondayRate;
+            _mondayToFridayRate = parameterSet.MondayToFridayRate;
         }
     }
 }

@@ -21,5 +21,10 @@ namespace BusConductor.Admin.UI.Views.Shared
 
             DataContext = validationViewModel;
         }
+
+        private void Ok_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

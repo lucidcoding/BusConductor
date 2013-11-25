@@ -13,8 +13,7 @@
         <ListView Name="ListViewEmployeeDetails" Grid.Row="1" Margin="4,109,12,23"  ItemsSource="{Binding Busses}"  >
         <ListView.View>
             <GridView x:Name="grdTest">
-                <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}"  Width="100"/>
-                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"  Width="100" />
+                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"  Width="200" />
                 <GridViewColumn>
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>

@@ -130,7 +130,6 @@ namespace BusConductor.Domain.Entities
             set { _voucher = value; }
         }
 
-        //todo: unit test
         public static ValidationMessageCollection ValidateAdminMake(AdminMakeBookingParameterSet parameterSet)
         {
             var validationMessages = ValidateMake(parameterSet);
@@ -273,7 +272,6 @@ namespace BusConductor.Domain.Entities
             return validationMessages;
         }
 
-        //todo: unit test
         public static Booking AdminMake(AdminMakeBookingParameterSet parameterSet)
         {
             var validationMessages = ValidateAdminMake(parameterSet);

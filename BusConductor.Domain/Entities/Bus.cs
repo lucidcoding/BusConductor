@@ -6,6 +6,7 @@ using System.Linq;
 using BusConductor.Domain.Common;
 using BusConductor.Domain.Enumerations;
 using BusConductor.Domain.ParameterSets.Bus;
+using BusConductor.Domain.ParameterSets.PricingPeriod;
 
 namespace BusConductor.Domain.Entities
 {
@@ -86,14 +87,13 @@ namespace BusConductor.Domain.Entities
             bool overlappingPricingPeriods = false;
             bool daysUnmatchedByPricingPeriods = false;
 
-            //todo: refactor out.
-            var newPricingPeriods = parameterSet.PricingPeriods.Select(pricingPeriod => new PricingPeriod
+            var newPricingPeriods = parameterSet.PricingPeriods.Select(pricingPeriod => PricingPeriod.Add(new AddEditParameterSet
             {
                 StartMonth = pricingPeriod.StartMonth,
                 StartDay = pricingPeriod.StartDay,
                 EndMonth = pricingPeriod.EndMonth,
                 EndDay = pricingPeriod.EndDay
-            });
+            }));
 
             for (var date = new DateTime(2000, 1, 1); date < new DateTime(2001, 1, 1); date = date.AddDays(1))
             {
@@ -120,6 +120,26 @@ namespace BusConductor.Domain.Entities
                 validationMessages.AddError("Some days are covered by more than one pricing period");
             }
 
+            var firstPricingPeriod = newPricingPeriods
+                .OrderBy(x => x.StartMonth)
+                .ThenBy(x => x.StartDay)
+                .First();
+
+            var lastPricingPeriod = newPricingPeriods
+                .OrderBy(x => x.StartMonth)
+                .ThenBy(x => x.StartDay)
+                .Last();
+
+            if(firstPricingPeriod.StartMonth != 1 ||firstPricingPeriod.StartDay != 1)
+            {
+                validationMessages.AddError("There must be a pricing period beginning January 1st");
+            }
+
+            if (lastPricingPeriod.EndMonth != 12 || lastPricingPeriod.EndDay != 31)
+            {
+                validationMessages.AddError("There must be a pricing period ending December 31st");
+            }
+
             return validationMessages;
         }
 
@@ -136,38 +156,31 @@ namespace BusConductor.Domain.Entities
             _lastModifiedBy = parameterSet.CurrentUser;
             _lastModifiedOn = now;
 
-            //todo: reafctor this into pricing period
             foreach(var editPricingPeriodParameterSet in parameterSet.PricingPeriods)
             {
-                //Todo: why can't I just replace existing entity with new one with same ID?
-                PricingPeriod pricingPeriod;
-
+                var addEditParameterSet = new AddEditParameterSet();
+                addEditParameterSet.Id = editPricingPeriodParameterSet.Id;
+                addEditParameterSet.Bus = this;
+                addEditParameterSet.StartMonth = editPricingPeriodParameterSet.StartMonth;
+                addEditParameterSet.StartDay = editPricingPeriodParameterSet.StartDay;
+                addEditParameterSet.EndMonth = editPricingPeriodParameterSet.EndMonth;
+                addEditParameterSet.EndDay = editPricingPeriodParameterSet.EndDay;
+                addEditParameterSet.FridayToFridayRate = editPricingPeriodParameterSet.FridayToFridayRate;
+                addEditParameterSet.FridayToMondayRate = editPricingPeriodParameterSet.FridayToMondayRate;
+                addEditParameterSet.MondayToFridayRate = editPricingPeriodParameterSet.MondayToFridayRate;
+                addEditParameterSet.CurrentUser = editPricingPeriodParameterSet.CurrentUser;
+                
                 if(_pricingPeriods.Any(x => x.Id.Value == editPricingPeriodParameterSet.Id))
                 {
-                    pricingPeriod = _pricingPeriods.Single(x => x.Id.Value == editPricingPeriodParameterSet.Id);
-                    pricingPeriod.LastModifiedBy = parameterSet.CurrentUser;
-                    pricingPeriod.LastModifiedOn = now;
+                    var pricingPeriod = _pricingPeriods.Single(x => x.Id.Value == editPricingPeriodParameterSet.Id);
+                    pricingPeriod.Edit(addEditParameterSet);
                 }
                 else
                 {
-                    pricingPeriod = new PricingPeriod();
-                    pricingPeriod.Id = Guid.NewGuid();
-                    pricingPeriod.Bus = this;
-                    pricingPeriod.CreatedBy = parameterSet.CurrentUser;
-                    pricingPeriod.CreatedOn = now;
+                    var pricingPeriod = PricingPeriod.Add(addEditParameterSet);
                     _pricingPeriods.Add(pricingPeriod);
                 }
-
-                pricingPeriod.StartMonth = editPricingPeriodParameterSet.StartMonth;
-                pricingPeriod.StartDay = editPricingPeriodParameterSet.StartDay;
-                pricingPeriod.EndMonth = editPricingPeriodParameterSet.EndMonth;
-                pricingPeriod.EndDay = editPricingPeriodParameterSet.EndDay;
-                pricingPeriod.FridayToFridayRate = editPricingPeriodParameterSet.FridayToFridayRate;
-                pricingPeriod.FridayToMondayRate = editPricingPeriodParameterSet.FridayToMondayRate;
-                pricingPeriod.MondayToFridayRate = editPricingPeriodParameterSet.MondayToFridayRate;
             }
-
-            //todo: Also do delete.
         }
 
         public virtual PricingPeriod GetPricingPeriodFor(DateTime pickUp)

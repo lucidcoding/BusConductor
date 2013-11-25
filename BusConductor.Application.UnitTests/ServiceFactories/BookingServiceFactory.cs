@@ -51,7 +51,6 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
                                            MondayToFridayRate = 1
                                        });
 
-            //todo: check all these values are actually being used?
             CustomerMakeParameterSetMapper = new Mock<ICustomerMakeParameterSetMapper>();
             CustomerMakeBookingParameterSet = new CustomerMakeBookingParameterSet();
             CustomerMakeBookingParameterSet.PickUp = new DateTime(2090, 1, 2);
@@ -92,7 +91,6 @@ namespace BusConductor.Application.UnitTests.ServiceFactories
                 .Setup(x => x.MapWithOtherBookingsToday(It.IsAny<CustomerMakeBookingRequest>()))
                 .Returns(CustomerMakeBookingParameterSet);
 
-            //todo: change these values.
             AdminMakeParameterSetMapper = new Mock<IAdminMakeParameterSetMapper>();
             AdminMakeBookingParameterSet = new AdminMakeBookingParameterSet();
             AdminMakeBookingParameterSet.PickUp = new DateTime(2090, 1, 6);

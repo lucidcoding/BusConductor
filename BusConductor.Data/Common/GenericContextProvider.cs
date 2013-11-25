@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using BusConductor.Data.Core;
 
 namespace BusConductor.Data.Common
@@ -22,7 +19,6 @@ namespace BusConductor.Data.Common
 
         public void SaveChanges()
         {
-            //todo: maybe change?
             GetContext().SaveChanges();
         }
 

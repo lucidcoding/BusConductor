@@ -17,7 +17,6 @@ using StructureMap;
 
 namespace BusConductor.Admin.UI.Views.Bus
 {
-    //todo: order pricing periods
     public partial class Edit : Page
     {
         private IContextProvider _contextProvider;
@@ -46,7 +45,7 @@ namespace BusConductor.Admin.UI.Views.Bus
                 detailsViewModel.Berth = bus.Berth;
                 detailsViewModel.Year = bus.Year;
 
-                foreach(var pricingPeriod in bus.PricingPeriods)
+                foreach(var pricingPeriod in bus.PricingPeriods.OrderBy(x => x.EndMonth).ThenBy(x => x.EndDay))
                 {
                     var editPricingPeriodViewModel = new EditPricingPeriodViewModel();
                     editPricingPeriodViewModel.Id = pricingPeriod.Id.Value;
@@ -153,8 +152,7 @@ namespace BusConductor.Admin.UI.Views.Bus
                 transactionScope.Complete();
             }
 
-            //todo: message to say all is well.
-
+            MessageBox.Show(viewModel.Name + " has been updated.");
         }
 
         public static T FindChild<T>(DependencyObject parent, string childName) where T : DependencyObject
