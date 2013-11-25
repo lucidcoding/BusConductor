@@ -6,11 +6,9 @@ namespace BusConductor.Data.Core
 {
     public class Context : DbContext
     {
-        //todo: change it so we don't have to have ID for every child.
-
         public Context() : base(ConfigurationManager.ConnectionStrings["BusConductor"].ConnectionString)
         {
-            this.Configuration.LazyLoadingEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<Booking> Bookings { get; set; }
