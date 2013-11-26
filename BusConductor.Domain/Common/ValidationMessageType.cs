@@ -6,7 +6,7 @@ namespace BusConductor.Domain.Common
     /// Represents the level of a validation error.
     /// </summary>
     [DataContract]
-    public enum MessageType
+    public enum ValidationMessageType
     {
         [EnumMember]
         Info = 0,

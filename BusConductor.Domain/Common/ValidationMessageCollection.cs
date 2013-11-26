@@ -18,7 +18,7 @@ namespace BusConductor.Domain.Common
         /// <param name="text">The text for the ValidationMessage.</param>
         public void AddError(string text)
         {
-            Add(new ValidationMessage(MessageType.Error, text));
+            Add(new ValidationMessage(ValidationMessageType.Error, text));
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace BusConductor.Domain.Common
         /// <param name="text">The text for the ValidationMessage.</param>
         public void AddError(string field, string text)
         {
-            Add(new ValidationMessage(MessageType.Error, field, text));
+            Add(new ValidationMessage(ValidationMessageType.Error, field, text));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace BusConductor.Domain.Common
         /// <param name="text">The text for the ValidationMessage.</param>
         public void AddWarning(string text)
         {
-            Add(new ValidationMessage(MessageType.Warning, text));
+            Add(new ValidationMessage(ValidationMessageType.Warning, text));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BusConductor.Domain.Common
             {
                 return (from validationMessage
                         in this
-                        where validationMessage.Type == MessageType.Info
+                        where validationMessage.Type == ValidationMessageType.Info
                         select validationMessage).ToList();
             }
         }
@@ -63,7 +63,7 @@ namespace BusConductor.Domain.Common
             {
                 return (from validationMessage
                         in this
-                        where validationMessage.Type == MessageType.Error
+                        where validationMessage.Type == ValidationMessageType.Error
                         select validationMessage).ToList();
             }
         }
@@ -77,7 +77,7 @@ namespace BusConductor.Domain.Common
             {
                 return (from validationMessage
                         in this
-                        where validationMessage.Type == MessageType.Warning
+                        where validationMessage.Type == ValidationMessageType.Warning
                         select validationMessage).ToList();
             }
         }
@@ -91,7 +91,7 @@ namespace BusConductor.Domain.Common
         /// <returns>True if a ValidationMessage is found in this collection.</returns>
         public bool ContainsError(string field, string text)
         {
-            return this.Contains(new ValidationMessage(MessageType.Error, field, text));
+            return this.Contains(new ValidationMessage(ValidationMessageType.Error, field, text));
         }
     }
 }

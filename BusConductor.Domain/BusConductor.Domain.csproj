@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="Common\Entity.cs" />
     <Compile Include="Common\IRepository.cs" />
-    <Compile Include="Common\MessageType.cs" />
+    <Compile Include="Common\ValidationMessageType.cs" />
     <Compile Include="Common\ValidationException.cs" />
     <Compile Include="Common\ValidationMessage.cs" />
     <Compile Include="Common\ValidationMessageCollection.cs" />

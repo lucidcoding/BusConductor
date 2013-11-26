@@ -12,7 +12,6 @@ namespace Lucidity.Utilities
         public static TOutput MapMatchingProperties<TInput, TOutput>(TInput input, bool mapNullables) where TOutput : new()
         {
             var output = new TOutput();
-
             var inputType = typeof (TInput);
             var outputType = typeof (TOutput);
 

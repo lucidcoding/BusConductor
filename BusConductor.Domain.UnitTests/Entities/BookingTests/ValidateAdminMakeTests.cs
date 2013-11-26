@@ -96,7 +96,7 @@ namespace BusConductor.Domain.UnitTests.Entities.BookingTests
             _parameterSet.TotalCost = 0;
             var validationMessages = Booking.ValidateAdminMake(_parameterSet);
             Assert.That(validationMessages.Count, Is.EqualTo(1));
-            Assert.That(validationMessages.Any(x => x.Type == MessageType.Warning && x.Text == "Total cost is zero."));
+            Assert.That(validationMessages.Any(x => x.Type == ValidationMessageType.Warning && x.Text == "Total cost is zero."));
         }
 
         [Test]

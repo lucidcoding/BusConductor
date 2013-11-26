@@ -106,7 +106,6 @@ namespace Lucidity.Utilities.UnitTests.PropertyMapperTests
         }
 
         [Test]
-        [Ignore("functionality not completed")]
         public void NullablesAreMappedToNonNullablesAndViceVersa()
         {
             var entity = new MapTestEntity
@@ -129,7 +128,6 @@ namespace Lucidity.Utilities.UnitTests.PropertyMapperTests
         }
 
         [Test]
-        [Ignore("functionality not completed")]
         public void NullablesWithoutValueAreMappedToDefaultAndViceVersa()
         {
             var entity = new MapTestEntity();

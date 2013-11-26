@@ -12,7 +12,7 @@ namespace BusConductor.Domain.Common
     [DataContract(IsReference = true)]
     public class ValidationMessage
     {
-        protected MessageType _type;
+        protected ValidationMessageType _type;
         protected string _field;
         protected string _text;
 
@@ -20,7 +20,7 @@ namespace BusConductor.Domain.Common
         /// Gets/sets the error level.
         /// </summary>
         [DataMember]
-        public MessageType Type
+        public ValidationMessageType Type
         {
             get { return _type; }
             set { _type = value; }
@@ -51,7 +51,7 @@ namespace BusConductor.Domain.Common
         /// </summary>
         /// <param name="type">The type of the error.</param>
         /// <param name="text">The error message.</param>
-        public ValidationMessage(MessageType type, string text)
+        public ValidationMessage(ValidationMessageType type, string text)
         {
             _type = type;
             _text = text;
@@ -63,7 +63,7 @@ namespace BusConductor.Domain.Common
         /// <param name="type">The type of the error.</param>
         /// <param name="field">The field that this message relates to.</param>
         /// <param name="text">The error message.</param>
-        public ValidationMessage(MessageType type, string field, string text)
+        public ValidationMessage(ValidationMessageType type, string field, string text)
         {
             _type = type;
             _field = field;
