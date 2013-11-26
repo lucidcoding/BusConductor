@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
 
 namespace BusConductor.UI.ViewModels.Booking
 {
     public class ReviewViewModel
     {
-        //todo: Maybe have MakeViewModel as a child of this?
         public Guid BusId { get; set; }
 
         [DisplayName("Selected camper")]

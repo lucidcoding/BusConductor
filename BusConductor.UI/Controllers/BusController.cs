@@ -33,9 +33,7 @@ namespace BusConductor.UI.Controllers
 
             foreach (var bus in busses)
             {
-                var busViewModel = PropertyMapper.MapMatchingProperties<Bus, IndexBusViewModel>(bus);
-                //todo:Make the mapper map nullable to non nullables
-                busViewModel.Id = bus.Id.Value;
+                var busViewModel = PropertyMapper.MapMatchingProperties<Bus, IndexBusViewModel>(bus, true);
                 busViewModel.MainImageUrl = VirtualPathUtility.ToAbsolute("~/Images/bluebell_sm_121109.jpg");
                 viewModel.Busses.Add(busViewModel);
             }
@@ -47,8 +45,7 @@ namespace BusConductor.UI.Controllers
         public ActionResult Details(Guid id)
         {
             var bus = _busRepository.GetById(id);
-            var viewModel = PropertyMapper.MapMatchingProperties<Bus, DetailsViewModel>(bus);
-            viewModel.Id = bus.Id.Value;
+            var viewModel = PropertyMapper.MapMatchingProperties<Bus, DetailsViewModel>(bus, true);
             viewModel.Calendar = DisplayMonthViewModelMapper.Map(bus);
             return View(viewModel);
         }

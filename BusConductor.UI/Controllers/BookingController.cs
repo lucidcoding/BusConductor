@@ -63,7 +63,7 @@ namespace BusConductor.UI.Controllers
             if(!ModelState.IsValid)
             {
                 var bus = _busRepository.GetById(inViewModel.BusId);
-                MakeViewModelMapper.Initialize(inViewModel, bus);
+                MakeViewModelMapper.Hydrate(inViewModel, bus);
                 return View("Make", inViewModel);
             }
 
@@ -80,7 +80,6 @@ namespace BusConductor.UI.Controllers
         {
             var request = ReviewViewModelMapper.Map(inViewModel);
             var bookingNumber = _bookingService.CustomerMake(request);
-            //todo:email 
             var outViewModel = new CompletedViewModel();
             outViewModel.BookingNumber = bookingNumber;
             return View("Completed", outViewModel);

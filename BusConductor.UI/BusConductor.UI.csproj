@@ -75,12 +75,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionFilters\OLD_EntityFrameworkWriteContextAttribute.cs" />
-    <Compile Include="ActionFilters\OLD_EntityFrameworkReadContextAttribute.cs" />
     <Compile Include="ActionFilters\EntityFrameworkWriteContextAttribute.cs" />
     <Compile Include="ActionFilters\LogAttribute.cs" />
     <Compile Include="ActionFilters\TransactionScopeAttribute.cs" />
-    <Compile Include="Common\HttpContextProvider.cs" />
     <Compile Include="Common\InjectingActionInvoker.cs" />
     <Compile Include="Common\StructureMapControllerActivator.cs.cs" />
     <Compile Include="Controllers\AccountController.cs" />

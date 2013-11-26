@@ -3,7 +3,6 @@
 namespace BusConductor.Data.Common
 {
     //todo: spinners?
-    //todo: duplicate required, format and any simple validation into the annotations.
     //todo: move regular expressions into a library.
 
     //todo: validation:
